@@ -1,8 +1,9 @@
-LOGO
+# lockebot
+![LockeBotLogo](media/JohnLockeLogoMini.jpg)
 
-Lead sentence: LockeBot: a demonstration of implementing a basic question answering bot with use of Rasa NLU and a database.
+**LockeBot:** a demonstration of implementing a basic question answering bot with use of [Rasa NLU](https://github.com/golastmile/rasa_nlu) and a database.
 
-#What is this?
+## What is this?
 
 [image of LockeBot in use]
 
@@ -12,35 +13,39 @@ Rasa NLU has the great advantage of letting you handle your NLU models locally a
 
 One other option with this project is to run the finished bot on a Raspberry Pi.  Although you may well not wish to train the model on the Pi (it may take a rather long time!), once you have a trained model, it is very much capable of giving responses quickly and although large scale use will likely not be viable it works for small numbers of concurrent users (LIMITS NOT TESTED, but email use with a group of ~20 users is definitely viable)
 
-#Installation
+There is a **basebot** (which does very little) and a slightly more capable version **name_tbc** 
 
-- git clone from this repo
-	FILL IN INSTRUCTIONS
-- create virtual environment
-	virtualenv2 venv
-- activate virtual environment
-	source venv/bin/activate
-- pip install
-	pip install requirements.txt
-- copy the feature_extractor files to MITIE folder
-	STEPS FOR DOWNLOADING
-	EXTRACTING TO CORRECT FOLDER
+## Install
 
-#Platforms
-Currently it is only tested on Linux (specifically Arch x86-64 and Raspbian on a Raspberry Pi 3)
+* git clone from this repo
+	* FILL IN INSTRUCTIONS
+* create virtual environment
+	* virtualenv2 venv
+* activate virtual environment
+	* source venv/bin/activate
+* pip install
+	* pip install requirements.txt
+* manually install MITIE (doesn't seem to work if included via requirements.txt even with "-e git+https://github.com/mit-nlp/MITIE.git" with or without #egg=...)
+	* pip install git+https://github.com/mit-nlp/MITIE.git
+* copy the feature_extractor files to MITIE folder
+	* STEPS FOR DOWNLOADING
+	* EXTRACTING TO CORRECT FOLDER
+
+## Platforms
+Currently it is only tested on **Linux** (specifically Arch x86-64 and Raspbian on a Raspberry Pi 3)
 In due course I would be interested like to support Windows and Mac - I have access to the former but not the latter, so if there's anyone keen to look into this on the Mac, volunteers will be gratefully received.
 
-#Python versions
+## Python versions
 Whilst I would like to support Python 3.n, currently as Rasa NLU has a Python 2.7 dependency it is going to mirror that until support there is resolved.
 
-#Technical background
+## Technical background
 
-#Roadmap
+## Roadmap
 
-This project is a personal project that I've decided to open-source - whilst I would like it to work well for people, I am likely to have limited time in the near-term (H1 2017) so expect changes to be relatively slow (however don't be deterred from forking it if you like!)
+This project is a personal project that I've decided to open-source - whilst I would like it to work well for people, and am keen to make improvements to it, I am likely to have somewhat limited time in the near-term (H1 2017) so expect changes to be relatively slow (however don't be deterred from forking it if you like!)
 
-- put in some tests!
-- 
+* put in some tests!
+* 
 
-#Name origin
-LockeBot gets its name from a terrible pun. It is built on Rasa NLU, and John Locke (the philospher) was notable for his work in relation to the empty slate arguments regarding the mind, called tabula rasa.
+## Name origin
+LockeBot gets its name from a terrible pun. It is built on Rasa NLU, and [John Locke](https://en.wikipedia.org/wiki/John_Locke) (the philospher) was notable for his work in relation to the empty slate arguments regarding the mind, called tabula rasa.
