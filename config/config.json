@@ -1,0 +1,7 @@
+{
+  "backend": "mitie",
+  "mitie_file" : "./MITIE/MITIE-models/english/total_word_feature_extractor.dat",
+  "path" : "./",
+  "data" : "./data/BaseBot.json",
+  "server_model_dir":"./models/model_20170124-010214"
+}
