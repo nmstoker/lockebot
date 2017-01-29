@@ -1,11 +1,16 @@
-lockebot
+# lockebot
+
 ![LockeBotLogo](media/JohnLockeLogoMini.jpg)
 
 **LockeBot:** a demonstration of implementing a basic question answering bot with use of [Rasa NLU](https://github.com/golastmile/rasa_nlu) and a database.
 
 ## What is this?
 
-[image of LockeBot in use]
+It is a bot that can answer simple questions - after being trained on examples, it is (to a degree) able to generalise the questions and respond to ones in a similar style. The questions are turned into intents and entities, which are then used to construct queries to run against a database to provide the answer.
+
+Here is a demo of the BaseBot version (which is somewhat limited in what it can respond to and has a small table of people with some trivial characteristics, like name, number and location)
+
+[![asciicast](https://asciinema.org/a/5j5zs42kk95itm1uzdqlwys86.png)](https://asciinema.org/a/5j5zs42kk95itm1uzdqlwys86)
 
 This project grew out of my experiments to build a bot in Python using Rasa NLU. I should be up-front that this is not necessarily the perfect way to use it and there are probably many things that could be done in a more Pythonic way, but my intent is that by sharing it, others will either be able to get something basic working quickly or they'll use it for inspiration in another project.
 
