@@ -1,5 +1,5 @@
 lockebot
-![LockeBotLogo](media/JohnLockeLogoMini.jpg | width=300)
+![LockeBotLogo](media/JohnLockeLogoMini.jpg)
 
 **LockeBot:** a demonstration of implementing a basic question answering bot with use of [Rasa NLU](https://github.com/golastmile/rasa_nlu) and a database.
 
