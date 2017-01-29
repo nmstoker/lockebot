@@ -244,7 +244,7 @@ def open_connection():
     config.read([os.path.abspath(os.path.join('config', 'settings.ini'))])
 
     # Connect to the server
-    hostname = config.get('server', 'hostname')
+    hostname = config.get('server', 'imap-hostname')
     logger.debug('Connecting to ' + hostname)
     connection = imaplib.IMAP4_SSL(hostname, 993)
 
@@ -413,7 +413,7 @@ def send_email(address='test@nmstoker.com'):
         config.read([os.path.abspath('settings.ini')])
 
         # Connect to the server
-        hostname = config.get('server', 'hostname')
+        hostname = config.get('server', 'smtp-hostname')
         logger.debug('Connecting to ' + hostname)
         server = smtplib.SMTP(hostname, 587)
         server.ehlo()
