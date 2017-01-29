@@ -1,5 +1,5 @@
 # Project specific items
-MITIE/
+MITIE/MITIE-models/
 models/
 data/base.hist
 data/tagged.txt
