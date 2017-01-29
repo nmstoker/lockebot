@@ -29,10 +29,10 @@ Ensure you have Python 2.7 installed (it is not currently compatible with Python
 For Raspberry Pi installation, there are a couple of changes to the steps for installing MITIE. See information under Additional installation choices below.
 
 * Git clone from this repo
-	* `git clone https://github.com/nmstoker/lockebot mybotfoldername` - *replace **mybotfoldername** with any valid name you like*
+	* `git clone https://github.com/nmstoker/lockebot mybotfoldername` - *replace __mybotfoldername__ with any valid name you like*
 	* `cd mybotfoldername`
 * Create a virtual environment (optional but recommended)
-	* `virtualenv2 venv` - *again you can use whatever name you like instead of **venv** for your environment name*
+	* `virtualenv2 venv` - *again you can use whatever name you like instead of __venv__ for your environment name*
 * Activate the virtual environment
 	* `source venv/bin/activate`
 * Use pip install
@@ -61,20 +61,23 @@ But if you wish to use it via email or Let's Chat, see the addition requirements
 
 
 #### Let's Chat
-Let's Chat has a variety of ways that it can be set up - for advice on that, please refer to the instructions in their repo's wiki [here](https://github.com/sdelements/lets-chat/wiki).  For development, I found docker very quick to get going with.  (NB: although LockeBot will work on a Raspberry Pi, no efforts have beeen made (yet!) to see if Let's Chat is viable on the Pi so I have no advice on that front)
+Let's Chat has a variety of ways that it can be set up - for advice on that, please refer to the instructions in their repo's wiki [here](https://github.com/sdelements/lets-chat/wiki).  For development, I found docker very quick to get going with.  (NB: although LockeBot will work on a Raspberry Pi, no efforts have been made (yet!) to see if Let's Chat is viable on the Pi so I have no advice on that front)
 
 Look at the script and find the constants for Let's Chat (all prefixed **LC_**) and update them as necessary to point to your particular Let's Chat instance. The primary one to focus on is **LC_BASE_URL** and this should correspond to a room in the Let's Chat where the bot will respond to questions from users. If you're running it locally you may be able to leave them "as is" if you create a room to match the default one ("base" for BaseBot).
 
 In the bot script (eg basebot.py), edit **CHANNEL_IN** and **CHANNEL_OUT** to reference **'online'** and **'online': True** respectively (CHANNEL_IN can only take one value at a time, but CHANNEL_OUT can be true for **'screen'** and/or **'email'** as well as **'online'**) 
 
 #### Email set up
-To use LockeBot over email, it operated by connecting via IMAP and SMTP to an email account that you set up specifically for it.
+To use LockeBot over email, it connects via IMAP and SMTP to an email account that you set up specifically for use with the bot.
 
 Several major email services provide details the ability to connect with IMAP/SMTP - if this is not available for the email you wish to use, you will need to figure out how you can connect programmatically via Python (and re-write the necessary sections of code).
 
 Dreamhost instructions for IMAP are here: https://help.dreamhost.com/hc/en-us/articles/215612887-Email-client-protocols-and-port-numbers
+
 Gmail instructions for IMAP access are here: https://support.google.com/mail/answer/7126229?hl=en
+
 Microsoft Outlook.com instructions for IMAP access are here: https://support.office.com/en-gb/article/Add-your-Outlook-com-account-to-another-mail-app-73f3b178-0009-41ae-aab1-87b80fa94970
+
 If you are with another provder, check the details with them.
 
 You need:
@@ -114,3 +117,6 @@ This project is a personal project that I've decided to open-source - whilst I w
 
 ## Name origin
 LockeBot gets its name from a terrible pun. It is built on Rasa NLU, and [John Locke](https://en.wikipedia.org/wiki/John_Locke) (the philospher) was notable for his work in relation to the empty slate arguments regarding the mind, called tabula rasa.
+
+## Disclaimer
+I am very grateful for the various tools which make this small project possible, however I should make clear that this software is not endorsed by any of the email providers mentioned above, Let's Chat, nor LastMile (producers of Rasa NLU).
