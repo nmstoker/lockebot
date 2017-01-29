@@ -100,7 +100,7 @@ The script polls the email fairly frequently - you may find that a less frequent
 ## Usage
 
 ## Platforms
-Currently it is only tested on **Linux** (specifically Arch x86-64 and Raspbian on a Raspberry Pi 3)
+Currently it is only tested on **Linux** (specifically [Arch](https://www.archlinux.org/) x86-64 and [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on a Raspberry Pi 3)
 In due course I would be interested like to support Windows and Mac - I have access to the former but not the latter, so if there's anyone keen to look into this on the Mac, volunteers will be gratefully received.
 
 ## Python versions
