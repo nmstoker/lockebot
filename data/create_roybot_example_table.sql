@@ -1,0 +1,1 @@
+CREATE TABLE `ruler` (`Name`,`Number`,`Title`,`Portrait`,`House`,`Country`,`Era`,`DtBirth`,`DtDeath`,`DeathCircumstances`,`ReignStartDt`,`ReignEndDt`,`Description`,`FamousBattles`,`NotableEventsDuringLife`)

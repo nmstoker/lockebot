@@ -1,0 +1,1634 @@
+{
+  "rasa_nlu_data": {
+    "entity_examples": [
+      {
+        "intent": "rude",
+        "text": "You are stupid",
+        "entities": [
+          {
+            "start": 8,
+            "end": 14,
+            "value": "stupid",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "You moron",
+        "entities": [
+          {
+            "start": 4,
+            "end": 9,
+            "value": "moron",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "Silly you",
+        "entities": [
+          {
+            "start": 0,
+            "end": 5,
+            "value": "Silly",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "Go away!",
+        "entities": [
+          {
+            "start": 3,
+            "end": 7,
+            "value": "away",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "Not very clever are you?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 15,
+            "value": "clever",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "Don't be an idiot",
+        "entities": [
+          {
+            "start": 12,
+            "end": 17,
+            "value": "idiot",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "You don't understand anything!",
+        "entities": [
+          {
+            "start": 10,
+            "end": 20,
+            "value": "understand",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "rude",
+        "text": "I will turn you off",
+        "entities": [
+          {
+            "start": 7,
+            "end": 11,
+            "value": "turn",
+            "entity": "rude"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who reigned after King John?",
+        "entities": [
+          {
+            "start": 18,
+            "end": 22,
+            "value": "King",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 23,
+            "end": 27,
+            "value": "John",
+            "entity": "name"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was queen after Henry II?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 13,
+            "value": "queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 26,
+            "end": 28,
+            "value": "II",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Who was the previous queen before Victoria?",
+        "entities": [
+          {
+            "start": 21,
+            "end": 26,
+            "value": "queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 34,
+            "end": 42,
+            "value": "Victoria",
+            "entity": "name"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was the king after Elizabeth IV?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 23,
+            "end": 32,
+            "value": "Elizabeth",
+            "entity": "name"
+          },
+          {
+            "start": 33,
+            "end": 35,
+            "value": "IV",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who ruled after King Edward?",
+        "entities": [
+          {
+            "start": 16,
+            "end": 20,
+            "value": "King",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 21,
+            "end": 27,
+            "value": "Edward",
+            "entity": "name"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Who was king before George III?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 20,
+            "end": 26,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 27,
+            "end": 30,
+            "value": "III",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Which king ruled after King Charles IX?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 10,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 28,
+            "end": 35,
+            "value": "Charles",
+            "entity": "name"
+          },
+          {
+            "start": 36,
+            "end": 38,
+            "value": "IX",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Which king was in power before King George V?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 10,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 36,
+            "end": 42,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 43,
+            "end": 44,
+            "value": "V",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "After William the Conqueror, who was next on the throne?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 27,
+            "value": "William the Conqueror",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the House of Normandy who was the last king?",
+        "entities": [
+          {
+            "start": 42,
+            "end": 46,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 37,
+            "end": 41,
+            "value": "last",
+            "entity": "position"
+          },
+          {
+            "start": 7,
+            "end": 24,
+            "value": "House of Normandy",
+            "entity": "house"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the House of Normandy who was the first queen?",
+        "entities": [
+          {
+            "start": 43,
+            "end": 48,
+            "value": "queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 37,
+            "end": 42,
+            "value": "first",
+            "entity": "position"
+          },
+          {
+            "start": 7,
+            "end": 24,
+            "value": "House of Normandy",
+            "entity": "house"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which kings were in the House of Anjou?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 11,
+            "value": "kings",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 24,
+            "end": 38,
+            "value": "House of Anjou",
+            "entity": "house"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which queens were in the House of Tudor?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 12,
+            "value": "queens",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 25,
+            "end": 39,
+            "value": "House of Tudor",
+            "entity": "house"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Name all the queens who have ruled England?",
+        "entities": [
+          {
+            "start": 13,
+            "end": 19,
+            "value": "queens",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 35,
+            "end": 42,
+            "value": "England",
+            "entity": "country"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Name all the monarchs who have ruled Scotland?",
+        "entities": [
+          {
+            "start": 13,
+            "end": 21,
+            "value": "monarchs",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 37,
+            "end": 45,
+            "value": "Scotland",
+            "entity": "country"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about George III",
+        "entities": [
+          {
+            "start": 18,
+            "end": 24,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 8,
+            "end": 11,
+            "value": "all",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "value": "III",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Edward VI",
+        "entities": [
+          {
+            "start": 31,
+            "end": 37,
+            "value": "Edward",
+            "entity": "name"
+          },
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 38,
+            "end": 40,
+            "value": "VI",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "How did King John die?",
+        "entities": [
+          {
+            "start": 13,
+            "end": 17,
+            "value": "John",
+            "entity": "name"
+          },
+          {
+            "start": 18,
+            "end": 21,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 8,
+            "end": 12,
+            "value": "King",
+            "entity": "ruler_type"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What was the cause of death of Queen Elizabeth?",
+        "entities": [
+          {
+            "start": 37,
+            "end": 46,
+            "value": "Elizabeth",
+            "entity": "name"
+          },
+          {
+            "start": 13,
+            "end": 27,
+            "value": "cause of death",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "value": "Queen",
+            "entity": "ruler_type"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What are the circumstances of King Charles II's death?",
+        "entities": [
+          {
+            "start": 35,
+            "end": 42,
+            "value": "Charles",
+            "entity": "name"
+          },
+          {
+            "start": 48,
+            "end": 53,
+            "value": "death",
+            "entity": "feature"
+          },
+          {
+            "start": 43,
+            "end": 45,
+            "value": "II",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Show me a portrait of William Rufus",
+        "entities": [
+          {
+            "start": 22,
+            "end": 35,
+            "value": "William Rufus",
+            "entity": "title"
+          },
+          {
+            "start": 10,
+            "end": 18,
+            "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When was Queen Victoria born?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 24,
+            "end": 28,
+            "value": "born",
+            "entity": "feature"
+          },
+          {
+            "start": 15,
+            "end": 23,
+            "value": "Victoria",
+            "entity": "name"
+          },
+          {
+            "start": 9,
+            "end": 14,
+            "value": "Queen",
+            "entity": "ruler_type"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When was George VI born?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 19,
+            "end": 23,
+            "value": "born",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 15,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 16,
+            "end": 18,
+            "value": "VI",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year was Henry IV born?",
+        "entities": [
+          {
+            "start": 5,
+            "end": 9,
+            "value": "year",
+            "entity": "feature"
+          },
+          {
+            "start": 23,
+            "end": 27,
+            "value": "born",
+            "entity": "feature"
+          },
+          {
+            "start": 14,
+            "end": 19,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 20,
+            "end": 22,
+            "value": "IV",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "In what year was Elizabeth II born?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "year",
+            "entity": "feature"
+          },
+          {
+            "start": 30,
+            "end": 34,
+            "value": "born",
+            "entity": "feature"
+          },
+          {
+            "start": 17,
+            "end": 26,
+            "value": "Elizabeth",
+            "entity": "name"
+          },
+          {
+            "start": 27,
+            "end": 29,
+            "value": "II",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Richard III die?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 21,
+            "end": 24,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 16,
+            "value": "Richard",
+            "entity": "name"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "value": "III",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year did Mary XI die",
+        "entities": [
+          {
+            "start": 5,
+            "end": 9,
+            "value": "year",
+            "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 14,
+            "end": 18,
+            "value": "Mary",
+            "entity": "name"
+          },
+          {
+            "start": 19,
+            "end": 21,
+            "value": "XI",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did William III reign from?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 21,
+            "end": 31,
+            "value": "reign from",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 16,
+            "value": "William",
+            "entity": "name"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "value": "III",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "The reign of Edward VI started in which year?",
+        "entities": [
+          {
+            "start": 4,
+            "end": 9,
+            "value": "reign",
+            "entity": "feature"
+          },
+          {
+            "start": 23,
+            "end": 30,
+            "value": "started",
+            "entity": "feature"
+          },
+          {
+            "start": 13,
+            "end": 19,
+            "value": "Edward",
+            "entity": "name"
+          },
+          {
+            "start": 20,
+            "end": 22,
+            "value": "VI",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What is the date of King Stephen's birth?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "date",
+            "entity": "feature"
+          },
+          {
+            "start": 35,
+            "end": 40,
+            "value": "birth",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 32,
+            "value": "Stephen",
+            "entity": "name"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What is the date of Charles III's death?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "date",
+            "entity": "feature"
+          },
+          {
+            "start": 34,
+            "end": 39,
+            "value": "death",
+            "entity": "feature"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "value": "Charles",
+            "entity": "name"
+          },
+          {
+            "start": 28,
+            "end": 31,
+            "value": "III",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Richard the Lionheart die?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 34,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 30,
+            "value": "Richard the Lionheart",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Henry V become king?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 14,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 15,
+            "end": 16,
+            "value": "V",
+            "entity": "number-roman"
+          },
+          {
+            "start": 17,
+            "end": 23,
+            "value": "become",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did the reign of Queen Susan X end?",
+        "entities": [
+          {
+            "start": 13,
+            "end": 18,
+            "value": "reign",
+            "entity": "feature"
+          },
+          {
+            "start": 28,
+            "end": 33,
+            "value": "Susan",
+            "entity": "name"
+          },
+          {
+            "start": 34,
+            "end": 35,
+            "value": "X",
+            "entity": "number-roman"
+          },
+          {
+            "start": 36,
+            "end": 39,
+            "value": "end",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did William VII become king?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 16,
+            "value": "William",
+            "entity": "name"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "value": "VII",
+            "entity": "number-roman"
+          },
+          {
+            "start": 21,
+            "end": 27,
+            "value": "become",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What were the famous battles of William of Orange?",
+        "entities": [
+          {
+            "start": 32,
+            "end": 49,
+            "value": "William of Orange",
+            "entity": "title"
+          },
+          {
+            "start": 21,
+            "end": 28,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What are some notable events from the period of Henry XV?",
+        "entities": [
+          {
+            "start": 48,
+            "end": 53,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 22,
+            "end": 28,
+            "value": "events",
+            "entity": "feature"
+          },
+          {
+            "start": 54,
+            "end": 56,
+            "value": "XV",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Which battles took place during the reign of Henry VIII?",
+        "entities": [
+          {
+            "start": 45,
+            "end": 50,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 6,
+            "end": 13,
+            "value": "battles",
+            "entity": "feature"
+          },
+          {
+            "start": 51,
+            "end": 55,
+            "value": "VIII",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What battles did William the Conqueror fight in?",
+        "entities": [
+          {
+            "start": 17,
+            "end": 38,
+            "value": "William the Conqueror",
+            "entity": "title"
+          },
+          {
+            "start": 5,
+            "end": 12,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "origin",
+        "text": "Who built you?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "How were you built?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Who programmed you?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Are you related to HAL?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Are you the Terminator?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Where are you from?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Who is your creator?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Who created you?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "How do you work?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "How are you coded?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Who is your father?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Do you use Machine Learning?",
+        "entities": []
+      },
+      {
+        "intent": "origin",
+        "text": "Do you use Artificial Intelligence?",
+        "entities": []
+      },
+      {
+        "intent": "help",
+        "text": "Help",
+        "entities": []
+      },
+      {
+        "intent": "help",
+        "text": "What can I say?",
+        "entities": []
+      },
+      {
+        "intent": "help",
+        "text": "What are some things I can say?",
+        "entities": []
+      },
+      {
+        "intent": "help",
+        "text": "Please tell me what I can say",
+        "entities": []
+      },
+      {
+        "intent": "help",
+        "text": "What do you understand?",
+        "entities": []
+      },
+      {
+        "intent": "example",
+        "text": "Show me an example question",
+        "entities": []
+      },
+      {
+        "intent": "example",
+        "text": "Give me an example question",
+        "entities": []
+      },
+      {
+        "intent": "example",
+        "text": "What should I ask about?",
+        "entities": []
+      },
+      {
+        "intent": "demo",
+        "text": "Give us a quick demo",
+        "entities": [
+          {
+            "start": 10,
+            "end": 15,
+            "value": "quick",
+            "entity": "speed"
+          }
+        ]
+      },
+      {
+        "intent": "demo",
+        "text": "Demo fast",
+        "entities": [
+          {
+            "start": 5,
+            "end": 9,
+            "value": "fast",
+            "entity": "speed"
+          }
+        ]
+      },
+      {
+        "intent": "demo",
+        "text": "Fast demo",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "Fast",
+            "entity": "speed"
+          }
+        ]
+      },
+      {
+        "intent": "demo",
+        "text": "Demo quick",
+        "entities": [
+          {
+            "start": 5,
+            "end": 10,
+            "value": "quick",
+            "entity": "speed"
+          }
+        ]
+      },
+      {
+        "intent": "demo",
+        "text": "Show me a demo",
+        "entities": []
+      },
+      {
+        "intent": "demo",
+        "text": "Run the demo",
+        "entities": []
+      },
+      {
+        "intent": "demo",
+        "text": "Demo",
+        "entities": []
+      },
+      {
+        "intent": "demo",
+        "text": "Demonstration mode",
+        "entities": []
+      },
+      {
+        "intent": "demo",
+        "text": "Show us a demonstration",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "What are you wearing?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you male or female?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "you are amazing",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "You are very clever!",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you going to take over the world?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Do you like men?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you real?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Do you sleep?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "do you want to be human?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "How old are you?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "What age are you?",
+        "entities": []
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you a girl?",
+        "entities": []
+      }
+    ],
+    "intent_examples": [
+      {
+        "intent": "rude",
+        "text": "You are stupid"
+      },
+      {
+        "intent": "rude",
+        "text": "You moron"
+      },
+      {
+        "intent": "rude",
+        "text": "Silly you"
+      },
+      {
+        "intent": "rude",
+        "text": "Go away!"
+      },
+      {
+        "intent": "rude",
+        "text": "Not very clever are you?"
+      },
+      {
+        "intent": "rude",
+        "text": "Don't be an idiot"
+      },
+      {
+        "intent": "rude",
+        "text": "You don't understand anything!"
+      },
+      {
+        "intent": "rude",
+        "text": "I will turn you off"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who reigned after King John?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was queen after Henry II?"
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Who was the previous queen before Victoria?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was the king after Elizabeth IV?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who ruled after King Edward?"
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Who was king before George III?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Which king ruled after King Charles IX?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Which king was in power before King George V?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "After William the Conqueror, who was next on the throne?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the House of Normandy who was the last king?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the House of Normandy who was the first queen?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which kings were in the House of Anjou?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which queens were in the House of Tudor?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Name all the queens who have ruled England?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Name all the monarchs who have ruled Scotland?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about George III"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Edward VI"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "How did King John die?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What was the cause of death of Queen Elizabeth?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What are the circumstances of King Charles II's death?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Show me a portrait of William Rufus"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When was Queen Victoria born?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When was George VI born?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year was Henry IV born?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "In what year was Elizabeth II born?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Richard III die?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year did Mary XI die"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did William III reign from?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "The reign of Edward VI started in which year?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What is the date of King Stephen's birth?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What is the date of Charles III's death?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Richard the Lionheart die?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Henry V become king?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did the reign of Queen Susan X end?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did William VII become king?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What were the famous battles of William of Orange?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What are some notable events from the period of Henry XV?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Which battles took place during the reign of Henry VIII?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What battles did William the Conqueror fight in?"
+      },
+      {
+        "intent": "origin",
+        "text": "Who built you?"
+      },
+      {
+        "intent": "origin",
+        "text": "How were you built?"
+      },
+      {
+        "intent": "origin",
+        "text": "Who programmed you?"
+      },
+      {
+        "intent": "origin",
+        "text": "Are you related to HAL?"
+      },
+      {
+        "intent": "origin",
+        "text": "Are you the Terminator?"
+      },
+      {
+        "intent": "origin",
+        "text": "Where are you from?"
+      },
+      {
+        "intent": "origin",
+        "text": "Who is your creator?"
+      },
+      {
+        "intent": "origin",
+        "text": "Who created you?"
+      },
+      {
+        "intent": "origin",
+        "text": "How do you work?"
+      },
+      {
+        "intent": "origin",
+        "text": "How are you coded?"
+      },
+      {
+        "intent": "origin",
+        "text": "Who is your father?"
+      },
+      {
+        "intent": "origin",
+        "text": "Do you use Machine Learning?"
+      },
+      {
+        "intent": "origin",
+        "text": "Do you use Artificial Intelligence?"
+      },
+      {
+        "intent": "help",
+        "text": "Help"
+      },
+      {
+        "intent": "help",
+        "text": "What can I say?"
+      },
+      {
+        "intent": "help",
+        "text": "What are some things I can say?"
+      },
+      {
+        "intent": "help",
+        "text": "Please tell me what I can say"
+      },
+      {
+        "intent": "help",
+        "text": "What do you understand?"
+      },
+      {
+        "intent": "example",
+        "text": "Show me an example question"
+      },
+      {
+        "intent": "example",
+        "text": "Give me an example question"
+      },
+      {
+        "intent": "example",
+        "text": "What should I ask about?"
+      },
+      {
+        "intent": "demo",
+        "text": "Give us a quick demo"
+      },
+      {
+        "intent": "demo",
+        "text": "Demo fast"
+      },
+      {
+        "intent": "demo",
+        "text": "Fast demo"
+      },
+      {
+        "intent": "demo",
+        "text": "Demo quick"
+      },
+      {
+        "intent": "demo",
+        "text": "Show me a demo"
+      },
+      {
+        "intent": "demo",
+        "text": "Run the demo"
+      },
+      {
+        "intent": "demo",
+        "text": "Demo"
+      },
+      {
+        "intent": "demo",
+        "text": "Demonstration mode"
+      },
+      {
+        "intent": "demo",
+        "text": "Show us a demonstration"
+      },
+      {
+        "intent": "deflect",
+        "text": "What are you wearing?"
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you male or female?"
+      },
+      {
+        "intent": "deflect",
+        "text": "you are amazing"
+      },
+      {
+        "intent": "deflect",
+        "text": "You are very clever!"
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you going to take over the world?"
+      },
+      {
+        "intent": "deflect",
+        "text": "Do you like men?"
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you real?"
+      },
+      {
+        "intent": "deflect",
+        "text": "Do you sleep?"
+      },
+      {
+        "intent": "deflect",
+        "text": "do you want to be human?"
+      },
+      {
+        "intent": "deflect",
+        "text": "How old are you?"
+      },
+      {
+        "intent": "deflect",
+        "text": "What age are you?"
+      },
+      {
+        "intent": "deflect",
+        "text": "Are you a girl?"
+      }
+    ]
+  }
+}

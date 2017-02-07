@@ -78,7 +78,7 @@ Gmail instructions for IMAP access are here: https://support.google.com/mail/ans
 
 Microsoft Outlook.com instructions for IMAP access are here: https://support.office.com/en-gb/article/Add-your-Outlook-com-account-to-another-mail-app-73f3b178-0009-41ae-aab1-87b80fa94970
 
-If you are with another provder, check the details with them.
+If you are with another provider, check the details with them.
 
 You need:
 * Account username / password
@@ -87,7 +87,7 @@ You need:
 * SMTP server name
 * SMTP port #
 
-It is possible the IMAP and SMTP hosts will match but if they differ, ensure you have them the right way around. Also if there are differene in the standard ports, you would need to adjust this in the script (I plan to migrate this to an .ini setting shortly)
+It is possible the IMAP and SMTP hosts will match but if they differ, ensure you have them the right way around. Also if there are differences in relation to the standard ports, you would need to adjust this in the script (I plan to migrate this to an .ini setting shortly)
 
 Simply update the details in the file `/config/settings.ini`. If you have problems, it is worth using another email client to ensure that you are definitely able to connect with the particular credentials you have.
 
@@ -98,6 +98,12 @@ Email has not been tested with providers other than Dreamhost so far.
 The script polls the email fairly frequently - you may find that a less frequent polling is wise but that does lead to longer delays before questions are responded to.  The use of IMAP "IDLE" commmands is not currently implemented (although it would be an obvious improvement).
 
 ## Usage
+
+### Regular Bot Use
+
+### Training
+
+python -m rasa-nlu.train -c config/config.json
 
 ## Platforms
 Currently it is only tested on **Linux** (specifically [Arch](https://www.archlinux.org/) x86-64 and [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on a Raspberry Pi 3)

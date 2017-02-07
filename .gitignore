@@ -2,6 +2,7 @@
 MITIE/MITIE-models/
 models/
 data/base.hist
+data/roybot.hist
 data/tagged.txt
 
 # Byte-compiled / optimized / DLL files
