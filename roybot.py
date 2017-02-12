@@ -19,6 +19,9 @@ from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 import ConfigParser
 import re
+#from collections import defaultdict
+#import string
+from string import Template
 
 # ---------------------------------------------
 # CUSTOMISE THESE ITEMS TO THIS PARTICULAR BOT
@@ -27,7 +30,7 @@ import re
 BOTNAME = 'RoyBot'
 BOTSUBJECT = ' royalty in England (to begin with, Scotland to come later on!)'
 METADATA_LOCATION = os.path.abspath(os.path.join(
-    'models','model_20170206-042538', 'metadata.json'))
+    'models','model_20170210-024634', 'metadata.json'))
 SQLITE_FILE = os.path.abspath(os.path.join('data', 'roybot_db.sqlite'))
 HISTORY_FILENAME = os.path.abspath(os.path.join('data', 'roybot.hist'))
 DEMO_FILE = os.path.abspath(os.path.join('data', 'roybot_demo_inputs.txt'))
@@ -243,6 +246,12 @@ def map_entity_to_number(ent):
     # so we couldn't match the etype to convert
     return None
 
+def dict_factory(cursor, row):
+    """Used for handling sqlite rows as dictionary (source: http://stackoverflow.com/questions/3300464/how-can-i-get-dict-from-sqlite-query)"""
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 def open_connection():
     """Opens the connection to the email service by use of the stored
@@ -337,6 +346,14 @@ def download_emails():
             lst.append({'user_input': user_input, 'sender': sender})
     return lst
 
+def reset_last_ruler():
+    """Resets the values relating to last ruler."""
+    global last_ruler_type
+    global last_ruler_id
+    global last_ruler_count
+    last_ruler_type = None
+    last_ruler_id = None
+    last_ruler_count = 0
 
 def init():
     """Initialises the core functionality and sets up various globals."""
@@ -351,6 +368,7 @@ def init():
     global email_subject
     global email_list
 
+
     # TODO: add checks to confirm all necessary files are present and readable
     # (and writable if applicable)
 
@@ -360,6 +378,7 @@ def init():
     metadata = json.loads(open(METADATA_LOCATION).read())
     interpreter = MITIEInterpreter(**metadata)
     db = sqlite3.connect(SQLITE_FILE)
+    db.row_factory = dict_factory
     cursor = db.cursor()
     rude_count = 0
     last_input = {}
@@ -367,6 +386,8 @@ def init():
     email_text = ''
     email_subject = ''
     email_list = []
+
+    reset_last_ruler()
 
     logger.info('Initialisation complete')
 
@@ -402,6 +423,11 @@ def say_text(text, greet=False):
                 email_text = email_text + '> ' + text[1:].split('\n')[0] + '\n'
             else:
                 email_text = email_text + text + '\n'
+
+
+def clear_screen():
+    """Simple cross-platform way to clear the terminal"""
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def store_email(mail_text):
@@ -660,30 +686,203 @@ def match_template(resp, fields, params):
     #      language generation in the output
     matching_templates = []
 
+    template_intent = resp['intent']
+    # Mappings for any intents where the handle function is "re-used" but we
+    # want to reduce number of templates needed and can use them in both cases
+    if template_intent == 'ruler_pronoun_feature':
+        template_intent = 'ruler_feature' 
+
+    logger.debug('Input intent for match_template is: ' + resp['intent'])
+    logger.debug('Template intent for match_template is: ' + template_intent)
+
     templates = [
         {
-            'intent': 'feature_example',
-            'template_text': 'Template 1: Example $NUMBER'},
+            'intent': 'ruler_feature',
+            'template_text': 'He/she was born on $DtBirth'},
         {
-            'intent': 'feature_example',
-            'template_text': 'Template 2: Example $FEATURE'}
+            'intent': 'ruler_feature',
+            'template_text': 'He/she died on $DtDeath'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': 'Here is a picture: $Portrait'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': '$DeathCircumstances'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': 'Some famous battles were: $FamousBattles'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': '$Description'},
+        {
+            'intent': 'ruler_list',
+            'template_text': '$Name $Number'},
         ]
 
+    max_field_count = 0
     for t in templates:
-        if t['intent'] == resp['intent']:
-            matching_templates.append(t)
+        t_field_count = 0
+        if t['intent'] == template_intent:
+            for f in fields:
+                if f in t['template_text']:
+                    t_field_count = t_field_count + 1
+            if t_field_count == max_field_count:
+                matching_templates.append(t)             
+            if t_field_count > max_field_count:
+                matching_templates = []
+                matching_templates.append(t)
+                max_field_count = t_field_count
+
+    logger.debug('max_field_count is: ' + str(max_field_count))
 
     # TODO: put in a better 'fitness' selection process here!!
-    chosen_template = random.choice(matching_templates)
+    if matching_templates != []:
+        logger.debug('Count of possible matching_templates is: ' + str(len(matching_templates)))
+        chosen_template = random.choice(matching_templates)
+    else:
+        # Default template
+        chosen_template = {
+            'intent': 'unmatched',
+            'template_text': 'Default Template. RulerId: $RulerId'} 
     # TODO: put in the option to do substitution here (most likely scenario,
     #      barring edge cases)
     return chosen_template['template_text']
+
+
+def handle_ruler_list(resp,
+                        detail=False,
+                        verbose=False):
+    """Handles the intent where a question seeks a list of rulers in a particular group or potentially the first or last of such a group."""
+
+    global last_ruler_id
+    global last_ruler_type
+    global last_ruler_count
+
+    logger.debug('Intent: ruler_list')
+    # Core query: SELECT * FROM `ruler` WHERE xyz... ORDER BY date(ReignStartDt)
+    # If all or first or last variant, must add:
+    #   All:    ASC
+    #   First:  ASC LIMIT 1
+    #   Last:   DESC LIMIT 1
+    sql = 'SELECT `Name`, `Number`, `RulerId`, `RulerType` FROM `ruler`'
+    country = None
+    house = None
+    position = None
+    ruler_type = None
+    fields = []
+    where = []
+    params = {}
+    sql_suffix = ' ORDER BY date(ReignStartDt)'
+
+    for ent in resp['entities']:
+        if ent['entity'].lower() in (
+                'ruler_type', 'country', 'location', 'house', 'position'):
+            logger.info(
+                'A selection entity was found: ' + ent['value'] +
+                ' (' + ent['entity'] + ')')
+            if ent['entity'].lower() == 'ruler_type':
+                ruler_type = ent['value']
+                # TODO: conider breaking out this mapping into a generalised helper function
+                if ruler_type in ('king', 'kings', 'men', 'males'):
+                    ruler_type = 'king'
+                if ruler_type in ('queen', 'queens', 'women', 'females'):
+                    ruler_type = 'queen'
+                if ruler_type not in ('monarch'):  # or any other non-restricting ruler_types
+                    where.append('RulerType = :RulerType')
+                    params['RulerType'] = ruler_type
+            if ent['entity'].lower() in ('country', 'location'):
+                # TODO: add ability to handle selection by one of a ruler's countries
+                #   (eg select by England only if ruler rules England and Scotland)
+                country = ent['value']
+                where.append('Country = :Country')
+                params['Country'] = country
+
+            if ent['entity'].lower() == 'house':
+                # TODO: make selection less brittle
+                house = ent['value']
+                where.append('House = :House')
+                params['House'] = house
+            if ent['entity'].lower() == 'position':
+                position = ent['value'].lower()
+                # TODO: expand this to cope with second, third etc of
+                if position in ('first', 'earliest'):
+                    sql_suffix = sql_suffix + ' ASC LIMIT 1'
+                if position in ('last', 'latest', 'final'):
+                    sql_suffix = sql_suffix + ' DESC LIMIT 1'
+    if ruler_type is not None:
+        logger.debug('Ruler Type: ' + str(ruler_type))
+    if country is not None:
+        logger.debug('Country: ' + str(country))
+    if house is not None:
+        logger.debug('House: ' + str(house))
+    if position is not None:
+        logger.debug('Position: ' + str(position))
+    else:
+        sql_suffix = sql_suffix + ' ASC'
+    if where:
+        sql = '{} WHERE {}'.format(sql, ' AND '.join(where))
+        sql = sql + sql_suffix
+    logger.info('SQL: ' + sql)
+    logger.info('Params: ' + str(params))
+    cursor.execute(sql, params)
+    output = ''
+    results = cursor.fetchall()
+    last_ruler_count = len(results) 
+    if last_ruler_count == 1:
+        last_ruler_type = results[0]['RulerType']
+        logger.debug('Set last_ruler_type to: ' + str(last_ruler_type))
+        last_ruler_id = results[0]['RulerId']
+        logger.debug('Set last_ruler_id to: ' + str(last_ruler_id))
+    else:
+        if last_ruler_count == 0:
+            say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination.')
+        if (position is not None) and (last_ruler_count > 1):
+            say_text('It looks like you were after a specific ruler, but I am matching several (so perhaps something went wrong, either with how the question was asked or how I understood it).')
+            say_text('Here they are anyway:')
+        reset_last_ruler()
+
+    if verbose is True:
+        template_text = match_template(resp, fields, params)
+        #say_text(template_text)
+
+    for row in results:
+        logger.debug(row)
+        output = ', '.join(str(row[f]) for f in row)
+        if verbose is True:
+            # if moving to Python 3.2+ then could possibly use this:
+            # template_row = defaultdict(lambda: '<unset>', **row)
+            # say_text(template.format(**template_row))
+            # instead use this which doesn't default missing values:
+            t = Template(template_text)
+            say_text(t.safe_substitute(**row))
+            # alt way of doing this: say_text(string.Formatter().vformat(template, (), defaultdict(str, **row)))
+        else:
+            say_text(output)
+
+
+def handle_ruler_pronoun_feature(resp,
+                           detail=False,
+                           verbose=False):
+    global last_ruler_id
+    global last_ruler_type
+    global last_ruler_count
+
+    logger.debug('Intent: ruler_pronoun_feature')
+    logger.debug('last_ruler_id: ' + str(last_ruler_id))
+    if last_ruler_id is not None:
+        handle_ruler_feature(resp, detail, last_ruler_id, verbose)
+    else:
+        say_text('I am not sure which ruler you are referring to. Please restate your question directly mentioning them.')
 
 
 def handle_ruler_feature(resp,
                            detail=False,
                            overload_item=None,
                            verbose=False):
+    global last_ruler_id
+    global last_ruler_type
+    global last_ruler_count
+
     logger.debug('Intent: ruler_feature')
     sql = 'SELECT {fields} FROM `ruler`'
     num = None
@@ -727,9 +926,13 @@ def handle_ruler_feature(resp,
                     fields.append(f)
 
     if overload_item is not None:
-        where = ["Number = :Number"]
-        params['Number'] = overload_item
+        where = ["RulerId = :RulerId"]
+        params['RulerId'] = overload_item
 
+    if 'RulerId' not in fields:
+        fields.append('RulerId')
+    if 'RulerType' not in fields:
+        fields.append('RulerType')
     logger.debug('Fields: ' + str(fields))
     if overload_item is not None:
         logger.debug('Overload item: ' + str(overload_item))
@@ -748,12 +951,37 @@ def handle_ruler_feature(resp,
     cursor.execute(sql, params)
     output = ''
     results = cursor.fetchall()
-    for row in results:
-        output = ', '.join(row)
-        say_text(output)
+    last_ruler_count = len(results) 
+    if last_ruler_count == 1:
+        last_ruler_type = results[0]['RulerType']
+        logger.debug('Set last_ruler_type to: ' + str(last_ruler_type))
+        last_ruler_id = results[0]['RulerId']
+        logger.debug('Set last_ruler_id to: ' + str(last_ruler_id))
+    else:
+        reset_last_ruler()
+        if last_ruler_count == 0:
+            say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination (eg Richard VII).')
+        else:
+            say_text('Based on my understanding of your question, I cannot narrow down the selection to a single ruler. You may need to be a little more specific.')
+        return
+
     if verbose is True:
-        template = match_template(resp, fields, params)
-        say_text(template)
+        template_text = match_template(resp, fields, params)
+        #say_text(template_text)
+
+    for row in results:
+        logger.debug(row)
+        output = ', '.join(str(row[f]) for f in row)
+        if verbose is True:
+            # if moving to Python 3.2+ then could possibly use this:
+            # template_row = defaultdict(lambda: '<unset>', **row)
+            # say_text(template.format(**template_row))
+            # instead use this which doesn't default missing values:
+            t = Template(template_text)
+            say_text(t.safe_substitute(**row))
+            # alt way of doing this: say_text(string.Formatter().vformat(template, (), defaultdict(str, **row)))
+        else:
+            say_text(output)
 
 
 def clean_input(u_input):
@@ -783,13 +1011,6 @@ def check_input(u_input, show_parse=False, verbose=False):
         # THIS IS WHERE YOU UPDATE THE CUSTOM INTENTS THAT YOU HAVE TRAINED
         # RASA NLU TO HANDLE
         # ---------------------------------------------------------------------
-        #
-        # Depending on need you may wish to keep the fairly generic ones
-        # (esp help, deflect), but remember that your model has to be trained
-        # for them specifically (ie returns an intent of 'help' or 'deflect' or
-        # whatever it may be)
-        #
-        # ---------------------------------------------------------------------
         if resp['intent'] == 'ruler_feature':
             # the "handle_{intent name}" is merely a convention for
             # readibility; they could just as well be called any acceptable
@@ -800,6 +1021,10 @@ def check_input(u_input, show_parse=False, verbose=False):
             # in some scenarios it might be useful to re-use the same intent
             # handling but passing a distinct parameter
             handle_ruler_feature(resp, True)
+        elif resp['intent'] == 'ruler_pronoun_feature':
+            handle_ruler_pronoun_feature(resp, False, verbose=verbose)
+        elif resp['intent'] == 'ruler_list':
+            handle_ruler_list(resp, False, verbose=verbose)
         elif resp['intent'] == 'rude':
             handle_rude(resp)
         elif resp['intent'] == 'deflect':
@@ -937,6 +1162,8 @@ def main_loop():
                 show_parse = not show_parse
                 print_settings(
                     'Show_parse: ' + {True: 'on', False: 'off'}[show_parse])
+            elif user_input.lower() == 'c':
+                clear_screen()
             elif user_input.lower() == 'd':
                 ch.setLevel(logging.DEBUG)
                 logger.info('Logging level set to DEBUG')

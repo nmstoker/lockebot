@@ -1034,6 +1034,1074 @@
         ]
       },
       {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he born?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 16,
+            "value": "born",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he die?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 15,
+            "value": "die",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was his death?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 18,
+            "value": "death",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he reign from?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 22,
+            "value": "reign from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he reign until?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 23,
+            "value": "reign until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a portrait of him",
+        "entities": [
+          {
+            "start": 22,
+            "end": 25,
+            "value": "him",
+            "entity": "pronoun"
+          },
+          {
+            "start": 10,
+            "end": 18,
+            "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me his portrait",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 20,
+            "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What is his date of birth?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "value": "birth",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did his reign start?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "value": "reign start",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he rule until?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 22,
+            "value": "rule until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the end of his reign?",
+        "entities": [
+          {
+            "start": 20,
+            "end": 23,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 16,
+            "value": "end",
+            "entity": "feature"
+          },
+          {
+            "start": 24,
+            "end": 29,
+            "value": "reign",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the start of his reign?",
+        "entities": [
+          {
+            "start": 22,
+            "end": 25,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 18,
+            "value": "start",
+            "entity": "feature"
+          },
+          {
+            "start": 26,
+            "end": 31,
+            "value": "reign",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What date did he die?",
+        "entities": [
+          {
+            "start": 14,
+            "end": 16,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 17,
+            "end": 20,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 5,
+            "end": 9,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What house was he from?",
+        "entities": [
+          {
+            "start": 15,
+            "end": 17,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 5,
+            "end": 10,
+            "value": "house",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "He was a member of which house?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "He",
+            "entity": "pronoun"
+          },
+          {
+            "start": 25,
+            "end": 30,
+            "value": "house",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which country did he rule?",
+        "entities": [
+          {
+            "start": 18,
+            "end": 20,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 6,
+            "end": 13,
+            "value": "country",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "He was ruler of which country?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 2,
+            "value": "He",
+            "entity": "pronoun"
+          },
+          {
+            "start": 22,
+            "end": 29,
+            "value": "country",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which famous battles was he involved in?",
+        "entities": [
+          {
+            "start": 25,
+            "end": 27,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 20,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me some famous battles from his reign?",
+        "entities": [
+          {
+            "start": 33,
+            "end": 36,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me about him",
+        "entities": [
+          {
+            "start": 14,
+            "end": 17,
+            "value": "him",
+            "entity": "pronoun"
+          },
+          {
+            "start": 8,
+            "end": 13,
+            "value": "about",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Give me a description of him?",
+        "entities": [
+          {
+            "start": 25,
+            "end": 28,
+            "value": "him",
+            "entity": "pronoun"
+          },
+          {
+            "start": 10,
+            "end": 21,
+            "value": "description",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Describe him",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "him",
+            "entity": "pronoun"
+          },
+          {
+            "start": 0,
+            "end": 8,
+            "value": "Describe",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What events were there during his reign?",
+        "entities": [
+          {
+            "start": 30,
+            "end": 33,
+            "value": "his",
+            "entity": "pronoun"
+          },
+          {
+            "start": 5,
+            "end": 11,
+            "value": "events",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "His reign began on which date?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "His",
+            "entity": "pronoun"
+          },
+          {
+            "start": 4,
+            "end": 15,
+            "value": "reign began",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 29,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "His reign ended on which date?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "His",
+            "entity": "pronoun"
+          },
+          {
+            "start": 4,
+            "end": 15,
+            "value": "reign ended",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 29,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What does he look like?",
+        "entities": [
+          {
+            "start": 10,
+            "end": 12,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 17,
+            "value": "look",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she born?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 17,
+            "value": "born",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she die?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 16,
+            "value": "die",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was her death?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 18,
+            "value": "death",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she reign from?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 23,
+            "value": "reign from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she reign until?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "value": "reign until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a portrait of her",
+        "entities": [
+          {
+            "start": 22,
+            "end": 25,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 10,
+            "end": 18,
+            "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her portrait",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 20,
+            "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What is her date of birth?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "value": "birth",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did her reign start?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "value": "reign start",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she rule until?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 23,
+            "value": "rule until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the end of her reign?",
+        "entities": [
+          {
+            "start": 20,
+            "end": 23,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 16,
+            "value": "end",
+            "entity": "feature"
+          },
+          {
+            "start": 24,
+            "end": 29,
+            "value": "reign",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the start of her reign?",
+        "entities": [
+          {
+            "start": 22,
+            "end": 25,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 18,
+            "value": "start",
+            "entity": "feature"
+          },
+          {
+            "start": 26,
+            "end": 31,
+            "value": "reign",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What date did she die?",
+        "entities": [
+          {
+            "start": 14,
+            "end": 17,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 18,
+            "end": 21,
+            "value": "die",
+            "entity": "feature"
+          },
+          {
+            "start": 5,
+            "end": 9,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What house was she from?",
+        "entities": [
+          {
+            "start": 15,
+            "end": 18,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 5,
+            "end": 10,
+            "value": "house",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "She was a member of which house?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "She",
+            "entity": "pronoun"
+          },
+          {
+            "start": 26,
+            "end": 31,
+            "value": "house",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which country did she rule?",
+        "entities": [
+          {
+            "start": 18,
+            "end": 21,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 6,
+            "end": 13,
+            "value": "country",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "She was ruler of which country?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "She",
+            "entity": "pronoun"
+          },
+          {
+            "start": 23,
+            "end": 30,
+            "value": "country",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which famous battles was she involved in?",
+        "entities": [
+          {
+            "start": 25,
+            "end": 28,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 20,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me some famous battles from her reign?",
+        "entities": [
+          {
+            "start": 33,
+            "end": 36,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 20,
+            "end": 27,
+            "value": "battles",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me about her",
+        "entities": [
+          {
+            "start": 14,
+            "end": 17,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 8,
+            "end": 13,
+            "value": "about",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Give me a description of her?",
+        "entities": [
+          {
+            "start": 25,
+            "end": 28,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 10,
+            "end": 21,
+            "value": "description",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Describe her",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 0,
+            "end": 8,
+            "value": "Describe",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What events were there during her reign?",
+        "entities": [
+          {
+            "start": 18,
+            "end": 21,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 5,
+            "end": 11,
+            "value": "events",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Her reign began on which date?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "Her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 4,
+            "end": 15,
+            "value": "reign began",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 29,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Her reign ended on which date?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 3,
+            "value": "Her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 4,
+            "end": 15,
+            "value": "reign ended",
+            "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 29,
+            "value": "date",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What does she look like?",
+        "entities": [
+          {
+            "start": 10,
+            "end": 13,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 14,
+            "end": 18,
+            "value": "look",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he king from?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 21,
+            "value": "king from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he king until?",
+        "entities": [
+          {
+            "start": 1,
+            "end": 3,
+            "value": "he",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 22,
+            "value": "king until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she queen from?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 23,
+            "value": "queen from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she queen until?",
+        "entities": [
+          {
+            "start": 9,
+            "end": 12,
+            "value": "she",
+            "entity": "pronoun"
+          },
+          {
+            "start": 13,
+            "end": 24,
+            "value": "queen until",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
         "intent": "origin",
         "text": "Who built you?",
         "entities": []
@@ -1460,6 +2528,230 @@
       {
         "intent": "ruler_feature",
         "text": "What battles did William the Conqueror fight in?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he born?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he die?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was his death?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he reign from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he reign until?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a portrait of him"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me his portrait"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What is his date of birth?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did his reign start?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did he rule until?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the end of his reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the start of his reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What date did he die?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What house was he from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "He was a member of which house?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which country did he rule?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "He was ruler of which country?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which famous battles was he involved in?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me some famous battles from his reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me about him"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Give me a description of him?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Describe him"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What events were there during his reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "His reign began on which date?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "His reign ended on which date?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What does he look like?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she born?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she die?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was her death?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she reign from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she reign until?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a portrait of her"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her portrait"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What is her date of birth?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did her reign start?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When did she rule until?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the end of her reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was the start of her reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What date did she die?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What house was she from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "She was a member of which house?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which country did she rule?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "She was ruler of which country?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Which famous battles was she involved in?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me some famous battles from her reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Tell me about her"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Give me a description of her?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Describe her"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What events were there during her reign?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Her reign began on which date?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Her reign ended on which date?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "What does she look like?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he king from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was he king until?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she queen from?"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "When was she queen until?"
       },
       {
         "intent": "origin",
