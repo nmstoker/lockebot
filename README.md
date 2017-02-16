@@ -20,7 +20,7 @@ Rasa NLU has the great advantage of letting you handle your NLU models locally a
 
 One other option with this project is to run the finished bot on a [Raspberry Pi](https://www.raspberrypi.org/).  Although you may well not wish to train the model on the Pi (it may take a rather long time!), once you have a trained model, it is very much capable of giving responses quickly and although large scale use will likely not be viable it works for small numbers of concurrent users (no testing on maximum numbers has been done, but email use with a group of ~20 users is definitely viable)
 
-There is a **basebot** (which does very little) and a slightly more capable version **name_tbc** 
+There is a **basebot** (which does very little) and a slightly more capable version **roybot** (which answers questions about English/British monarchs) 
 
 ## Install
 
@@ -48,7 +48,7 @@ For Raspberry Pi installation, there are a couple of changes to the steps for in
 	* For training steps, see below (Usage) otherwise download the models from this Google Drive location:
 	* https://drive.google.com/drive/folders/0B3K9eUuGgfbva2JUY2tYejc2ODg?usp=sharing
 	* **/model_20170124-010214/** is required for BaseBot
-	* **/tbc...** is required for name_tbc bot
+	* **/model_20170210-024634/** is required for roybot
 	* Save them in the '/models' folder of your local copy of the repo
 
 If you simply wish to use the local terminal to work with the bot, you are ready to proceed to Usage.

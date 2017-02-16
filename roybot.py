@@ -679,6 +679,17 @@ def handle_demo(resp, show_parse):
 
     print_settings('Automated demo complete')
 
+def resolve_gender_text(template_text, ruler_type):
+    """Switches the appropriate gendered words into the sentence"""
+    logger.debug('resolve_gender_text: ruler_type: ' + ruler_type)
+    if ruler_type == 'king':
+        sub_dict = {'HeShe':'He', 'hisher':'his'}
+    if ruler_type == 'queen':
+        sub_dict = {'HeShe':'She', 'hisher':'her'}
+
+    t = Template(template_text)
+    return t.safe_substitute(**sub_dict)
+
 
 def match_template(resp, fields, params):
 
@@ -698,13 +709,13 @@ def match_template(resp, fields, params):
     templates = [
         {
             'intent': 'ruler_feature',
-            'template_text': 'He/she was born on $DtBirth'},
+            'template_text': '$HeShe was born on $DtBirth'},
         {
             'intent': 'ruler_feature',
-            'template_text': 'He/she died on $DtDeath'},
+            'template_text': '$HeShe died on $DtDeath'},
         {
             'intent': 'ruler_feature',
-            'template_text': 'Here is a picture: $Portrait'},
+            'template_text': 'Here is $hisher picture: $Portrait'},
         {
             'intent': 'ruler_feature',
             'template_text': '$DeathCircumstances'},
@@ -717,6 +728,13 @@ def match_template(resp, fields, params):
         {
             'intent': 'ruler_list',
             'template_text': '$Name $Number'},
+        {
+            'intent': 'ruler_before',
+            'template_text': '$Name $Number'},
+        {
+            'intent': 'ruler_after',
+            'template_text': '$Name $Number'}
+
         ]
 
     max_field_count = 0
@@ -749,6 +767,124 @@ def match_template(resp, fields, params):
     return chosen_template['template_text']
 
 
+def handle_ruler_before_after(resp,
+                        detail=False,
+                        verbose=False,
+                        before=True):
+    """Handles the intent seeking the ruler before another specified ruler."""
+
+    global last_ruler_id
+    global last_ruler_type
+    global last_ruler_count
+
+    logger.debug('Intent: ruler_before')
+
+    ## Before
+    # SELECT *
+    # FROM ruler
+    # WHERE RulerId < (SELECT RulerId FROM ruler WHERE Name = 'Henry' AND `Number` = '8')
+    # ORDER BY RulerId DESC
+    # LIMIT 1
+
+    ## After
+    # SELECT *
+    # FROM ruler
+    # WHERE RulerId > (SELECT RulerId FROM ruler WHERE Name = 'Henry' AND `Number` = '8')
+    # ORDER BY RulerId
+    # LIMIT 1
+
+    sql = "SELECT `Name`, `Number`, `RulerId`, `RulerType` FROM ruler WHERE RulerId "
+    sql_middle = " (SELECT RulerId FROM ruler"
+    
+    if before:
+        sql = sql + '<' + sql_middle
+        sql_suffix = ") ORDER BY RulerId DESC LIMIT 1"
+    else:
+        # after
+        sql = sql + '>' + sql_middle
+        sql_suffix = ") ORDER BY RulerId LIMIT 1"
+
+    fields = []
+
+    num = None
+    loc = None
+    ruler_type = None
+
+    where = []
+    params = {}
+    for ent in resp['entities']:
+        if ent['entity'].lower() in (
+                'name', 'location', 'number', 'number-words',
+                'number-roman', 'nth-words', 'nth', 'title'):
+            logger.info(
+                'A selection entity was found: ' + ent['value'] +
+                ' (' + ent['entity'] + ')')
+            if ent['entity'].lower() == 'name':
+                name = ent['value']
+                where.append('Name = :Name')
+                params['Name'] = name
+            if ent['entity'].lower() == 'title':
+                title = ent['value']
+                where.append('Title = :Title')
+                params['Title'] = title
+            if ent['entity'].lower() == 'location':
+                loc = ent['value']
+                where.append('Country LIKE :Location')
+                params['Location'] = '%' + loc + '%'
+            if ent['entity'].lower() in (
+                    'number', 'number-roman', 'nth',
+                    'nth-words', 'number-words'):
+                num = map_entity_to_number(ent)
+                if num is not None:
+                    where.append('Number = :Number')
+                    params['Number'] = num
+
+    if loc is not None:
+        logger.debug('Loc: ' + str(loc))
+    if num is not None:
+        logger.debug('Num: ' + str(num))
+    if where:
+        sql = '{} WHERE {}'.format(sql, ' AND '.join(where))
+        sql = sql + sql_suffix
+    logger.info('SQL: ' + sql)
+    logger.info('Params: ' + str(params))
+    cursor.execute(sql, params)
+    output = ''
+    results = cursor.fetchall()
+    last_ruler_count = len(results)
+    logger.debug('Last ruler count: ' + str(last_ruler_count))
+    if last_ruler_count == 1:
+        last_ruler_type = results[0]['RulerType']
+        logger.debug('Set last_ruler_type to: ' + str(last_ruler_type))
+        last_ruler_id = results[0]['RulerId']
+        logger.debug('Set last_ruler_id to: ' + str(last_ruler_id))
+    else:
+        if last_ruler_count == 0:
+            say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination (eg Richard VII).')
+        else:
+            say_text('Based on my understanding of your question, I cannot narrow down the selection to a single ruler. You may need to be a little more specific.')
+        reset_last_ruler()
+        return
+
+    if verbose is True:
+        template_text = match_template(resp, fields, params)
+        #say_text(template_text)
+
+    for row in results:
+        logger.debug(row)
+        output = ', '.join(str(row[f]) for f in row)
+        if verbose is True:
+            # if moving to Python 3.2+ then could possibly use this:
+            # template_row = defaultdict(lambda: '<unset>', **row)
+            # say_text(template.format(**template_row))
+            # instead use this which doesn't default missing values:
+            t = Template(template_text)
+            say_text(t.safe_substitute(**row))
+            # alt way of doing this: say_text(string.Formatter().vformat(template, (), defaultdict(str, **row)))
+        else:
+            say_text(output)
+
+
 def handle_ruler_list(resp,
                         detail=False,
                         verbose=False):
@@ -769,7 +905,6 @@ def handle_ruler_list(resp,
     house = None
     position = None
     ruler_type = None
-    fields = []
     where = []
     params = {}
     sql_suffix = ' ORDER BY date(ReignStartDt)'
@@ -794,8 +929,8 @@ def handle_ruler_list(resp,
                 # TODO: add ability to handle selection by one of a ruler's countries
                 #   (eg select by England only if ruler rules England and Scotland)
                 country = ent['value']
-                where.append('Country = :Country')
-                params['Country'] = country
+                where.append('Country LIKE :Country')
+                params['Country'] = '%' + country + '%'
 
             if ent['entity'].lower() == 'house':
                 # TODO: make selection less brittle
@@ -884,7 +1019,7 @@ def handle_ruler_feature(resp,
     global last_ruler_count
 
     logger.debug('Intent: ruler_feature')
-    sql = 'SELECT {fields} FROM `ruler`'
+    sql = 'SELECT DISTINCT {fields} FROM `ruler`'
     num = None
     loc = None
     fields = []
@@ -907,8 +1042,8 @@ def handle_ruler_feature(resp,
                 params['Title'] = title
             if ent['entity'].lower() == 'location':
                 loc = ent['value']
-                where.append('Country = :Location')
-                params['Location'] = loc
+                where.append('Country LIKE :Location')
+                params['Location'] = '%' + loc + '%'
             if ent['entity'].lower() in (
                     'number', 'number-roman', 'nth',
                     'nth-words', 'number-words'):
@@ -951,22 +1086,26 @@ def handle_ruler_feature(resp,
     cursor.execute(sql, params)
     output = ''
     results = cursor.fetchall()
-    last_ruler_count = len(results) 
+    last_ruler_count = len(results)
+    logger.debug('Last ruler count: ' + str(last_ruler_count))
     if last_ruler_count == 1:
         last_ruler_type = results[0]['RulerType']
         logger.debug('Set last_ruler_type to: ' + str(last_ruler_type))
         last_ruler_id = results[0]['RulerId']
         logger.debug('Set last_ruler_id to: ' + str(last_ruler_id))
     else:
-        reset_last_ruler()
         if last_ruler_count == 0:
             say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination (eg Richard VII).')
         else:
             say_text('Based on my understanding of your question, I cannot narrow down the selection to a single ruler. You may need to be a little more specific.')
+        reset_last_ruler()
         return
 
     if verbose is True:
         template_text = match_template(resp, fields, params)
+        if last_ruler_type is not None:
+            #print('xx')
+            template_text = resolve_gender_text(template_text, last_ruler_type)
         #say_text(template_text)
 
     for row in results:
@@ -1025,6 +1164,10 @@ def check_input(u_input, show_parse=False, verbose=False):
             handle_ruler_pronoun_feature(resp, False, verbose=verbose)
         elif resp['intent'] == 'ruler_list':
             handle_ruler_list(resp, False, verbose=verbose)
+        elif resp['intent'] == 'ruler_after':
+            handle_ruler_before_after(resp, False, verbose=verbose, before=False)
+        elif resp['intent'] == 'ruler_before':
+            handle_ruler_before_after(resp, False, verbose=verbose, before=True)
         elif resp['intent'] == 'rude':
             handle_rude(resp)
         elif resp['intent'] == 'deflect':
