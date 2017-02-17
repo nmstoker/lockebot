@@ -188,15 +188,23 @@ def map_feature_to_field(feature):
     # the conditions below; if you have acceptable features that should be
     # passed through then some slight changes to the logic would be needed.
 
+    if f in ('events'):
+        return 'NotableEventsDuringLife'
+    if f in ('describe', 'description', 'about'):
+        return 'Description'
     if f in ('born', 'birth'):
         return 'DtBirth'
     if f in ('die', 'died', 'death'):
         return 'DtDeath'
+    if f in ('king from','queen from', 'reign from', 'reign begin', 'reign began', 'started', 'become', 'rule from', 'rule start', 'rule began'):
+        return 'ReignStartDt'
+    if f in ('king until','queen until', 'reign until', 'reign end', 'reign ended', 'end', 'become', 'rule until'):
+        return 'ReignEndDt'
     if f in ('cause of death'):
         return 'DeathCircumstances'
     if f == 'house':
         return 'House'
-    if f in ('portrait', 'picture'):
+    if f in ('portrait', 'picture', 'look'):
         return 'Portrait'
     if f == 'title':
         return 'Title'
@@ -652,7 +660,7 @@ def handle_help(resp):
     say_text(random.choice(replies_initial))
 
 
-def handle_demo(resp, show_parse):
+def handle_demo(resp, show_parse, verbose):
     """Handles output of a series of demo inputs (automatically submitted in
     sequence) along with their responses. The inputs are read from a demo text
     file (one per line). To be effective the model must be trained for the
@@ -674,7 +682,7 @@ def handle_demo(resp, show_parse):
         for line in f:
             say_text(prompt_text + line)
             time.sleep(demo_delay)
-            check_input(line, show_parse)
+            check_input(line, show_parse, verbose)
             time.sleep(demo_delay)
 
     print_settings('Automated demo complete')
@@ -707,6 +715,15 @@ def match_template(resp, fields, params):
     logger.debug('Template intent for match_template is: ' + template_intent)
 
     templates = [
+        {
+            'intent': 'ruler_feature',
+            'template_text': '$HeShe reigned from $ReignStartDt'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': '$HeShe reigned until $ReignEndDt'},
+        {
+            'intent': 'ruler_feature',
+            'template_text': '$NotableEventsDuringLife'},
         {
             'intent': 'ruler_feature',
             'template_text': '$HeShe was born on $DtBirth'},
@@ -756,7 +773,10 @@ def match_template(resp, fields, params):
     # TODO: put in a better 'fitness' selection process here!!
     if matching_templates != []:
         logger.debug('Count of possible matching_templates is: ' + str(len(matching_templates)))
-        chosen_template = random.choice(matching_templates)
+        # Until there are equivalent meaning templates (which score equally) best not
+        # to have a random choice made
+        # chosen_template = random.choice(matching_templates)
+        chosen_template = matching_templates[0]
     else:
         # Default template
         chosen_template = {
@@ -798,11 +818,11 @@ def handle_ruler_before_after(resp,
     
     if before:
         sql = sql + '<' + sql_middle
-        sql_suffix = ") ORDER BY RulerId DESC LIMIT 1"
+        sql_suffix = "ORDER BY RulerId DESC LIMIT 1"
     else:
         # after
         sql = sql + '>' + sql_middle
-        sql_suffix = ") ORDER BY RulerId LIMIT 1"
+        sql_suffix = "ORDER BY RulerId LIMIT 1"
 
     fields = []
 
@@ -811,32 +831,43 @@ def handle_ruler_before_after(resp,
     ruler_type = None
 
     where = []
+    sub_where = []
     params = {}
     for ent in resp['entities']:
         if ent['entity'].lower() in (
                 'name', 'location', 'number', 'number-words',
-                'number-roman', 'nth-words', 'nth', 'title'):
+                'number-roman', 'nth-words', 'nth', 'title','ruler_type'):
             logger.info(
                 'A selection entity was found: ' + ent['value'] +
                 ' (' + ent['entity'] + ')')
+            if ent['entity'].lower() == 'ruler_type':
+                ruler_type = ent['value']
+                # TODO: consider breaking out this mapping into a generalised helper function
+                if ruler_type in ('king', 'kings', 'men', 'males'):
+                    ruler_type = 'king'
+                if ruler_type in ('queen', 'queens', 'women', 'females'):
+                    ruler_type = 'queen'
+                if ruler_type not in ('monarch', 'ruler'):  # or any other non-restricting ruler_types
+                    where.append('RulerType = :RulerType')
+                    params['RulerType'] = ruler_type
             if ent['entity'].lower() == 'name':
                 name = ent['value']
-                where.append('Name = :Name')
+                sub_where.append('Name = :Name')
                 params['Name'] = name
             if ent['entity'].lower() == 'title':
                 title = ent['value']
-                where.append('Title = :Title')
+                sub_where.append('Title = :Title')
                 params['Title'] = title
             if ent['entity'].lower() == 'location':
                 loc = ent['value']
-                where.append('Country LIKE :Location')
+                sub_where.append('Country LIKE :Location')
                 params['Location'] = '%' + loc + '%'
             if ent['entity'].lower() in (
                     'number', 'number-roman', 'nth',
                     'nth-words', 'number-words'):
                 num = map_entity_to_number(ent)
                 if num is not None:
-                    where.append('Number = :Number')
+                    sub_where.append('Number = :Number')
                     params['Number'] = num
 
     if loc is not None:
@@ -844,7 +875,11 @@ def handle_ruler_before_after(resp,
     if num is not None:
         logger.debug('Num: ' + str(num))
     if where:
-        sql = '{} WHERE {}'.format(sql, ' AND '.join(where))
+        sql_suffix = ") AND {} ".format(' AND '.join(where)) + sql_suffix
+    else:
+        sql_suffix = ") " + sql_suffix
+    if sub_where:
+        sql = '{} WHERE {}'.format(sql, ' AND '.join(sub_where))
         sql = sql + sql_suffix
     logger.info('SQL: ' + sql)
     logger.info('Params: ' + str(params))
@@ -917,12 +952,12 @@ def handle_ruler_list(resp,
                 ' (' + ent['entity'] + ')')
             if ent['entity'].lower() == 'ruler_type':
                 ruler_type = ent['value']
-                # TODO: conider breaking out this mapping into a generalised helper function
+                # TODO: consider breaking out this mapping into a generalised helper function
                 if ruler_type in ('king', 'kings', 'men', 'males'):
                     ruler_type = 'king'
                 if ruler_type in ('queen', 'queens', 'women', 'females'):
                     ruler_type = 'queen'
-                if ruler_type not in ('monarch'):  # or any other non-restricting ruler_types
+                if ruler_type not in ('monarch', 'ruler'):  # or any other non-restricting ruler_types
                     where.append('RulerType = :RulerType')
                     params['RulerType'] = ruler_type
             if ent['entity'].lower() in ('country', 'location'):
@@ -977,7 +1012,7 @@ def handle_ruler_list(resp,
         reset_last_ruler()
 
     if verbose is True:
-        template_text = match_template(resp, fields, params)
+        template_text = match_template(resp, [], params)
         #say_text(template_text)
 
     for row in results:
@@ -1179,7 +1214,7 @@ def check_input(u_input, show_parse=False, verbose=False):
         elif resp['intent'] == 'origin':
             handle_origin(resp)
         elif resp['intent'] == 'demo':
-            handle_demo(resp, show_parse)
+            handle_demo(resp, show_parse, verbose=verbose)
         else:
             say_text(
                 'Intent ' + resp['intent'] + ' is recognsied but I do ' +
@@ -1274,7 +1309,7 @@ def main_loop():
     as toggling 'show parse' (s), tagging output (t), toggling verbose output,
     changing logging level (d=DEBUG, i=INFO , w=WARN) or quiting (q)"""
     show_parse = False
-    verbose = False
+    verbose = True
     if os.path.exists(HISTORY_FILENAME):
         readline.read_history_file(HISTORY_FILENAME)
     prompt_text = STY_CURSOR + ' > ' + STY_USER
