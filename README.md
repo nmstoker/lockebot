@@ -10,7 +10,7 @@ It is a bot that can answer simple questions, via the terminal, email or [Let's 
 
 After being trained on examples, it is (to a degree) able to generalise the questions and respond to ones in a similar style. The questions are turned into intents and entities, which are then used to construct queries to run against a database to provide the answer.
 
-Here is a demo of the RoyBot version (which is trained/coded to answer a range of different questions on English and British monarchs)
+Here is a demo of the RoyBot version :crown: (which is trained/coded to answer a range of different questions on English and British monarchs)
 
 [![asciicast](https://asciinema.org/a/buhysdhqvytr8sgq89t8bvqf4.png)](https://asciinema.org/a/buhysdhqvytr8sgq89t8bvqf4)
 
@@ -20,7 +20,7 @@ Rasa NLU has the great advantage of letting you handle your NLU models locally a
 
 One interesting option with this project is to run the finished bot on a [Raspberry Pi](https://www.raspberrypi.org/).  Although you may well not wish to train the model on the Pi (it may take a rather long time!), once you have a trained model, it is capable of giving responses quickly and although large scale use will likely not be viable it works for small numbers of concurrent users (no testing on maximum numbers has been done, but email-based use with a group of ~20 users is definitely viable)
 
-There is a **basebot** (which does very little) and a slightly more capable version **roybot** (which answers questions about English/British monarchs) 
+There is a **BaseBot** (which does very little) and a slightly more capable version **RoyBot** :crown: (which answers questions about English/British monarchs) 
 
 ## Install
 
@@ -101,30 +101,38 @@ The script polls the email fairly frequently - you may find that a less frequent
 
 ### Regular Bot Use
 
-**NB:** If you've been re-training the Rasa model, you will first want to ensure you've updated the details in METADATA_LOCATION
+
 
 * Navigate to the Lockebot folder
 * Activate the virtual environment (*as per the name you chose when you installed Lockebot*)
 	* `source venv/bin/activate`
-* 'python roybot.py' (*or python basebot.py if you want to start from the simpler basebot)
-* Enter questions and see how it responds
+* `python roybot.py` (*or python basebot.py if you want to start from the simpler basebot*)
+* Enter questions and see how it responds :tada:
 
 See the commands section below, but an important one you will need is 'q' to quit!
+
+**NB:** If you've been re-training the Rasa model, you will first want to ensure you've updated the details in METADATA_LOCATION
 
 ### Commands
 
 There are a handful of simple command shortcuts that trigger actions / toggle useful features. To use them, simply type the associated letter into the bot as if it were regular input.
 
 `q` - **Quit:** this quits the bot (as you would expect!) You can also use <kbd>Ctrl-C</kbd> to quit.
+
 `t` - **Tag:** stores the details of the last intent in the tag file (*eg roybot_tagged.txt for RoyBot*), useful for marking particular problem question/answer items (NB: everything is logged to the history file too, but that can get unwieldy)
+
 `c` - **Clear the screen:** exactly what you would expect it to do
+
 's' - **Show Parse:** this toggles the output of what Rasa NLU recognised as the intent for each subsequent entry
+
 'v' - **Verbose:** this toggles the response style. When off responses just show the data returned and when on the data is fed into the template system to try to generate a more meaningful sentence style response. By default it is true.
 
 ####Setting logging levels
 
 `w` - **Warning:** this is the default level of logging (on screen)
+
 `i` - **Info:** in conjunction with **show parse** this usually gives enough to follow the basic reasoning behind an answer
+
 `d` - **Debug:** prints all manner of details (*excessive for normal use, but can be handy*)
 
 The commands are intercepted in the main loop, before user input is sent to Rasa, so they do not reach Rasa and do not need to be included in the training data. This differs from the way "demo" or "example" are handled, which are treated just like other intents.
@@ -142,7 +150,13 @@ Whilst I would like to support Python 3.n, currently as Rasa NLU has a Python 2.
 
 ## Technical background
 
-Before digging into any detail about LockeBot, I recommend looking at the documentation here: http://rasa-nlu.readthedocs.io/en/latest/ and definitely this excellent blog post by Alan that covers the background better than I could: https://conversations.golastmile.com/do-it-yourself-nlp-for-bot-developers-2e2da2817f3d#.44xn1gg53
+Before digging into any detail about LockeBot, I recommend looking at the documentation here:
+
+http://rasa-nlu.readthedocs.io/en/latest/
+
+and definitely this excellent blog post by Alan that covers the background better than I could:
+
+https://conversations.golastmile.com/do-it-yourself-nlp-for-bot-developers-2e2da2817f3d#.44xn1gg53
 
 You may also benefit from having a browse of the [Github issues for Rasa NLU](https://github.com/golastmile/rasa_nlu/issues), which are quite active and a useful source of information.
 
@@ -163,9 +177,10 @@ To give an example from Roybot:
 Given the question **When did Elizabeth I reign from?**
 
 Rasa responds with:
+
 `{'text': 'When did Elizabeth I reign from', 'confidence': 1.0773836417225164, 'intent': 'ruler_feature', 'entities': [{'start': 9, 'end': 18, 'value': 'Elizabeth', 'entity': 'name'}, {'start': 19, 'end': 20, 'value': 'I', 'entity': 'number-roman'}, {'start': 21, 'end': 31, 'value': 'reign from', 'entity': 'feature'}]}`
 
-The intent is routed to the relevant function that handles it (handle_ruler_feature).  In there, the entity 'Elizabeth' (a "name") and 'I' (a "number-roman") are used to select the row of interest (ie the one for Elizabeth I) and the "feature" here is 'reign from'.
+The intent is routed to the relevant function that handles it (handle_ruler_feature).  In there, the entity '**Elizabeth**' (a "name") and '**I**' (a "number-roman") are used to select the row of interest (ie the one for Elizabeth I) and the "feature" here is '**reign from**'.
 
 Thus a SQL statement with "Elizabeth" and "I" being used in the WHERE clause selects the desired row, and the feature of 'reign from' is mapped to the database field ReignStartDt and put into the list of returned fields for the SELECT (along with RulerId and RulerType which are useful to know for the template responses).
 
@@ -189,3 +204,11 @@ LockeBot gets its name from a terrible pun. It is built on Rasa NLU, and [John L
 
 ## Disclaimer
 I am very grateful for the various tools which make this small project possible, however I should make clear that this software is not endorsed by any of the email providers mentioned above, Let's Chat, nor LastMile (producers of Rasa NLU).
+
+## RoyBot data
+The sqlite database for RoyBot has been populated with information gleened from public sources on the web, chiefly:
+
+* https://en.wikipedia.org/wiki/List_of_English_monarchs
+* https://en.wikipedia.org/wiki/List_of_British_monarchs
+
+It is still a work-in-progress! :smiley:
