@@ -4,6 +4,7 @@ models/
 data/base.hist
 data/roybot.hist
 data/tagged.txt
+data/roybot_tagged.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

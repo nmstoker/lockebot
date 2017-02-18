@@ -28,7 +28,7 @@ from string import Template
 # ---------------------------------------------
 
 BOTNAME = 'RoyBot'
-BOTSUBJECT = ' royalty in England (to begin with, Scotland to come later on!)'
+BOTSUBJECT = 'royalty in England (to begin with, Scotland to come later on!)'
 METADATA_LOCATION = os.path.abspath(os.path.join(
     'models','model_20170210-024634', 'metadata.json'))
 SQLITE_FILE = os.path.abspath(os.path.join('data', 'roybot_db.sqlite'))
@@ -200,7 +200,7 @@ def map_feature_to_field(feature):
         return 'ReignStartDt'
     if f in ('king until','queen until', 'reign until', 'reign end', 'reign ended', 'end', 'become', 'rule until'):
         return 'ReignEndDt'
-    if f in ('cause of death'):
+    if f in ('cause of death', 'killed'):
         return 'DeathCircumstances'
     if f == 'house':
         return 'House'
@@ -404,7 +404,7 @@ def say_text(text, greet=False):
     """Handles 'saying' the output, with different approaches depending on the
     active channel (or channels) for output"""
     if CHANNELS_OUT['screen']:
-        if text[0] == '>':
+        if (len(text) > 0) and (text[0] == '>'):
             print(
                 '\n\t\t' + STY_CURSOR + ' > ' + STY_USER + text[1:],
                 end='  ' + STY_USER)
@@ -538,12 +538,12 @@ def handle_example(resp):
     # -------------------------------------------------------------------------
 
     example_list = [
-        'Where did XXXXX happen?',
-        'Who was XXXXX?',
-        'Currently who is XXXXX?',
-        'What date is XXXXX?',
-        'What was the XXXXX?',
-        'Tell me all about XXXXX',
+        'In the House of Anjoy who was the last ruler?',
+        'Tell me all about Henry VIII',
+        'Who was king after Richard the Lionheart?',
+        'What date was Elizabeth I born?',
+        'What were the circumstances of Edward II\'s death?',
+        'Show me a demo',
         'What can I say?'
         ]
 
@@ -651,12 +651,13 @@ def handle_help(resp):
 
     replies_initial = [
         'I understand a handful of simple concepts related to ' + BOTSUBJECT +
-        '.\n\nThere are various ways to select a particular row, such as ' +
-        'the number (eg VI, 6 or sixth) or by a value (eg XXXXX).\n\n' +
-        'Then you can pick out specific information such as:\n - Field1\n' +
-        ' - Field2\n - Field3\n - Field4\n\nThen the ML magic happens, ' +
+        '.\n\nThere are various ways to select a particular ruler, such as ' +
+        'the number (eg VI, 6 or sixth) or by a value (eg "William Rufus").\n\n' +
+        'Then you can pick out specific information such as:\n - Date of birth\n' +
+        ' - End of reign\n - Famous battles\n - House (eg of Tudor)\n\nThen the ML magic happens, ' +
         'I try to understand what you\'ve said and then look up details ' +
-        'based on entities recognised in a database.']
+        'based on entities recognised in a database.\n\nHave a go!\n\n' +
+        '(or try "Demo" or "Example" if you\'re really not sure']
     say_text(random.choice(replies_initial))
 
 
@@ -797,7 +798,7 @@ def handle_ruler_before_after(resp,
     global last_ruler_type
     global last_ruler_count
 
-    logger.debug('Intent: ruler_before')
+    logger.info('Intent: ruler_before')
 
     ## Before
     # SELECT *
@@ -837,7 +838,7 @@ def handle_ruler_before_after(resp,
         if ent['entity'].lower() in (
                 'name', 'location', 'number', 'number-words',
                 'number-roman', 'nth-words', 'nth', 'title','ruler_type'):
-            logger.info(
+            logger.debug(
                 'A selection entity was found: ' + ent['value'] +
                 ' (' + ent['entity'] + ')')
             if ent['entity'].lower() == 'ruler_type':
@@ -906,7 +907,7 @@ def handle_ruler_before_after(resp,
         #say_text(template_text)
 
     for row in results:
-        logger.debug(row)
+        logger.info(row)
         output = ', '.join(str(row[f]) for f in row)
         if verbose is True:
             # if moving to Python 3.2+ then could possibly use this:
@@ -929,7 +930,7 @@ def handle_ruler_list(resp,
     global last_ruler_type
     global last_ruler_count
 
-    logger.debug('Intent: ruler_list')
+    logger.info('Intent: ruler_list')
     # Core query: SELECT * FROM `ruler` WHERE xyz... ORDER BY date(ReignStartDt)
     # If all or first or last variant, must add:
     #   All:    ASC
@@ -947,7 +948,7 @@ def handle_ruler_list(resp,
     for ent in resp['entities']:
         if ent['entity'].lower() in (
                 'ruler_type', 'country', 'location', 'house', 'position'):
-            logger.info(
+            logger.debug(
                 'A selection entity was found: ' + ent['value'] +
                 ' (' + ent['entity'] + ')')
             if ent['entity'].lower() == 'ruler_type':
@@ -1016,7 +1017,7 @@ def handle_ruler_list(resp,
         #say_text(template_text)
 
     for row in results:
-        logger.debug(row)
+        logger.info(row)
         output = ', '.join(str(row[f]) for f in row)
         if verbose is True:
             # if moving to Python 3.2+ then could possibly use this:
@@ -1037,7 +1038,7 @@ def handle_ruler_pronoun_feature(resp,
     global last_ruler_type
     global last_ruler_count
 
-    logger.debug('Intent: ruler_pronoun_feature')
+    logger.info('Intent: ruler_pronoun_feature')
     logger.debug('last_ruler_id: ' + str(last_ruler_id))
     if last_ruler_id is not None:
         handle_ruler_feature(resp, detail, last_ruler_id, verbose)
@@ -1053,7 +1054,7 @@ def handle_ruler_feature(resp,
     global last_ruler_type
     global last_ruler_count
 
-    logger.debug('Intent: ruler_feature')
+    logger.info('Intent: ruler_feature')
     sql = 'SELECT DISTINCT {fields} FROM `ruler`'
     num = None
     loc = None
@@ -1064,7 +1065,7 @@ def handle_ruler_feature(resp,
         if ent['entity'].lower() in (
                 'name', 'location', 'number', 'number-words',
                 'number-roman', 'nth-words', 'nth', 'title'):
-            logger.info(
+            logger.debug(
                 'A selection entity was found: ' + ent['value'] +
                 ' (' + ent['entity'] + ')')
             if ent['entity'].lower() == 'name':
@@ -1144,7 +1145,7 @@ def handle_ruler_feature(resp,
         #say_text(template_text)
 
     for row in results:
-        logger.debug(row)
+        logger.info(row)
         output = ', '.join(str(row[f]) for f in row)
         if verbose is True:
             # if moving to Python 3.2+ then could possibly use this:
@@ -1306,7 +1307,7 @@ def main_loop():
     or a crash occurs. It cycles round seeking input from which ever of the
     particular input modes the bot is configured to handle.
     It also handles low-level commands prior to passing input to Rasa NLU, such
-    as toggling 'show parse' (s), tagging output (t), toggling verbose output,
+    as toggling 'show parse' (s), tagging output (t), toggling verbose output (v),
     changing logging level (d=DEBUG, i=INFO , w=WARN) or quiting (q)"""
     show_parse = False
     verbose = True
