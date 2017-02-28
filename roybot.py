@@ -204,13 +204,13 @@ def map_feature_to_field(feature):
         return 'DeathCircumstances'
     if f == 'house':
         return 'House'
-    if f in ('portrait', 'picture', 'look'):
+    if f in ('portrait', 'picture', 'look', 'painting'):
         return 'Portrait'
     if f == 'title':
         return 'Title'
     if f in ('country', 'where'):
         return 'Country'
-    if f in ('battle', 'battles'):
+    if f in ('battle', 'battles', 'famous battles', 'wars', 'war', 'fight', 'fought'):
         return 'FamousBattles'
     if f in ('person', 'individual'):
         return 'Name'

@@ -26,17 +26,20 @@ There is a **BaseBot** (which does very little) and a slightly more capable vers
 
 Ensure you have Python 2.7 installed (it is not currently compatible with Python 3.n, see below)
 
-For Raspberry Pi installation, there are a couple of changes to the steps for installing MITIE. See information under Additional installation choices below.
+For Raspberry Pi installation, there are a couple of changes to the steps for installation. See information under Additional installation choices below.
+
+* You may need to include the Python headers. On Debian/Ubuntu distros this is done as follows: 
+	* `sudo apt-get install python-dev`
 
 * Git clone from this repo
 	* `git clone https://github.com/nmstoker/lockebot mybotfoldername` - *replace __mybotfoldername__ with any valid name you like*
 	* `cd mybotfoldername`
-* Create a virtual environment (optional but recommended)
+* Create a virtual environment (optional but recommended; you need the one that corresponds with Python 2; on Arch this is `virtualenv2` but on many other distros it will be plain `virtualenv`)
 	* `virtualenv2 venv` - *again you can use whatever name you like instead of __venv__ for your environment name*
 * Activate the virtual environment
 	* `source venv/bin/activate`
 * Use pip install
-	* `pip install requirements.txt`
+	* `pip install -r requirements.txt`
 * Manually install MITIE (*doesn't seem to work if included via requirements.txt even with "-e git+https://github.com/mit-nlp/MITIE.git" with or without #egg=...*)
 	* `pip install git+https://github.com/mit-nlp/MITIE.git`
 * Copy the feature_extractor files to MITIE folder
@@ -57,8 +60,15 @@ But if you wish to use it via email or Let's Chat, see the addition requirements
 
 ### Additional installation choices
 
-#### Raspberry Pi installation of MITIE
+#### Raspberry Pi installation
 
+* You may need to include the Python headers and ATLAS/BLAS libraries (this is so that Numpy/Scikit can be installed:
+	* `sudo apt-get install python-dev`
+	* `sudo apt-get install libatlas-base-dev`
+	* `sudo apt-get install gfortran`
+* It is a matter of how you plan to work, but you can install it directly from a repo or you may wish to transfer the files from a regular PC to the Pi. The latter is fine, so long as you don't copy the virtual environment files over (since they need to be created via the Pi)
+* When running `pip install -r requirements.txt` you should expect to see a large amount of output as items are compiled (including a number of warnings, but you should be okay to ignore these unless something doesn't complete). It can take quite a while too (maybe 60+ minutes or so)
+ 
 
 #### Let's Chat
 Let's Chat has a variety of ways that it can be set up - for advice on that, please refer to the instructions in their repo's wiki [here](https://github.com/sdelements/lets-chat/wiki).  For development, I found docker very quick to get going with.  (NB: although LockeBot will work on a Raspberry Pi, no efforts have been made (yet!) to see if Let's Chat is viable on the Pi so I have no advice on that front)
@@ -139,7 +149,7 @@ The commands are intercepted in the main loop, before user input is sent to Rasa
 
 ### Training
 
-python -m rasa-nlu.train -c config/config.json
+python -m rasa_nlu.train -c config/config.json
 
 ## Platforms
 Currently it is only tested on **Linux** (specifically [Arch](https://www.archlinux.org/) x86-64 and [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on a Raspberry Pi 3)

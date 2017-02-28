@@ -39,18 +39,6 @@
       },
       {
         "intent": "rude",
-        "text": "Go away!",
-        "entities": [
-          {
-            "start": 3,
-            "end": 7,
-            "value": "away",
-            "entity": "rude"
-          }
-        ]
-      },
-      {
-        "intent": "rude",
         "text": "Not very clever are you?",
         "entities": [
           {
@@ -116,6 +104,54 @@
         ]
       },
       {
+        "intent": "ruler_before",
+        "text": "Who was Queen before George 6th?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 13,
+            "value": "Queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 21,
+            "end": 27,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 28,
+            "end": 31,
+            "value": "6th",
+            "entity": "nth"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was King after Richard the Third?",
+        "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "King",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 19,
+            "end": 26,
+            "value": "Richard",
+            "entity": "name"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "value": "Third",
+            "entity": "nth-words"
+          }
+        ]
+      },
+      {
         "intent": "ruler_after",
         "text": "Who was queen after Henry II?",
         "entities": [
@@ -159,43 +195,25 @@
       },
       {
         "intent": "ruler_after",
-        "text": "Who was the king after Elizabeth IV?",
-        "entities": [
-          {
-            "start": 12,
-            "end": 16,
-            "value": "king",
-            "entity": "ruler_type"
-          },
-          {
-            "start": 23,
-            "end": 32,
-            "value": "Elizabeth",
-            "entity": "name"
-          },
-          {
-            "start": 33,
-            "end": 35,
-            "value": "IV",
-            "entity": "number-roman"
-          }
-        ]
-      },
-      {
-        "intent": "ruler_after",
         "text": "Who ruled after King Edward?",
         "entities": [
-          {
-            "start": 16,
-            "end": 20,
-            "value": "King",
-            "entity": "ruler_type"
-          },
           {
             "start": 21,
             "end": 27,
             "value": "Edward",
             "entity": "name"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who ruled after Charles the Merry?",
+        "entities": [
+          {
+            "start": 16,
+            "end": 33,
+            "value": "Charles the Merry",
+            "entity": "title"
           }
         ]
       },
@@ -249,6 +267,30 @@
       },
       {
         "intent": "ruler_after",
+        "text": "Which king ruled after William the 3rd?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 10,
+            "value": "king",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 23,
+            "end": 30,
+            "value": "William",
+            "entity": "name"
+          },
+          {
+            "start": 35,
+            "end": 38,
+            "value": "3rd",
+            "entity": "nth"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
         "text": "Which king was in power before King George V?",
         "entities": [
           {
@@ -272,6 +314,30 @@
         ]
       },
       {
+        "intent": "ruler_before",
+        "text": "Which Queen was in power before James 1?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 11,
+            "value": "Queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 32,
+            "end": 37,
+            "value": "James",
+            "entity": "name"
+          },
+          {
+            "start": 38,
+            "end": 39,
+            "value": "1",
+            "entity": "number"
+          }
+        ]
+      },
+      {
         "intent": "ruler_after",
         "text": "After William the Conqueror, who was next on the throne?",
         "entities": [
@@ -284,14 +350,50 @@
         ]
       },
       {
+        "intent": "ruler_after",
+        "text": "After James the Vain, who was next on the throne?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 20,
+            "value": "James the Vain",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_after",
+        "text": "After Charles the Martyr, who was next on the throne?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 24,
+            "value": "Charles the Martyr",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Before Elizabeth the Virgin Queen, who was on the throne?",
+        "entities": [
+          {
+            "start": 7,
+            "end": 33,
+            "value": "Elizabeth the Virgin Queen",
+            "entity": "title"
+          }
+        ]
+      },
+      {
         "intent": "ruler_list",
         "text": "In the House of Normandy who was the last king?",
         "entities": [
           {
-            "start": 42,
-            "end": 46,
-            "value": "king",
-            "entity": "ruler_type"
+            "start": 7,
+            "end": 24,
+            "value": "House of Normandy",
+            "entity": "house"
           },
           {
             "start": 37,
@@ -300,10 +402,310 @@
             "entity": "position"
           },
           {
-            "start": 7,
+            "start": 42,
+            "end": 46,
+            "value": "king",
+            "entity": "ruler_type"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1669 who was on the throne?",
+        "entities": [
+          {
+            "start": 3,
+            "end": 7,
+            "value": "1669",
+            "entity": "year"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1863 who ruled England?",
+        "entities": [
+          {
+            "start": 3,
+            "end": 7,
+            "value": "1863",
+            "entity": "year"
+          },
+          {
+            "start": 18,
+            "end": 25,
+            "value": "England",
+            "entity": "country"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1914 who was the King?",
+        "entities": [
+          {
+            "start": 3,
+            "end": 7,
+            "value": "1914",
+            "entity": "year"
+          },
+          {
+            "start": 20,
             "end": 24,
-            "value": "House of Normandy",
-            "entity": "house"
+            "value": "King",
+            "entity": "ruler_type"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the King in 1750?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "King",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 20,
+            "end": 24,
+            "value": "1750",
+            "entity": "year"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who ruled Scotland in 1812?",
+        "entities": [
+          {
+            "start": 10,
+            "end": 18,
+            "value": "Scotland",
+            "entity": "country"
+          },
+          {
+            "start": 22,
+            "end": 26,
+            "value": "1812",
+            "entity": "year"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the monarch in 1315?",
+        "entities": [
+          {
+            "start": 23,
+            "end": 27,
+            "value": "1315",
+            "entity": "year"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which rulers were on the throne in the 15th century?",
+        "entities": [
+          {
+            "start": 39,
+            "end": 43,
+            "value": "15th",
+            "entity": "nth"
+          },
+          {
+            "start": 44,
+            "end": 51,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Give me a list of rulers from the 14th century",
+        "entities": [
+          {
+            "start": 34,
+            "end": 38,
+            "value": "14th",
+            "entity": "nth"
+          },
+          {
+            "start": 39,
+            "end": 46,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the eleventh century who ruled England?",
+        "entities": [
+          {
+            "start": 7,
+            "end": 15,
+            "value": "eleventh",
+            "entity": "nth-words"
+          },
+          {
+            "start": 16,
+            "end": 23,
+            "value": "century",
+            "entity": "period"
+          },
+          {
+            "start": 34,
+            "end": 41,
+            "value": "England",
+            "entity": "country"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "During the sixteenth century who was on the throne?",
+        "entities": [
+          {
+            "start": 11,
+            "end": 20,
+            "value": "sixteenth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 21,
+            "end": 28,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which Queens ruled in the fifteenth century?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 12,
+            "value": "Queens",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 26,
+            "end": 35,
+            "value": "fifteenth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 36,
+            "end": 43,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the last ruler in the thirteenth century?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 16,
+            "value": "last",
+            "entity": "position"
+          },
+          {
+            "start": 30,
+            "end": 40,
+            "value": "thirteenth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 41,
+            "end": 48,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "At the start of the nineteenth century who was on the throne?",
+        "entities": [
+          {
+            "start": 7,
+            "end": 12,
+            "value": "start",
+            "entity": "position"
+          },
+          {
+            "start": 20,
+            "end": 30,
+            "value": "nineteenth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 31,
+            "end": 38,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the first Queen in the 16th century?",
+        "entities": [
+          {
+            "start": 12,
+            "end": 17,
+            "value": "first",
+            "entity": "position"
+          },
+          {
+            "start": 18,
+            "end": 23,
+            "value": "Queen",
+            "entity": "ruler_type"
+          },
+          {
+            "start": 31,
+            "end": 35,
+            "value": "16th",
+            "entity": "nth"
+          },
+          {
+            "start": 36,
+            "end": 43,
+            "value": "century",
+            "entity": "period"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the monarch at the beginning of the 20th century?",
+        "entities": [
+          {
+            "start": 27,
+            "end": 36,
+            "value": "beginning",
+            "entity": "position"
+          },
+          {
+            "start": 44,
+            "end": 48,
+            "value": "20th",
+            "entity": "nth"
+          },
+          {
+            "start": 49,
+            "end": 56,
+            "value": "century",
+            "entity": "period"
           }
         ]
       },
@@ -312,10 +714,10 @@
         "text": "In the House of Normandy who was the first queen?",
         "entities": [
           {
-            "start": 43,
-            "end": 48,
-            "value": "queen",
-            "entity": "ruler_type"
+            "start": 7,
+            "end": 24,
+            "value": "House of Normandy",
+            "entity": "house"
           },
           {
             "start": 37,
@@ -324,10 +726,10 @@
             "entity": "position"
           },
           {
-            "start": 7,
-            "end": 24,
-            "value": "House of Normandy",
-            "entity": "house"
+            "start": 43,
+            "end": 48,
+            "value": "queen",
+            "entity": "ruler_type"
           }
         ]
       },
@@ -408,16 +810,16 @@
         "text": "Tell me all about George III",
         "entities": [
           {
-            "start": 18,
-            "end": 24,
-            "value": "George",
-            "entity": "name"
-          },
-          {
             "start": 8,
             "end": 11,
             "value": "all",
             "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 24,
+            "value": "George",
+            "entity": "name"
           },
           {
             "start": 25,
@@ -429,19 +831,97 @@
       },
       {
         "intent": "ruler_feature",
-        "text": "Give me a brief description of Edward VI",
+        "text": "Tell me all about Henry Tudor",
         "entities": [
           {
-            "start": 31,
-            "end": 37,
-            "value": "Edward",
+            "start": 8,
+            "end": 11,
+            "value": "all",
+            "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 29,
+            "value": "Henry Tudor",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about Bloody Mary",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "all",
+            "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 29,
+            "value": "Bloody Mary",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about William of Orange",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "all",
+            "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 35,
+            "value": "William of Orange",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about William the Second",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "all",
+            "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 25,
+            "value": "William",
             "entity": "name"
           },
+          {
+            "start": 30,
+            "end": 36,
+            "value": "Second",
+            "entity": "nth-words"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Edward VI",
+        "entities": [
           {
             "start": 10,
             "end": 27,
             "value": "brief description",
             "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 37,
+            "value": "Edward",
+            "entity": "name"
           },
           {
             "start": 38,
@@ -453,8 +933,122 @@
       },
       {
         "intent": "ruler_feature",
+        "text": "Give me a brief description of Anne the ninth",
+        "entities": [
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 35,
+            "value": "Anne",
+            "entity": "name"
+          },
+          {
+            "start": 40,
+            "end": 45,
+            "value": "ninth",
+            "entity": "nth-words"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Stephen 2",
+        "entities": [
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 38,
+            "value": "Stephen",
+            "entity": "name"
+          },
+          {
+            "start": 39,
+            "end": 40,
+            "value": "2",
+            "entity": "number"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Simon 12th",
+        "entities": [
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 36,
+            "value": "Simon",
+            "entity": "name"
+          },
+          {
+            "start": 37,
+            "end": 41,
+            "value": "12th",
+            "entity": "nth"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Henry of Winchester",
+        "entities": [
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 50,
+            "value": "Henry of Winchester",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Stephen of Blois",
+        "entities": [
+          {
+            "start": 10,
+            "end": 27,
+            "value": "brief description",
+            "entity": "feature"
+          },
+          {
+            "start": 31,
+            "end": 47,
+            "value": "Stephen of Blois",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
         "text": "How did King John die?",
         "entities": [
+          {
+            "start": 8,
+            "end": 12,
+            "value": "King",
+            "entity": "ruler_type"
+          },
           {
             "start": 13,
             "end": 17,
@@ -466,25 +1060,37 @@
             "end": 21,
             "value": "die",
             "entity": "feature"
-          },
-          {
-            "start": 8,
-            "end": 12,
-            "value": "King",
-            "entity": "ruler_type"
           }
         ]
       },
       {
         "intent": "ruler_feature",
-        "text": "What was the cause of death of Queen Elizabeth?",
+        "text": "What killed Mary I?",
         "entities": [
           {
-            "start": 37,
-            "end": 46,
-            "value": "Elizabeth",
+            "start": 5,
+            "end": 11,
+            "value": "killed",
+            "entity": "feature"
+          },
+          {
+            "start": 12,
+            "end": 16,
+            "value": "Mary",
             "entity": "name"
           },
+          {
+            "start": 17,
+            "end": 18,
+            "value": "I",
+            "entity": "number-roman"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What was the cause of death of Queen Elizabeth I?",
+        "entities": [
           {
             "start": 13,
             "end": 27,
@@ -496,6 +1102,18 @@
             "end": 36,
             "value": "Queen",
             "entity": "ruler_type"
+          },
+          {
+            "start": 37,
+            "end": 46,
+            "value": "Elizabeth",
+            "entity": "name"
+          },
+          {
+            "start": 47,
+            "end": 48,
+            "value": "I",
+            "entity": "number-roman"
           }
         ]
       },
@@ -504,22 +1122,28 @@
         "text": "What are the circumstances of King Charles II's death?",
         "entities": [
           {
+            "start": 13,
+            "end": 26,
+            "value": "circumstances",
+            "entity": "feature"
+          },
+          {
             "start": 35,
             "end": 42,
             "value": "Charles",
             "entity": "name"
           },
           {
-            "start": 48,
-            "end": 53,
-            "value": "death",
-            "entity": "feature"
-          },
-          {
             "start": 43,
             "end": 45,
             "value": "II",
             "entity": "number-roman"
+          },
+          {
+            "start": 48,
+            "end": 53,
+            "value": "death",
+            "entity": "feature"
           }
         ]
       },
@@ -528,16 +1152,34 @@
         "text": "Show me a portrait of William Rufus",
         "entities": [
           {
+            "start": 10,
+            "end": 18,
+            "value": "portrait",
+            "entity": "feature"
+          },
+          {
             "start": 22,
             "end": 35,
             "value": "William Rufus",
             "entity": "title"
-          },
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Show me a portrait of Henry of Monmouth",
+        "entities": [
           {
             "start": 10,
             "end": 18,
             "value": "portrait",
             "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 39,
+            "value": "Henry of Monmouth",
+            "entity": "title"
           }
         ]
       },
@@ -552,10 +1194,10 @@
             "entity": "feature"
           },
           {
-            "start": 24,
-            "end": 28,
-            "value": "born",
-            "entity": "feature"
+            "start": 9,
+            "end": 14,
+            "value": "Queen",
+            "entity": "ruler_type"
           },
           {
             "start": 15,
@@ -564,27 +1206,21 @@
             "entity": "name"
           },
           {
-            "start": 9,
-            "end": 14,
-            "value": "Queen",
-            "entity": "ruler_type"
+            "start": 24,
+            "end": 28,
+            "value": "born",
+            "entity": "feature"
           }
         ]
       },
       {
         "intent": "ruler_feature",
-        "text": "When was George VI born?",
+        "text": "When was George I born?",
         "entities": [
           {
             "start": 0,
             "end": 4,
             "value": "When",
-            "entity": "feature"
-          },
-          {
-            "start": 19,
-            "end": 23,
-            "value": "born",
             "entity": "feature"
           },
           {
@@ -595,9 +1231,15 @@
           },
           {
             "start": 16,
-            "end": 18,
-            "value": "VI",
+            "end": 17,
+            "value": "I",
             "entity": "number-roman"
+          },
+          {
+            "start": 18,
+            "end": 22,
+            "value": "born",
+            "entity": "feature"
           }
         ]
       },
@@ -612,12 +1254,6 @@
             "entity": "feature"
           },
           {
-            "start": 23,
-            "end": 27,
-            "value": "born",
-            "entity": "feature"
-          },
-          {
             "start": 14,
             "end": 19,
             "value": "Henry",
@@ -628,6 +1264,42 @@
             "end": 22,
             "value": "IV",
             "entity": "number-roman"
+          },
+          {
+            "start": 23,
+            "end": 27,
+            "value": "born",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year was George Sixth born?",
+        "entities": [
+          {
+            "start": 5,
+            "end": 9,
+            "value": "year",
+            "entity": "feature"
+          },
+          {
+            "start": 14,
+            "end": 20,
+            "value": "George",
+            "entity": "name"
+          },
+          {
+            "start": 21,
+            "end": 26,
+            "value": "Sixth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 27,
+            "end": 31,
+            "value": "born",
+            "entity": "feature"
           }
         ]
       },
@@ -642,12 +1314,6 @@
             "entity": "feature"
           },
           {
-            "start": 30,
-            "end": 34,
-            "value": "born",
-            "entity": "feature"
-          },
-          {
             "start": 17,
             "end": 26,
             "value": "Elizabeth",
@@ -658,6 +1324,12 @@
             "end": 29,
             "value": "II",
             "entity": "number-roman"
+          },
+          {
+            "start": 30,
+            "end": 34,
+            "value": "born",
+            "entity": "feature"
           }
         ]
       },
@@ -672,12 +1344,6 @@
             "entity": "feature"
           },
           {
-            "start": 21,
-            "end": 24,
-            "value": "die",
-            "entity": "feature"
-          },
-          {
             "start": 9,
             "end": 16,
             "value": "Richard",
@@ -688,6 +1354,12 @@
             "end": 20,
             "value": "III",
             "entity": "number-roman"
+          },
+          {
+            "start": 21,
+            "end": 24,
+            "value": "die",
+            "entity": "feature"
           }
         ]
       },
@@ -702,12 +1374,6 @@
             "entity": "feature"
           },
           {
-            "start": 22,
-            "end": 25,
-            "value": "die",
-            "entity": "feature"
-          },
-          {
             "start": 14,
             "end": 18,
             "value": "Mary",
@@ -718,6 +1384,12 @@
             "end": 21,
             "value": "XI",
             "entity": "number-roman"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "die",
+            "entity": "feature"
           }
         ]
       },
@@ -732,12 +1404,6 @@
             "entity": "feature"
           },
           {
-            "start": 21,
-            "end": 31,
-            "value": "reign from",
-            "entity": "feature"
-          },
-          {
             "start": 9,
             "end": 16,
             "value": "William",
@@ -748,6 +1414,72 @@
             "end": 20,
             "value": "III",
             "entity": "number-roman"
+          },
+          {
+            "start": 21,
+            "end": 31,
+            "value": "reign from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Peter 9 reign from?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 14,
+            "value": "Peter",
+            "entity": "name"
+          },
+          {
+            "start": 15,
+            "end": 16,
+            "value": "9",
+            "entity": "number"
+          },
+          {
+            "start": 17,
+            "end": 27,
+            "value": "reign from",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Alfred the first reign from?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 15,
+            "value": "Alfred",
+            "entity": "name"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "value": "first",
+            "entity": "nth-words"
+          },
+          {
+            "start": 26,
+            "end": 36,
+            "value": "reign from",
+            "entity": "feature"
           }
         ]
       },
@@ -762,12 +1494,6 @@
             "entity": "feature"
           },
           {
-            "start": 23,
-            "end": 30,
-            "value": "started",
-            "entity": "feature"
-          },
-          {
             "start": 13,
             "end": 19,
             "value": "Edward",
@@ -778,6 +1504,12 @@
             "end": 22,
             "value": "VI",
             "entity": "number-roman"
+          },
+          {
+            "start": 23,
+            "end": 30,
+            "value": "started",
+            "entity": "feature"
           }
         ]
       },
@@ -792,16 +1524,16 @@
             "entity": "feature"
           },
           {
-            "start": 35,
-            "end": 40,
-            "value": "birth",
-            "entity": "feature"
-          },
-          {
             "start": 25,
             "end": 32,
             "value": "Stephen",
             "entity": "name"
+          },
+          {
+            "start": 35,
+            "end": 40,
+            "value": "birth",
+            "entity": "feature"
           }
         ]
       },
@@ -816,12 +1548,6 @@
             "entity": "feature"
           },
           {
-            "start": 34,
-            "end": 39,
-            "value": "death",
-            "entity": "feature"
-          },
-          {
             "start": 20,
             "end": 27,
             "value": "Charles",
@@ -832,6 +1558,12 @@
             "end": 31,
             "value": "III",
             "entity": "number-roman"
+          },
+          {
+            "start": 34,
+            "end": 39,
+            "value": "death",
+            "entity": "feature"
           }
         ]
       },
@@ -846,16 +1578,40 @@
             "entity": "feature"
           },
           {
-            "start": 31,
-            "end": 34,
-            "value": "die",
-            "entity": "feature"
-          },
-          {
             "start": 9,
             "end": 30,
             "value": "Richard the Lionheart",
             "entity": "title"
+          },
+          {
+            "start": 31,
+            "end": 34,
+            "value": "die",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Henry Curtmantle die?",
+        "entities": [
+          {
+            "start": 0,
+            "end": 4,
+            "value": "When",
+            "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 25,
+            "value": "Henry Curtmantle",
+            "entity": "title"
+          },
+          {
+            "start": 26,
+            "end": 29,
+            "value": "die",
+            "entity": "feature"
           }
         ]
       },
@@ -954,16 +1710,16 @@
         "text": "What were the famous battles of William of Orange?",
         "entities": [
           {
-            "start": 32,
-            "end": 49,
-            "value": "William of Orange",
-            "entity": "title"
-          },
-          {
             "start": 21,
             "end": 28,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 32,
+            "end": 49,
+            "value": "William of Orange",
+            "entity": "title"
           }
         ]
       },
@@ -972,16 +1728,16 @@
         "text": "What are some notable events from the period of Henry XV?",
         "entities": [
           {
-            "start": 48,
-            "end": 53,
-            "value": "Henry",
-            "entity": "name"
-          },
-          {
             "start": 22,
             "end": 28,
             "value": "events",
             "entity": "feature"
+          },
+          {
+            "start": 48,
+            "end": 53,
+            "value": "Henry",
+            "entity": "name"
           },
           {
             "start": 54,
@@ -993,19 +1749,43 @@
       },
       {
         "intent": "ruler_feature",
-        "text": "Which battles took place during the reign of Henry VIII?",
+        "text": "What are some historic events from the life of Edward the Third?",
         "entities": [
           {
-            "start": 45,
-            "end": 50,
-            "value": "Henry",
+            "start": 23,
+            "end": 29,
+            "value": "events",
+            "entity": "feature"
+          },
+          {
+            "start": 47,
+            "end": 53,
+            "value": "Edward",
             "entity": "name"
           },
+          {
+            "start": 58,
+            "end": 63,
+            "value": "Third",
+            "entity": "nth-words"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Which battles took place during the reign of Henry VIII?",
+        "entities": [
           {
             "start": 6,
             "end": 13,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 45,
+            "end": 50,
+            "value": "Henry",
+            "entity": "name"
           },
           {
             "start": 51,
@@ -1020,16 +1800,64 @@
         "text": "What battles did William the Conqueror fight in?",
         "entities": [
           {
-            "start": 17,
-            "end": 38,
-            "value": "William the Conqueror",
-            "entity": "title"
-          },
-          {
             "start": 5,
             "end": 12,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 17,
+            "end": 38,
+            "value": "William the Conqueror",
+            "entity": "title"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Where did Henry the fifth fight?",
+        "entities": [
+          {
+            "start": 10,
+            "end": 15,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 20,
+            "end": 25,
+            "value": "fifth",
+            "entity": "nth-words"
+          },
+          {
+            "start": 26,
+            "end": 31,
+            "value": "fight",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Which wars was Henry 8 involved in?",
+        "entities": [
+          {
+            "start": 6,
+            "end": 10,
+            "value": "wars",
+            "entity": "feature"
+          },
+          {
+            "start": 15,
+            "end": 20,
+            "value": "Henry",
+            "entity": "name"
+          },
+          {
+            "start": 21,
+            "end": 22,
+            "value": "8",
+            "entity": "number"
           }
         ]
       },
@@ -1038,8 +1866,8 @@
         "text": "When was he born?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -1056,8 +1884,8 @@
         "text": "When did he die?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -1092,8 +1920,8 @@
         "text": "When did he reign from?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -1110,8 +1938,8 @@
         "text": "When did he reign until?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -1128,16 +1956,52 @@
         "text": "Show me a portrait of him",
         "entities": [
           {
-            "start": 22,
-            "end": 25,
-            "value": "him",
-            "entity": "pronoun"
-          },
-          {
             "start": 10,
             "end": 18,
             "value": "portrait",
             "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "him",
+            "entity": "pronoun"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a painting of him",
+        "entities": [
+          {
+            "start": 10,
+            "end": 18,
+            "value": "painting",
+            "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "him",
+            "entity": "pronoun"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a picture of him",
+        "entities": [
+          {
+            "start": 10,
+            "end": 17,
+            "value": "picture",
+            "entity": "feature"
+          },
+          {
+            "start": 21,
+            "end": 24,
+            "value": "him",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1200,8 +2064,8 @@
         "text": "When did he rule until?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -1218,16 +2082,16 @@
         "text": "When was the end of his reign?",
         "entities": [
           {
-            "start": 20,
-            "end": 23,
-            "value": "his",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 16,
             "value": "end",
             "entity": "feature"
+          },
+          {
+            "start": 20,
+            "end": 23,
+            "value": "his",
+            "entity": "pronoun"
           },
           {
             "start": 24,
@@ -1242,16 +2106,16 @@
         "text": "When was the start of his reign?",
         "entities": [
           {
-            "start": 22,
-            "end": 25,
-            "value": "his",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 18,
             "value": "start",
             "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "his",
+            "entity": "pronoun"
           },
           {
             "start": 26,
@@ -1266,6 +2130,12 @@
         "text": "What date did he die?",
         "entities": [
           {
+            "start": 5,
+            "end": 9,
+            "value": "date",
+            "entity": "feature"
+          },
+          {
             "start": 14,
             "end": 16,
             "value": "he",
@@ -1276,12 +2146,6 @@
             "end": 20,
             "value": "die",
             "entity": "feature"
-          },
-          {
-            "start": 5,
-            "end": 9,
-            "value": "date",
-            "entity": "feature"
           }
         ]
       },
@@ -1290,16 +2154,16 @@
         "text": "What house was he from?",
         "entities": [
           {
-            "start": 15,
-            "end": 17,
-            "value": "he",
-            "entity": "pronoun"
-          },
-          {
             "start": 5,
             "end": 10,
             "value": "house",
             "entity": "feature"
+          },
+          {
+            "start": 15,
+            "end": 17,
+            "value": "he",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1326,16 +2190,16 @@
         "text": "Which country did he rule?",
         "entities": [
           {
-            "start": 18,
-            "end": 20,
-            "value": "he",
-            "entity": "pronoun"
-          },
-          {
             "start": 6,
             "end": 13,
             "value": "country",
             "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 20,
+            "value": "he",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1362,16 +2226,16 @@
         "text": "Which famous battles was he involved in?",
         "entities": [
           {
-            "start": 25,
-            "end": 27,
-            "value": "he",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 20,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 27,
+            "value": "he",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1380,16 +2244,16 @@
         "text": "Tell me some famous battles from his reign?",
         "entities": [
           {
-            "start": 33,
-            "end": 36,
-            "value": "his",
-            "entity": "pronoun"
-          },
-          {
             "start": 20,
             "end": 27,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 33,
+            "end": 36,
+            "value": "his",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1398,16 +2262,16 @@
         "text": "Tell me about him",
         "entities": [
           {
-            "start": 14,
-            "end": 17,
-            "value": "him",
-            "entity": "pronoun"
-          },
-          {
             "start": 8,
             "end": 13,
             "value": "about",
             "entity": "feature"
+          },
+          {
+            "start": 14,
+            "end": 17,
+            "value": "him",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1416,16 +2280,16 @@
         "text": "Give me a description of him?",
         "entities": [
           {
-            "start": 25,
-            "end": 28,
-            "value": "him",
-            "entity": "pronoun"
-          },
-          {
             "start": 10,
             "end": 21,
             "value": "description",
             "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "value": "him",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1434,16 +2298,16 @@
         "text": "Describe him",
         "entities": [
           {
-            "start": 9,
-            "end": 12,
-            "value": "him",
-            "entity": "pronoun"
-          },
-          {
             "start": 0,
             "end": 8,
             "value": "Describe",
             "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 12,
+            "value": "him",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1452,16 +2316,16 @@
         "text": "What events were there during his reign?",
         "entities": [
           {
-            "start": 30,
-            "end": 33,
-            "value": "his",
-            "entity": "pronoun"
-          },
-          {
             "start": 5,
             "end": 11,
             "value": "events",
             "entity": "feature"
+          },
+          {
+            "start": 30,
+            "end": 33,
+            "value": "his",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1626,16 +2490,16 @@
         "text": "Show me a portrait of her",
         "entities": [
           {
-            "start": 22,
-            "end": 25,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 10,
             "end": 18,
             "value": "portrait",
             "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1653,6 +2517,42 @@
             "start": 12,
             "end": 20,
             "value": "portrait",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her picture",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 19,
+            "value": "picture",
+            "entity": "feature"
+          }
+        ]
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her painting",
+        "entities": [
+          {
+            "start": 8,
+            "end": 11,
+            "value": "her",
+            "entity": "pronoun"
+          },
+          {
+            "start": 12,
+            "end": 20,
+            "value": "painting",
             "entity": "feature"
           }
         ]
@@ -1716,16 +2616,16 @@
         "text": "When was the end of her reign?",
         "entities": [
           {
-            "start": 20,
-            "end": 23,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 16,
             "value": "end",
             "entity": "feature"
+          },
+          {
+            "start": 20,
+            "end": 23,
+            "value": "her",
+            "entity": "pronoun"
           },
           {
             "start": 24,
@@ -1740,16 +2640,16 @@
         "text": "When was the start of her reign?",
         "entities": [
           {
-            "start": 22,
-            "end": 25,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 18,
             "value": "start",
             "entity": "feature"
+          },
+          {
+            "start": 22,
+            "end": 25,
+            "value": "her",
+            "entity": "pronoun"
           },
           {
             "start": 26,
@@ -1764,6 +2664,12 @@
         "text": "What date did she die?",
         "entities": [
           {
+            "start": 5,
+            "end": 9,
+            "value": "date",
+            "entity": "feature"
+          },
+          {
             "start": 14,
             "end": 17,
             "value": "she",
@@ -1774,12 +2680,6 @@
             "end": 21,
             "value": "die",
             "entity": "feature"
-          },
-          {
-            "start": 5,
-            "end": 9,
-            "value": "date",
-            "entity": "feature"
           }
         ]
       },
@@ -1788,16 +2688,16 @@
         "text": "What house was she from?",
         "entities": [
           {
-            "start": 15,
-            "end": 18,
-            "value": "she",
-            "entity": "pronoun"
-          },
-          {
             "start": 5,
             "end": 10,
             "value": "house",
             "entity": "feature"
+          },
+          {
+            "start": 15,
+            "end": 18,
+            "value": "she",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1824,16 +2724,16 @@
         "text": "Which country did she rule?",
         "entities": [
           {
-            "start": 18,
-            "end": 21,
-            "value": "she",
-            "entity": "pronoun"
-          },
-          {
             "start": 6,
             "end": 13,
             "value": "country",
             "entity": "feature"
+          },
+          {
+            "start": 18,
+            "end": 21,
+            "value": "she",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1860,16 +2760,16 @@
         "text": "Which famous battles was she involved in?",
         "entities": [
           {
-            "start": 25,
-            "end": 28,
-            "value": "she",
-            "entity": "pronoun"
-          },
-          {
             "start": 13,
             "end": 20,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "value": "she",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1878,16 +2778,16 @@
         "text": "Tell me some famous battles from her reign?",
         "entities": [
           {
-            "start": 33,
-            "end": 36,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 20,
             "end": 27,
             "value": "battles",
             "entity": "feature"
+          },
+          {
+            "start": 33,
+            "end": 36,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1896,16 +2796,16 @@
         "text": "Tell me about her",
         "entities": [
           {
-            "start": 14,
-            "end": 17,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 8,
             "end": 13,
             "value": "about",
             "entity": "feature"
+          },
+          {
+            "start": 14,
+            "end": 17,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1914,16 +2814,16 @@
         "text": "Give me a description of her?",
         "entities": [
           {
-            "start": 25,
-            "end": 28,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 10,
             "end": 21,
             "value": "description",
             "entity": "feature"
+          },
+          {
+            "start": 25,
+            "end": 28,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1932,16 +2832,16 @@
         "text": "Describe her",
         "entities": [
           {
-            "start": 9,
-            "end": 12,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 0,
             "end": 8,
             "value": "Describe",
             "entity": "feature"
+          },
+          {
+            "start": 9,
+            "end": 12,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -1950,16 +2850,16 @@
         "text": "What events were there during her reign?",
         "entities": [
           {
-            "start": 18,
-            "end": 21,
-            "value": "her",
-            "entity": "pronoun"
-          },
-          {
             "start": 5,
             "end": 11,
             "value": "events",
             "entity": "feature"
+          },
+          {
+            "start": 30,
+            "end": 33,
+            "value": "her",
+            "entity": "pronoun"
           }
         ]
       },
@@ -2034,8 +2934,8 @@
         "text": "When was he king from?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -2052,8 +2952,8 @@
         "text": "When was he king until?",
         "entities": [
           {
-            "start": 1,
-            "end": 3,
+            "start": 9,
+            "end": 11,
             "value": "he",
             "entity": "pronoun"
           },
@@ -2189,6 +3089,246 @@
       {
         "intent": "help",
         "text": "What do you understand?",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hello",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hello!",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "How do you do?",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Pleased to meet you",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hi",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hey",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hi!",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "Hi there!",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "How are you?",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "What's up?",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "How's it going?",
+        "entities": []
+      },
+      {
+        "intent": "greet",
+        "text": "How are you doing?",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "That's enough for today",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "Go away!",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "No more questions",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "That's all thanks",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "Quit",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "I'm finished",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "Stop",
+        "entities": []
+      },
+      {
+        "intent": "dismiss",
+        "text": "I'm done",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yes",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yes!",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "yes",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yup",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Affirmative",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "That's right",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Indeed",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "That's what I said",
+        "entities": []
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Exactly",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "No",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "No!",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "NO",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "no",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "I don't agree",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That's wrong",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You didn't understand me",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You don't understand me",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That's incorrect",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That isn't right",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That isn't what I said",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "Incorrect",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You misunderstood me",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You misheard me",
+        "entities": []
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You got that wrong",
+        "entities": []
+      },
+      {
+        "intent": "yn_other",
+        "text": "I don't know",
+        "entities": []
+      },
+      {
+        "intent": "yn_other",
+        "text": "I'm not sure",
+        "entities": []
+      },
+      {
+        "intent": "yn_other",
+        "text": "Maybe",
+        "entities": []
+      },
+      {
+        "intent": "yn_other",
+        "text": "What?",
         "entities": []
       },
       {
@@ -2355,10 +3495,6 @@
       },
       {
         "intent": "rude",
-        "text": "Go away!"
-      },
-      {
-        "intent": "rude",
         "text": "Not very clever are you?"
       },
       {
@@ -2378,6 +3514,14 @@
         "text": "Who reigned after King John?"
       },
       {
+        "intent": "ruler_before",
+        "text": "Who was Queen before George 6th?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "Who was King after Richard the Third?"
+      },
+      {
         "intent": "ruler_after",
         "text": "Who was queen after Henry II?"
       },
@@ -2387,11 +3531,11 @@
       },
       {
         "intent": "ruler_after",
-        "text": "Who was the king after Elizabeth IV?"
+        "text": "Who ruled after King Edward?"
       },
       {
         "intent": "ruler_after",
-        "text": "Who ruled after King Edward?"
+        "text": "Who ruled after Charles the Merry?"
       },
       {
         "intent": "ruler_before",
@@ -2403,15 +3547,95 @@
       },
       {
         "intent": "ruler_after",
+        "text": "Which king ruled after William the 3rd?"
+      },
+      {
+        "intent": "ruler_after",
         "text": "Which king was in power before King George V?"
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Which Queen was in power before James 1?"
       },
       {
         "intent": "ruler_after",
         "text": "After William the Conqueror, who was next on the throne?"
       },
       {
+        "intent": "ruler_after",
+        "text": "After James the Vain, who was next on the throne?"
+      },
+      {
+        "intent": "ruler_after",
+        "text": "After Charles the Martyr, who was next on the throne?"
+      },
+      {
+        "intent": "ruler_before",
+        "text": "Before Elizabeth the Virgin Queen, who was on the throne?"
+      },
+      {
         "intent": "ruler_list",
         "text": "In the House of Normandy who was the last king?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1669 who was on the throne?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1863 who ruled England?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In 1914 who was the King?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the King in 1750?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who ruled Scotland in 1812?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the monarch in 1315?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which rulers were on the throne in the 15th century?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Give me a list of rulers from the 14th century"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "In the eleventh century who ruled England?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "During the sixteenth century who was on the throne?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Which Queens ruled in the fifteenth century?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the last ruler in the thirteenth century?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "At the start of the nineteenth century who was on the throne?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the first Queen in the 16th century?"
+      },
+      {
+        "intent": "ruler_list",
+        "text": "Who was the monarch at the beginning of the 20th century?"
       },
       {
         "intent": "ruler_list",
@@ -2439,7 +3663,43 @@
       },
       {
         "intent": "ruler_feature",
+        "text": "Tell me all about Henry Tudor"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about Bloody Mary"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about William of Orange"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Tell me all about William the Second"
+      },
+      {
+        "intent": "ruler_feature",
         "text": "Give me a brief description of Edward VI"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Anne the ninth"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Stephen 2"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Simon 12th"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Henry of Winchester"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Give me a brief description of Stephen of Blois"
       },
       {
         "intent": "ruler_feature",
@@ -2447,7 +3707,11 @@
       },
       {
         "intent": "ruler_feature",
-        "text": "What was the cause of death of Queen Elizabeth?"
+        "text": "What killed Mary I?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What was the cause of death of Queen Elizabeth I?"
       },
       {
         "intent": "ruler_feature",
@@ -2459,15 +3723,23 @@
       },
       {
         "intent": "ruler_feature",
+        "text": "Show me a portrait of Henry of Monmouth"
+      },
+      {
+        "intent": "ruler_feature",
         "text": "When was Queen Victoria born?"
       },
       {
         "intent": "ruler_feature",
-        "text": "When was George VI born?"
+        "text": "When was George I born?"
       },
       {
         "intent": "ruler_feature",
         "text": "What year was Henry IV born?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "What year was George Sixth born?"
       },
       {
         "intent": "ruler_feature",
@@ -2487,6 +3759,14 @@
       },
       {
         "intent": "ruler_feature",
+        "text": "When did Peter 9 reign from?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Alfred the first reign from?"
+      },
+      {
+        "intent": "ruler_feature",
         "text": "The reign of Edward VI started in which year?"
       },
       {
@@ -2500,6 +3780,10 @@
       {
         "intent": "ruler_feature",
         "text": "When did Richard the Lionheart die?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "When did Henry Curtmantle die?"
       },
       {
         "intent": "ruler_feature",
@@ -2523,11 +3807,23 @@
       },
       {
         "intent": "ruler_feature",
+        "text": "What are some historic events from the life of Edward the Third?"
+      },
+      {
+        "intent": "ruler_feature",
         "text": "Which battles took place during the reign of Henry VIII?"
       },
       {
         "intent": "ruler_feature",
         "text": "What battles did William the Conqueror fight in?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Where did Henry the fifth fight?"
+      },
+      {
+        "intent": "ruler_feature",
+        "text": "Which wars was Henry 8 involved in?"
       },
       {
         "intent": "ruler_pronoun_feature",
@@ -2552,6 +3848,14 @@
       {
         "intent": "ruler_pronoun_feature",
         "text": "Show me a portrait of him"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a painting of him"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me a picture of him"
       },
       {
         "intent": "ruler_pronoun_feature",
@@ -2660,6 +3964,14 @@
       {
         "intent": "ruler_pronoun_feature",
         "text": "Show me her portrait"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her picture"
+      },
+      {
+        "intent": "ruler_pronoun_feature",
+        "text": "Show me her painting"
       },
       {
         "intent": "ruler_pronoun_feature",
@@ -2824,6 +4136,198 @@
       {
         "intent": "help",
         "text": "What do you understand?"
+      },
+      {
+        "intent": "greet",
+        "text": "Hello"
+      },
+      {
+        "intent": "greet",
+        "text": "Hello!"
+      },
+      {
+        "intent": "greet",
+        "text": "How do you do?"
+      },
+      {
+        "intent": "greet",
+        "text": "Pleased to meet you"
+      },
+      {
+        "intent": "greet",
+        "text": "Hi"
+      },
+      {
+        "intent": "greet",
+        "text": "Hey"
+      },
+      {
+        "intent": "greet",
+        "text": "Hi!"
+      },
+      {
+        "intent": "greet",
+        "text": "Hi there!"
+      },
+      {
+        "intent": "greet",
+        "text": "How are you?"
+      },
+      {
+        "intent": "greet",
+        "text": "What's up?"
+      },
+      {
+        "intent": "greet",
+        "text": "How's it going?"
+      },
+      {
+        "intent": "greet",
+        "text": "How are you doing?"
+      },
+      {
+        "intent": "dismiss",
+        "text": "That's enough for today"
+      },
+      {
+        "intent": "dismiss",
+        "text": "Go away!"
+      },
+      {
+        "intent": "dismiss",
+        "text": "No more questions"
+      },
+      {
+        "intent": "dismiss",
+        "text": "That's all thanks"
+      },
+      {
+        "intent": "dismiss",
+        "text": "Quit"
+      },
+      {
+        "intent": "dismiss",
+        "text": "I'm finished"
+      },
+      {
+        "intent": "dismiss",
+        "text": "Stop"
+      },
+      {
+        "intent": "dismiss",
+        "text": "I'm done"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yes"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yes!"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "yes"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Yup"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Affirmative"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "That's right"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Indeed"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "That's what I said"
+      },
+      {
+        "intent": "yn_positive",
+        "text": "Exactly"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "No"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "No!"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "NO"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "no"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "I don't agree"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That's wrong"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You didn't understand me"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You don't understand me"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That's incorrect"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That isn't right"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "That isn't what I said"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "Incorrect"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You misunderstood me"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You misheard me"
+      },
+      {
+        "intent": "yn_negative",
+        "text": "You got that wrong"
+      },
+      {
+        "intent": "yn_other",
+        "text": "I don't know"
+      },
+      {
+        "intent": "yn_other",
+        "text": "I'm not sure"
+      },
+      {
+        "intent": "yn_other",
+        "text": "Maybe"
+      },
+      {
+        "intent": "yn_other",
+        "text": "What?"
       },
       {
         "intent": "example",
