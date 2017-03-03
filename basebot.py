@@ -313,7 +313,7 @@ def download_emails():
     # prior conversation or information provided (so that may need to be added)
 
     logger.info('Checking emails')
-    safe_list = ['nicolagcornish@aol.com', 'neil@nmstoker.com']
+    safe_list = ['example1@example.com', 'example2@example.com']
     lst = []
     for msg in get_msgs():
         sender = get_email_addr(get_sender(msg))
