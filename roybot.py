@@ -30,7 +30,7 @@ from string import Template
 BOTNAME = 'RoyBot'
 BOTSUBJECT = 'royalty in England (to begin with, Scotland to come later on!)'
 METADATA_LOCATION = os.path.abspath(os.path.join(
-    'models','model_20170210-024634', 'metadata.json'))
+    'models','model_20170228-111802', 'metadata.json'))
 SQLITE_FILE = os.path.abspath(os.path.join('data', 'roybot_db.sqlite'))
 HISTORY_FILENAME = os.path.abspath(os.path.join('data', 'roybot.hist'))
 DEMO_FILE = os.path.abspath(os.path.join('data', 'roybot_demo_inputs.txt'))
@@ -343,7 +343,7 @@ def download_emails():
     # prior conversation or information provided (so that may need to be added)
 
     logger.info('Checking emails')
-    safe_list = ['nicolagcornish@aol.com', 'neil@nmstoker.com']
+    safe_list = ['example1@example.com', 'example2@example.com']
     lst = []
     for msg in get_msgs():
         sender = get_email_addr(get_sender(msg))

@@ -3,5 +3,5 @@
   "mitie_file" : "./MITIE/MITIE-models/english/total_word_feature_extractor.dat",
   "path" : "./models/",
   "data" : "./data/RoyBot.json",
-  "server_model_dir":"./model_20170203-003615"
+  "server_model_dir":"./model_20170228-111802"
 }
