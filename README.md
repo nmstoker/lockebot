@@ -137,7 +137,7 @@ There are a handful of simple command shortcuts that trigger actions / toggle us
 
 'v' - **Verbose:** this toggles the response style. When off responses just show the data returned and when on the data is fed into the template system to try to generate a more meaningful sentence style response. By default it is true.
 
-####Setting logging levels
+#### Setting logging levels
 
 `w` - **Warning:** this is the default level of logging (on screen)
 
