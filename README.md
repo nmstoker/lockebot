@@ -6,7 +6,7 @@
 
 ## What is this?
 
-It is a bot that can answer simple questions, via the terminal, email or [Let's Chat](http://sdelements.github.io/lets-chat/)
+It is a bot that can answer simple questions, via the terminal, email, [Let's Chat](http://sdelements.github.io/lets-chat/) or [Facebook Messenger](https://messenger.fb.com/)
 
 After being trained on examples, it is (to a degree) able to generalise the questions and respond to ones in a similar style. The questions are turned into intents and entities, which are then used to construct queries to run against a database to provide the answer.
 
@@ -73,11 +73,11 @@ But if you wish to use it via email or Let's Chat, see the addition requirements
 #### Let's Chat
 Let's Chat has a variety of ways that it can be set up - for advice on that, please refer to the instructions in their repo's wiki [here](https://github.com/sdelements/lets-chat/wiki).  For development, I found docker very quick to get going with.  (NB: although LockeBot will work on a Raspberry Pi, no efforts have been made (yet!) to see if Let's Chat is viable on the Pi so I have no advice on that front)
 
-Look at [config_roybot.ini](/config/config_roybot.ini) in the Let's Chat section and update them as necessary to point to your particular Let's Chat instance. The primary one to focus on is **base_url** and this should correspond to a room that you have set up in the Let's Chat. The bot will respond to all questions posted by user in that room (there is no concept of the bot being directly addressed, eg @roybot Who was...).
+Look at [config_roybot.ini](/config/config_roybot.ini) in the Let's Chat section and update them as necessary to point to your particular Let's Chat instance. The primary one to focus on is **base_url** and this should correspond to a room that you have set up in the Let's Chat. The bot will respond to all questions posted by users in the user_filter list who post in that room (there is no concept of the bot being directly addressed, eg @roybot Who was...).
 
-Start the bot script with `--channel letschat`
+Start the roybot.py script with `--channel letschat`
 
-####Facebook Messenger####
+#### Facebook Messenger
 This is more involved to set up than the other methods, as you need an externally accessible webhook where the bot can be reached.
 
 The [Quick Start](https://developers.facebook.com/docs/messenger-platform) documentation for the Messenger Platform is the best place to start, but in summary you will need to set up an App and a Page for the bot (it can be private). There are a variety of ways you can handle the webhook depending on the resources available to you, but a simple method is to use [Ngrok](ngrok.com) to tunnel your localhost so that Facebook can access it.
@@ -93,7 +93,7 @@ Initially only the developer(s) will be able to access the bot, but if you get t
 
 #### Email set up
 
-** Disabled currently - will be updated shortly **
+**Disabled currently - will be updated shortly**
 
 To use LockeBot over email, it connects via IMAP and SMTP to an email account that you set up specifically for use with the bot.
 
@@ -138,7 +138,7 @@ See command-line parameters below for more options with running.
 
 See the commands section below, but a helpful one is 'q' to quit! (or use <kbd>Ctrl-C</kbd>)
 
-**NB:** If you've been re-training the Rasa model, you will first want to ensure you've updated the details in METADATA_LOCATION
+**NB:** If you've been re-training the Rasa model, you will first want to ensure you've updated the details in the setting **metadata_file** in [config_roybot.ini](/config/config_roybot.ini)
 
 ### Command-line parameters
 
@@ -188,6 +188,8 @@ See the [Rasa NLU documentation here](http://rasa-nlu.readthedocs.io/en/stable/d
 Details of how to train the model are covered [here](http://rasa-nlu.readthedocs.io/en/stable/tutorial.html#training-your-model), with the key step being:
 
 `python -m rasa_nlu.train -c config/config.json`
+
+Once that completes (*which can take a __long__ time*) you should have a newly dated model folder (eg **/model_201ymmdd-hhmmss/**), simply ensure that folder is within your **/models** folder and update the setting **metadata_file** in [config_roybot.ini](/config/config_roybot.ini). The next time the bot is run, it will pick up the new model.
 
 ## Platforms
 Currently it is only tested on **Linux** (specifically [Arch](https://www.archlinux.org/) x86-64 and [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on a Raspberry Pi 3)
