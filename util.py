@@ -10,6 +10,7 @@ STY_DESC_DEBUG = fore.SKY_BLUE_1 + back.BLACK + style.DIM
 STY_USER = style.RESET + fore.WHITE + back.BLACK
 STY_CURSOR = fore.LIGHT_GOLDENROD_2B + back.BLACK + style.BOLD
 STY_RESP = fore.WHITE + back.MEDIUM_VIOLET_RED + style.BOLD
+STY_RECIPIENT = fore.WHITE + back.DODGER_BLUE_2 + style.BOLD
 # STY_RESP = fore.WHITE + back.GREY_11 + style.BOLD #+ style.NORMAL
 STY_EMAIL = fore.WHITE + back.GREY_11 + style.BOLD
 

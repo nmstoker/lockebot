@@ -39,6 +39,8 @@ def webhook():
                 if messaging_event.get("message"):  # someone sent us a message
 
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                    c.user_id = sender_id
+                    c.user = c.get_user(sender_id)
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
 
                     if 'attachments' in messaging_event["message"]:
@@ -50,13 +52,15 @@ def webhook():
 
                         # process msg
                         c.check_input(message_text, True, True)
-                        if 'http' in c.msg_output:
-                            send_image(sender_id, c.msg_output)
+                        if 'http' in c.user['msg_output']:
+                            send_image(sender_id, c.user['msg_output'])
                         else:
-                            if c.msg_output.strip() == '':
-                                c.msg_output == 'I\'m unsure what to say to that! :/'
-                            send_message(sender_id, c.msg_output)
-                        c.msg_output = ''
+                            if c.user['msg_output'].strip() == '':
+                                c.user['msg_output'] == 'I\'m unsure what to say to that! :/'
+                            send_message(sender_id, c.user['msg_output'])
+                        c.user['msg_output'] = ''
+
+                    c.update_user_dict(sender_id, c.user)
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -66,7 +70,7 @@ def webhook():
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
                     pass
-
+    
     return "ok", 200
 
 
@@ -123,8 +127,8 @@ logger = logging.getLogger('root')
 logger.setLevel(logging.DEBUG)
 
 global c
-ch_in = 'screen'  # 'email' OR 'screen' OR 'online'
-ch_out = {'facebook': True, 'email': False, 'online': False, 'screen': True}
+ch_in = 'screen'  # 'email' OR 'screen' OR 'letschat'
+ch_out = {'facebook': True, 'email': False, 'letschat': False, 'screen': True}
 # c = roybot.Core(channels_out = ch_out, channel_in = ch_in, loglvl = loglvl, config_override = config)
 c = roybot.Core(channels_out = ch_out, channel_in = ch_in)
 logger.info('Botname is ' + c.botname)

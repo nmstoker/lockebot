@@ -73,11 +73,28 @@ But if you wish to use it via email or Let's Chat, see the addition requirements
 #### Let's Chat
 Let's Chat has a variety of ways that it can be set up - for advice on that, please refer to the instructions in their repo's wiki [here](https://github.com/sdelements/lets-chat/wiki).  For development, I found docker very quick to get going with.  (NB: although LockeBot will work on a Raspberry Pi, no efforts have been made (yet!) to see if Let's Chat is viable on the Pi so I have no advice on that front)
 
-Look at the script and find the constants for Let's Chat (all prefixed **LC_**) and update them as necessary to point to your particular Let's Chat instance. The primary one to focus on is **LC_BASE_URL** and this should correspond to a room in the Let's Chat where the bot will respond to questions from users. If you're running it locally you may be able to leave them "as is" if you create a room to match the default one ("base" for BaseBot).
+Look at [config_roybot.ini](/config/config_roybot.ini) in the Let's Chat section and update them as necessary to point to your particular Let's Chat instance. The primary one to focus on is **base_url** and this should correspond to a room that you have set up in the Let's Chat. The bot will respond to all questions posted by user in that room (there is no concept of the bot being directly addressed, eg @roybot Who was...).
 
-In the bot script (eg basebot.py), edit **CHANNEL_IN** and **CHANNEL_OUT** to reference **'online'** and **'online': True** respectively (CHANNEL_IN can only take one value at a time, but CHANNEL_OUT can be true for **'screen'** and/or **'email'** as well as **'online'**) 
+Start the bot script with `--channel letschat`
+
+####Facebook Messenger####
+This is more involved to set up than the other methods, as you need an externally accessible webhook where the bot can be reached.
+
+The [Quick Start](https://developers.facebook.com/docs/messenger-platform) documentation for the Messenger Platform is the best place to start, but in summary you will need to set up an App and a Page for the bot (it can be private). There are a variety of ways you can handle the webhook depending on the resources available to you, but a simple method is to use [Ngrok](ngrok.com) to tunnel your localhost so that Facebook can access it.
+
+Configure these two environment variables for the script to pick up the private settings that you configure with Facebook:
+
+* VERIFY_TOKEN
+* PAGE_ACCESS_TOKEN 
+
+Then run the fb.py script, which will start a local webserver (running flask).  Messages sent via the Messenger app should be turned into posts made to the server, which are then processed by the bot and the replies intended for the users are sent back to Facebook via posts made to their server.
+
+Initially only the developer(s) will be able to access the bot, but if you get through the approval process you can make it publically accessible.
 
 #### Email set up
+
+** Disabled currently - will be updated shortly **
+
 To use LockeBot over email, it connects via IMAP and SMTP to an email account that you set up specifically for use with the bot.
 
 Several major email services provide details the ability to connect with IMAP/SMTP - if this is not available for the email you wish to use, you will need to figure out how you can connect programmatically via Python (and re-write the necessary sections of code).
@@ -111,21 +128,36 @@ The script polls the email fairly frequently - you may find that a less frequent
 
 ### Regular Bot Use
 
-
-
 * Navigate to the Lockebot folder
 * Activate the virtual environment (*as per the name you chose when you installed Lockebot*)
 	* `source venv/bin/activate`
 * `python roybot.py` (*or python basebot.py if you want to start from the simpler basebot*)
 * Enter questions and see how it responds :tada:
 
-See the commands section below, but an important one you will need is 'q' to quit!
+See command-line parameters below for more options with running.
+
+See the commands section below, but a helpful one is 'q' to quit! (or use <kbd>Ctrl-C</kbd>)
 
 **NB:** If you've been re-training the Rasa model, you will first want to ensure you've updated the details in METADATA_LOCATION
 
-### Commands
+### Command-line parameters
 
-There are a handful of simple command shortcuts that trigger actions / toggle useful features. To use them, simply type the associated letter into the bot as if it were regular input.
+**NB:** Not yet implemented for basebot.py
+
+`python roybot.py --help` - Lists parameter details
+
+`--channel` - The input channel (screen / letschat). Default is screen.
+
+`--config` - The location of the config file.
+             E.g `--config ~/path-to-other-config/config_roybot.ini`
+             Useful to quickly switch between environments (eg test and live)
+
+`--loglvl` - The level at which logging is done (DEBUG / INFO / WARN).
+             Not case sensitive. Default level is WARN.
+
+### User commands (for local input only, ie 'screen')
+
+There are a handful of simple command shortcuts that trigger actions / toggle useful features. To use them, simply type the associated letter into the bot as if it were regular input.  To avoid remote users causing havoc, these only work for local input (ie 'screen').
 
 `q` - **Quit:** this quits the bot (as you would expect!) You can also use <kbd>Ctrl-C</kbd> to quit.
 
@@ -149,7 +181,13 @@ The commands are intercepted in the main loop, before user input is sent to Rasa
 
 ### Training
 
-python -m rasa_nlu.train -c config/config.json
+There is training data [available here](/data/RoyBot.json) which you can use as an example to start with.
+
+See the [Rasa NLU documentation here](http://rasa-nlu.readthedocs.io/en/stable/dataformat.html) for details of the format and options for editing it.
+
+Details of how to train the model are covered [here](http://rasa-nlu.readthedocs.io/en/stable/tutorial.html#training-your-model), with the key step being:
+
+`python -m rasa_nlu.train -c config/config.json`
 
 ## Platforms
 Currently it is only tested on **Linux** (specifically [Arch](https://www.archlinux.org/) x86-64 and [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) on a Raspberry Pi 3)

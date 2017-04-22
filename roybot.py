@@ -180,6 +180,62 @@ import util as u # some local utility functions
 #     email_subject = ''
 
 
+class LetsChat:
+    """For interactions with Let's Chat"""
+
+
+    def __init__(self, config, logger):
+        """Initialises the Let's Chat specific functionality and sets up various variables."""
+
+        self.logger = logger
+
+        self.polling_time= config.getfloat('letschat', 'polling_time')
+        self.auth_token= config.get('letschat', 'auth_token')
+        self.user_filter= config.get('letschat', 'user_filter')
+        self.base_url= config.get('letschat', 'base_url')
+
+        # Responses are to the room as a whole (ie no per-user tracking currently)
+        self.last_user_input = ''
+
+
+    def say_LC(self, text):
+        """Sends output to Let's Chat"""
+        url = self.base_url + '/messages'
+        # We split on returns so that the entries get a new line (it's treated
+        # as "code" entries otherwise :-( )
+        for line in text.split('\n'):
+            r = requests.post(
+                url, auth=(self.auth_token, 'xxx'), data={'text': line})
+
+
+    def poll_LC(self):
+        """Polls the Let's Chat room associated with the bot for any new
+        messages"""
+        url = self.base_url + '/messages?take=1'
+        user_input = ''
+        while True:
+            time.sleep(self.polling_time)
+            try:
+                r = requests.get(url, auth=(self.auth_token, 'xxx'))
+                self.logger.debug(r.text)
+                if r.json()[0]['owner'] in self.user_filter:
+                    self.logger.debug('Owner matches: ' + str(r.json()[0]['owner']))
+                    user_input = r.json()[0]['text']
+                    if (user_input[0:4] != 'http') & \
+                            (user_input != self.last_user_input):
+                        #if self.last_user_input:
+                        self.last_user_input = user_input
+                        self.logger.debug('We have a new input')
+                        self.logger.debug('user_input is: ' + user_input)
+                        break
+                        #else:
+                        #    self.last_user_input = user_input
+            except SystemExit:
+                raise
+            except:
+                self.logger.warn('Error in poll_LC' + str(sys.exc_info()[0]))
+        self.logger.debug('Returning  user_input: ' + user_input)
+        return user_input
 
 
 class Core:
@@ -219,7 +275,7 @@ class Core:
             return ['DtBirth']
         if f in ('die', 'died', 'death'):
             return ['DtDeath']
-        if f in ('king from','queen from', 'reign from', 'reign begin', 'reign began', 'started', 'become', 'rule from', 'rule start', 'rule began'):
+        if f in ('king from','queen from', 'reign from', 'reign begin', 'reign began', 'reign start', 'started', 'become', 'rule from', 'rule start', 'rule began', 'on the throne'):
             return ['ReignStartDt']
         if f in ('king until','queen until', 'reign until', 'reign to', 'reign end', 'reign ended', 'end', 'become', 'rule until'):
             return ['ReignEndDt']
@@ -259,7 +315,7 @@ class Core:
         if etype == 'number-roman':
             # TODO: Add better error and type checking
             try:
-                return str(roman.fromRoman(ent['value']))
+                return str(roman.fromRoman(ent['value'].upper()))
             except:
                 return None
         if etype == 'nth':
@@ -312,9 +368,10 @@ class Core:
 
     def reset_last_ruler(self):
         """Resets the values relating to last ruler."""
-        self.last_ruler_type = None
-        self.last_ruler_id = None
-        self.last_ruler_count = 0
+        
+        self.user['last_ruler_type'] = None
+        self.user['last_ruler_id'] = None
+        self.user['last_ruler_count'] = 0
 
 
     def handle_ctrl_c(self, signal, frame):
@@ -344,11 +401,20 @@ class Core:
             self.logger.setLevel(logging.WARN)
             self.logger.warn('Logging level set to WARN')
         elif loglvl.lower().strip() == '':
-            self.logger.setLevel(logging.DEBUG)
+            self.logger.setLevel(logging.WARN)
         else:
             self.logger.warn('Unrecognised log level input. Defaulting to WARN.')
         
         self.logger.info('Initialisation started')
+
+        channel_in_accepted = ['screen', 'letschat']
+        if channel_in not in channel_in_accepted:
+            self.logger.warn('Unrecognised channel input value. Must be one of: ' + ', '.join(channel_in_accepted) + '.')
+            self.before_quit()
+        else:
+            self.CHANNEL_IN = channel_in
+            self.CHANNELS_OUT = channels_out
+            self.CHANNELS_OUT[self.CHANNEL_IN] = True
 
         config = ConfigParser.SafeConfigParser()
         
@@ -383,41 +449,50 @@ class Core:
         except ConfigParser.Error as e:
             self.logger.warn('Error reading configuration ' + str(e))
 
-    # ---------------------------------------------
-    # CUSTOMISE THESE ITEMS TO THIS PARTICULAR BOT
-    # ---------------------------------------------
+        if self.CHANNEL_IN == 'letschat':
+            self.lc = LetsChat(config=config, logger=self.logger)
+        else:
+            self.lc = None
 
-    # LC_AUTH_TOKEN eg yOGSQwMDEyYNg2YThiZ8GNh9MmF524hNDvZWM3OTMDIhOmZjOT
-    #                  NlZGFhMmUzMDQxODM4M2MTU1ZjU3VmZjViYTAwY2Q5ZWNhYg==
-    # LC_AUTH_TOKEN = 'XXXXX'
-    # LC_USER_FILTER eg 386a8520a0328d0092baa475
-    # LC_USER_FILTER = ['XXXXX']
-    # LC_BASE_URL = 'http://localhost:8080/rooms/roybot'
-    # LC_POLLING_TIME = 1
 
-    # -----------------------
-    # END OF CUSTOMISED ITEMS
-    # -----------------------
+        self.user_dict = {}
+        self.user_id = '1234'
+        self.user = self.get_user(self.user_id)
 
-        self.CHANNEL_IN = channel_in
-        self.CHANNELS_OUT = channels_out
-
-        self.msg_output = ''
+        self.user['msg_output'] = ''
+        self.user['rude_count'] = 0
 
         self.metadata = json.loads(open(self.metadata_file).read())
         self.interpreter = MITIEInterpreter(**self.metadata)
         self.db = sqlite3.connect(self.sqlite_file)
         self.db.row_factory = self.dict_factory
         self.cursor = self.db.cursor()
-        self.rude_count = 0
         self.last_input = {}
-        self.last_user_input = None
         self.email_text = ''
         self.email_subject = ''
         self.email_list = []
         self.reset_last_ruler()
 
         self.logger.info('Initialisation complete')
+
+
+    def get_user(self, user_id=None):
+        if user_id not in self.user_dict:
+            new_user = {}
+            new_user['rude_count'] = 0
+            new_user['msg_output'] = ''
+            new_user['last_ruler_count'] = 0
+            new_user['last_ruler_type'] = ''
+            new_user['last_ruler_id'] = ''
+            self.user_dict[user_id] = new_user
+            #self.logger.debug('get_user is returning new user ' + str(user_id))
+            return new_user
+        #self.logger.debug('get_user is returning existing user ' + str(user_id))
+        return self.user_dict[user_id]
+
+
+    def update_user_dict(self, user_id=None, user=None):
+        self.user_dict[user_id] = user
 
 
     def main_loop(self):
@@ -434,45 +509,54 @@ class Core:
         self.prompt_text = u.STY_CURSOR + ' > ' + u.STY_USER
         try:
             while True:
-                # if self.CHANNEL_IN == 'online':
-                #     self.user_input = poll_LC()
-                # elif self.CHANNEL_IN == 'email':
-                #     self.email_item = poll_email()
-                #     if self.email_item is None:
-                #         self.user_input = ''
-                #     else:
-                #         self.user_input = self.email_item['user_input']
-                # else:  # screen
-                #     self.user_input = raw_input(self.prompt_text)
-                self.user_input = raw_input(self.prompt_text) # when above section is uncommented then remove this line
+                if self.CHANNEL_IN == 'letschat':
+                    self.user_input = self.lc.poll_LC()
+                elif self.CHANNEL_IN == 'email':
+                    self.email_item = poll_email()
+                    if self.email_item is None:
+                        self.user_input = ''
+                    else:
+                        self.user_input = self.email_item['user_input']
+                else:  # screen
+                    self.user_input = raw_input(self.prompt_text)
                 print(style.RESET, end="")
-                if self.user_input.lower() == 'q':
-                    print(
-                        '\t\t' + u.STY_RESP + '  Okay.  Goodbye!  ' + u.STY_USER +
-                        '\n')
-                    self.before_quit()
-                elif self.user_input.lower() == 't':
-                    self.tag_last()
-                elif self.user_input.lower() == 'v':
-                    self.verbose = not self.verbose
-                    self.print_settings('Verbose responses: ' + str(self.verbose))
-                elif self.user_input.lower() == 's':
-                    self.show_parse = not self.show_parse
-                    self.print_settings(
-                        'Show_parse: ' + {True: 'on', False: 'off'}[self.show_parse])
-                elif self.user_input.lower() == 'c':
-                    u.clear_screen()
-                elif self.user_input.lower() == 'd':
-                    self.logger.setLevel(logging.DEBUG)
-                    self.logger.info('Logging level set to DEBUG')
-                elif self.user_input.lower() == 'i':
-                    self.logger.setLevel(logging.INFO)
-                    self.logger.info('Logging level set to INFO')
-                elif self.user_input.lower() == 'w':
-                    self.logger.setLevel(logging.WARNING)
-                    self.logger.warn('Logging level set to WARN')
-                else:
-                    self.check_input(self.user_input, self.show_parse, self.verbose)
+
+                # Only want these enabled when running locally (ie screen)
+                if self.CHANNEL_IN == 'screen':                
+                    if self.user_input.lower() == 'q':
+                        print(
+                            '\t\t' + u.STY_RESP + '  Okay.  Goodbye!  ' + u.STY_USER +
+                            '\n')
+                        self.before_quit()
+                    elif self.user_input.lower() == 't':
+                        self.tag_last()
+                        continue
+                    elif self.user_input.lower() == 'v':
+                        self.verbose = not self.verbose
+                        self.print_settings('Verbose responses: ' + str(self.verbose))
+                        continue
+                    elif self.user_input.lower() == 's':
+                        self.show_parse = not self.show_parse
+                        self.print_settings(
+                            'Show_parse: ' + {True: 'on', False: 'off'}[self.show_parse])
+                        continue
+                    elif self.user_input.lower() == 'c':
+                        u.clear_screen()
+                        continue
+                    elif self.user_input.lower() == 'd':
+                        self.logger.setLevel(logging.DEBUG)
+                        self.logger.info('Logging level set to DEBUG')
+                        continue
+                    elif self.user_input.lower() == 'i':
+                        self.logger.setLevel(logging.INFO)
+                        self.logger.info('Logging level set to INFO')
+                        continue
+                    elif self.user_input.lower() == 'w':
+                        self.logger.setLevel(logging.WARNING)
+                        self.logger.warn('Logging level set to WARN')
+                        continue
+
+                self.check_input(self.user_input, self.show_parse, self.verbose)
                 # if self.CHANNELS_OUT['email']:
                 #     if self.email_item is not None:
                 #         send_email(self.email_item['sender'])
@@ -495,8 +579,8 @@ class Core:
 
         if self.CHANNELS_OUT['facebook']:
             #must keep it under 600
-            self.msg_output = (self.msg_output + '\n' + text)[:600]
-            self.logger.debug('FB msg output: ' + self.msg_output)
+            self.user['msg_output'] = (self.user['msg_output'] + '\n' + text)[:600]
+            self.logger.debug('FB msg output: ' + self.user['msg_output'])
 
 
         if self.CHANNELS_OUT['screen']:
@@ -506,17 +590,11 @@ class Core:
                     '\n\t\t' + u.STY_CURSOR + ' > ' + u.STY_USER + text[1:],
                     end='  ' + u.STY_USER)
             else:
-                print(
-                    '\n\t\t' + u.STY_RESP + '  ' + text,
+                print('\n\t' + u.STY_RECIPIENT + '  User: ' + str(self.user_id) + '  ' + u.STY_USER + '\t' + u.STY_RESP + '  ' + text,
                     end='  ' + u.STY_USER + '\n\n')
 
-        if self.CHANNELS_OUT['online']:
-            self.LC_URL = self.LC_BASE_URL + '/messages'
-            # We split on returns so that the entries get a new line (it's treated
-            # as "code" entries otherwise :-( )
-            for line in text.split('\n'):
-                r = requests.post(
-                    self.LC_URL, auth=(self.LC_AUTH_TOKEN, 'xxx'), data={'text': line})
+        if self.CHANNELS_OUT['letschat']:
+            self.lc.say_LC(text)
 
         # if self.CHANNELS_OUT['email']:
         #     if self.greet is False:
@@ -538,6 +616,21 @@ class Core:
             self.say_text('If you are stuck, you can ask for help or to see a demo')
         else:
             self.say_text('If you are stuck, you can ask for help or for an example question')
+
+
+    def handle_dismiss(self, resp):
+        """Handles the intent of making various goodbye/leaving related comments to a chatbot"""
+
+        dismiss_list = [
+            'Okay, well I\'ll be around if you want to ask any more questions later',
+            'You can always come back later to ask more questions',
+            'Okay',
+            'You know where to find me if you have any more questions later',
+            'I hope I was able to be of some assistance',
+            'Come back soon!'
+            ]
+        self.say_text(random.choice(dismiss_list))
+
 
     def handle_origin(self, resp):
         """Handles intents relating to the origin of the bot, as this is often a
@@ -659,14 +752,14 @@ class Core:
             'I am not programmed to handle rudeness in any meaningful way. We ' +
             'can do this all day if you like!']
 
-        self.rude_count += 1
+        self.user['rude_count'] += 1
 
-        if self.rude_count < 3:
+        if self.user['rude_count'] < 3:
             self.say_text(random.choice(replies_initial))
         else:
             self.say_text(random.choice(replies_more_direct))
-            if self.rude_count > 5:
-                self.rude_count = 0
+            if self.user['rude_count'] > 5:
+                self.user['rude_count'] = 0
 
 
     def handle_help(self, resp):
@@ -691,7 +784,7 @@ class Core:
             ' - End of reign\n - Famous battles\n - House (eg of Tudor)\n\nThen the ML magic happens, ' +
             'I try to understand what you\'ve said and then look up details ' +
             'based on entities recognised in a database.\n\nHave a go!\n\n' +
-            '(or try "Example" if you\'re really not sure']
+            '(or try "Give me an example" if you\'re really not sure :D)']
         self.say_text(random.choice(replies_initial))
 
 
@@ -781,6 +874,9 @@ class Core:
             {
                 'intent': 'ruler_feature',
                 'template_text': '$HeShe reigned until $ReignEndDt'},
+            {
+                'intent': 'ruler_feature',
+                'template_text': '$HeShe was a member of the $House'},
             {
                 'intent': 'ruler_feature',
                 'template_text': '$NotableEventsDuringLife'},
@@ -953,15 +1049,15 @@ class Core:
             return
         output = ''
         results = self.cursor.fetchall()
-        self.last_ruler_count = len(results)
-        self.logger.debug('Last ruler count: ' + str(self.last_ruler_count))
-        if self.last_ruler_count == 1:
-            self.last_ruler_type = results[0]['RulerType']
-            self.logger.debug('Set last_ruler_type to: ' + str(self.last_ruler_type))
-            self.last_ruler_id = results[0]['RulerId']
-            self.logger.debug('Set last_ruler_id to: ' + str(self.last_ruler_id))
+        self.user['last_ruler_count'] = len(results)
+        self.logger.debug('Last ruler count: ' + str(self.user['last_ruler_count']))
+        if self.user['last_ruler_count'] == 1:
+            self.user['last_ruler_type'] = results[0]['RulerType']
+            self.logger.debug('Set last_ruler_type to: ' + str(self.user['last_ruler_type']))
+            self.user['last_ruler_id'] = results[0]['RulerId']
+            self.logger.debug('Set last_ruler_id to: ' + str(self.user['last_ruler_id']))
         else:
-            if self.last_ruler_count == 0:
+            if self.user['last_ruler_count'] == 0:
                 self.say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination (eg Richard VII).')
             else:
                 self.say_text('Based on my understanding of your question, I\'m having trouble narrowing down the selection to a single ruler. You may need to be a little more specific.')
@@ -1096,16 +1192,16 @@ class Core:
             return
         output = ''
         results = self.cursor.fetchall()
-        self.last_ruler_count = len(results) 
-        if self.last_ruler_count == 1:
-            self.last_ruler_type = results[0]['RulerType']
-            self.logger.debug('Set last_ruler_type to: ' + str(self.last_ruler_type))
-            self.last_ruler_id = results[0]['RulerId']
-            self.logger.debug('Set last_ruler_id to: ' + str(self.last_ruler_id))
+        self.user['last_ruler_count'] = len(results) 
+        if self.user['last_ruler_count'] == 1:
+            self.user['last_ruler_type'] = results[0]['RulerType']
+            self.logger.debug('Set last_ruler_type to: ' + str(self.user['last_ruler_type']))
+            self.user['last_ruler_id'] = results[0]['RulerId']
+            self.logger.debug('Set last_ruler_id to: ' + str(self.user['last_ruler_id']))
         else:
-            if self.last_ruler_count == 0:
+            if self.user['last_ruler_count'] == 0:
                 self.say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination.')
-            if (position is not None) and (self.last_ruler_count > 1):
+            if (position is not None) and (self.user['last_ruler_count'] > 1):
                 self.say_text('It looks like you were after a specific ruler, but I am matching several (so perhaps something went wrong, either with how the question was asked or how I understood it).')
                 self.say_text('Here they are anyway:')
             self.reset_last_ruler()
@@ -1129,9 +1225,9 @@ class Core:
                     # hard-coding values for "fields" here as they're the only items we need to check and there
                     # is no actual fields list here 
                     template_text = self.match_template(resp, fields, params)
-                    if self.last_ruler_type is not None:
+                    if self.user['last_ruler_type'] is not None:
                         #print('xx')
-                        template_text = self.resolve_gender_text(template_text, self.last_ruler_type)
+                        template_text = self.resolve_gender_text(template_text, self.user['last_ruler_type'])
                 # if moving to Python 3.2+ then could possibly use this:
                 # template_row = defaultdict(lambda: '<unset>', **row)
                 # self.say_text(template.format(**template_row))
@@ -1152,9 +1248,9 @@ class Core:
                                verbose=False):
 
         self.logger.info('Intent: ruler_pronoun_feature')
-        self.logger.debug('last_ruler_id: ' + str(self.last_ruler_id))
-        if self.last_ruler_id is not None:
-            self.handle_ruler_feature(resp, detail, self.last_ruler_id, verbose)
+        self.logger.debug('last_ruler_id: ' + str(self.user['last_ruler_id']))
+        if self.user['last_ruler_id'] is not None:
+            self.handle_ruler_feature(resp, detail, self.user['last_ruler_id'], verbose)
         else:
             self.say_text('I am not sure which ruler you are referring to. Please restate your question directly mentioning them.')
 
@@ -1238,15 +1334,15 @@ class Core:
             return
         output = ''
         results = self.cursor.fetchall()
-        self.last_ruler_count = len(results)
-        self.logger.debug('Last ruler count: ' + str(self.last_ruler_count))
-        if self.last_ruler_count == 1:
-            self.last_ruler_type = results[0]['RulerType']
-            self.logger.debug('Set last_ruler_type to: ' + str(self.last_ruler_type))
-            self.last_ruler_id = results[0]['RulerId']
-            self.logger.debug('Set last_ruler_id to: ' + str(self.last_ruler_id))
+        self.user['last_ruler_count'] = len(results)
+        self.logger.debug('Last ruler count: ' + str(self.user['last_ruler_count']))
+        if self.user['last_ruler_count'] == 1:
+            self.user['last_ruler_type'] = results[0]['RulerType']
+            self.logger.debug('Set last_ruler_type to: ' + str(self.user['last_ruler_type']))
+            self.user['last_ruler_id'] = results[0]['RulerId']
+            self.logger.debug('Set last_ruler_id to: ' + str(self.user['last_ruler_id']))
         else:
-            if self.last_ruler_count == 0:
+            if self.user['last_ruler_count'] == 0:
                 self.say_text('Based on my understanding of your question, I am not able to match any rulers. You may have a typo or a non-existent combination (eg Richard VII).')
             else:
                 self.say_text('Based on my understanding of your question, I cannot narrow down the selection to a single ruler. You may need to be a little more specific.')
@@ -1269,9 +1365,9 @@ class Core:
                             else:
                                 cardinalty = 'singular'
                     template_text = self.match_template(resp, fields, params, cardinalty)
-                    if self.last_ruler_type is not None:
+                    if self.user['last_ruler_type'] is not None:
                         #print('xx')
-                        template_text = self.resolve_gender_text(template_text, self.last_ruler_type)
+                        template_text = self.resolve_gender_text(template_text, self.user['last_ruler_type'])
                 t = Template(template_text)
                 template_output = str(t.safe_substitute(**row))
                 if 'None' in template_output or len(template_output.strip()) == 0:
@@ -1353,6 +1449,8 @@ class Core:
                 self.handle_origin(resp)
             elif resp['intent'] == 'greet':
                 self.handle_greet(resp)
+            elif resp['intent'] == 'dismiss':
+                self.handle_dismiss(resp)
             elif resp['intent'] == 'demo':
                 if not(self.CHANNELS_OUT['facebook']):
                     self.handle_demo(resp, show_parse, verbose=verbose)
@@ -1364,7 +1462,7 @@ class Core:
                     'not have the necessary skills to respond appropriately. ' +
                     'Sorry!')
         else:
-            self.logger.info('Sorry, but I cannot understand your question.')
+            self.logger.info('Intent not found in response')
 
 
     def tag_last(self):
@@ -1376,37 +1474,6 @@ class Core:
                 f.write(str(self.last_input) + '\n')
         except IOError as e:
             self.logger.warn('Unable to open tagged output file: ' + str(self.tagged_output_file)) #Does not exist OR no read permissions
-
-# class LetsChat:
-#     """For interactions with Let's Chat"""
-#
-#     def poll_LC():
-#         """Polls the Let's Chat room associated with the bot for any new
-#         messages"""
-#         LC_URL = LC_BASE_URL + '/messages?take=1'
-#         user_input = ''
-#         global last_user_input
-#         while True:
-#             time.sleep(LC_POLLING_TIME)
-#             try:
-#                 r = requests.get(LC_URL, auth=(LC_AUTH_TOKEN, 'xxx'))
-#                 self.logger.debug(r.text)
-#                 if r.json()[0]['owner'] in LC_USER_FILTER:
-#                     self.logger.debug('Owner matches: ' + str(r.json()[0]['owner']))
-#                     user_input = r.json()[0]['text']
-#                     if (user_input[0:4] != 'http') & \
-#                             (user_input != last_user_input):
-#                         if last_user_input:
-#                             last_user_input = user_input
-#                             self.logger.debug('We have a new input')
-#                             self.logger.debug('user_input is: ' + user_input)
-#                             break
-#                         else:
-#                             last_user_input = user_input
-#             except:
-#                 self.logger.warn('Error in poll_LC' + str(sys.exc_info()[0]))
-#         self.logger.debug('Returning  user_input: ' + user_input)
-#         return user_input
 
 
 # def poll_email():
@@ -1426,13 +1493,13 @@ class Core:
 #         return None
 
 @click.command()
+@click.option('--channel', default='screen', help='The input channel (screen / letschat). Default is screen.')
 @click.option('--config', default='', help='The location of the config file.')
 @click.option('--loglvl', default='', help='The level at which logging is done (DEBUG / INFO / WARN). Not case sensitive. Default level is WARN.')
-def main(config, loglvl):
+def main(channel, config, loglvl):
     """RoyBot: a simple chatbot programme to look up details about the rulers of England"""
-    ch_in = 'screen'  # 'email' OR 'screen' OR 'online'
-    ch_out = {'facebook': False, 'email': False, 'online': False, 'screen': True} # 'facebook': True
-    c = Core(channels_out = ch_out, channel_in = ch_in, loglvl = loglvl, config_override = config)
+    ch_out = {'facebook': False, 'email': False, 'letschat': False, 'screen': True}
+    c = Core(channels_out = ch_out, channel_in = channel, loglvl = loglvl, config_override = config)
     c.greeting()
     c.main_loop()
 
