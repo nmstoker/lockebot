@@ -10,7 +10,7 @@ It is a bot that can answer simple questions, via the terminal, email, [Let's Ch
 
 After being trained on examples, it is (to a degree) able to generalise the questions and respond to ones in a similar style. The questions are turned into intents and entities, which are then used to construct queries to run against a database to provide the answer.
 
-Here is a demo of the RoyBot version :crown: (which is trained/coded to answer a range of different questions on English and British monarchs)
+Here is a demo of the RoyBot version :crown: (which is trained/coded to answer a range of different questions on English and British monarchs) When it's running, you can access it live on Facebook Messenger [here too](https://www.facebook.com/RoyBoticUK/)
 
 [![asciicast](https://asciinema.org/a/buhysdhqvytr8sgq89t8bvqf4.png)](https://asciinema.org/a/buhysdhqvytr8sgq89t8bvqf4)
 
@@ -95,6 +95,12 @@ and also one related to flask: `export FLASK_APP=fb.py`
 Then run the script with `flask run`, which will start a local webserver (flask obviously!)  Messages sent via the Messenger app should be turned into posts made to the server, which are then processed by the bot and the replies intended for the users are sent back to Facebook via posts made to their server.
 
 Initially only the developer(s) will be able to access the bot, but if you get through the approval process you can make it publically accessible.
+
+See a YouTube demonstration here: https://youtu.be/r2sbmEDep5s
+
+[![YouTube](media/FB_Messenger_two_pages_small.jpg)](https://youtu.be/r2sbmEDep5s)
+
+When running, you can access it live on Facebook Messenger [here too](https://www.facebook.com/RoyBoticUK/)
 
 #### Email set up
 
