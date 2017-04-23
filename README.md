@@ -51,7 +51,7 @@ For Raspberry Pi installation, there are a couple of changes to the steps for in
 	* For training steps, see below (Usage) otherwise download the models from this Google Drive location:
 	* https://drive.google.com/drive/folders/0B3K9eUuGgfbva2JUY2tYejc2ODg?usp=sharing
 	* **/model_20170124-010214/** is required for BaseBot
-	* **/model_20170228-111802/** is required for RoyBot
+	* **/model_20170423-110538/** is required for RoyBot
 	* Save them in the '/models' folder of your local copy of the repo
 
 If you simply wish to use the local terminal to work with the bot, you are ready to proceed to Usage.
