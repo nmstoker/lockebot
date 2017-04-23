@@ -85,9 +85,14 @@ The [Quick Start](https://developers.facebook.com/docs/messenger-platform) docum
 Configure these two environment variables for the script to pick up the private settings that you configure with Facebook:
 
 * VERIFY_TOKEN
-* PAGE_ACCESS_TOKEN 
+* PAGE_ACCESS_TOKEN
 
-Then run the fb.py script, which will start a local webserver (running flask).  Messages sent via the Messenger app should be turned into posts made to the server, which are then processed by the bot and the replies intended for the users are sent back to Facebook via posts made to their server.
+e.g. `export VERIFY_TOKEN=....` and `export PAGE_ACCESS_TOKEN=....`
+
+and also one related to flask: `export FLASK_APP=fb.py`
+
+
+Then run the script with `flask run`, which will start a local webserver (flask obviously!)  Messages sent via the Messenger app should be turned into posts made to the server, which are then processed by the bot and the replies intended for the users are sent back to Facebook via posts made to their server.
 
 Initially only the developer(s) will be able to access the bot, but if you get through the approval process you can make it publically accessible.
 
