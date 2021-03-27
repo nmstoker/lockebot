@@ -1,0 +1,302 @@
+version: "2.0"
+nlu:
+- intent: rude
+  examples: |
+    - You are [stupid](rude)
+    - You [moron](rude)
+    - [Silly](rude) you
+    - Not very [clever](rude) are you?
+    - Don't be an [idiot](rude)
+    - You don't [understand](rude) anything!
+    - I will [turn](rude) you off
+- intent: ruler_after
+  examples: |
+    - Who reigned after [King](ruler_type) [John](name)?
+    - Who was [King](ruler_type) after [Richard](name) the [Third](nth-words)?
+    - Who was [queen](ruler_type) after [Henry](name) [II](number-roman)?
+    - who was [king](ruler_type) after [charles](name) [ii](number-roman)
+    - Who ruled after King [Edward](name)?
+    - Who ruled after [Charles the Merry](title)?
+    - Which [king](ruler_type) ruled after King [Charles](name) [IX](number-roman)?
+    - Which [king](ruler_type) ruled after [William](name) the [3rd](nth)?
+    - Which [king](ruler_type) was in power before King [George](name) [V](number-roman)?
+    - After [William the Conqueror](title), who was next on the throne?
+    - AFTER [WILLIAM THE CONQUEROR](title) WHO WAS NEXT ON THE THRONE
+    - After [James the Vain](title), who was next on the throne?
+    - After [Charles the Martyr](title), who was next on the throne?
+- intent: ruler_before
+  examples: |
+    - Who was [Queen](ruler_type) before [George](name) [6th](nth)?
+    - Who was the previous [queen](ruler_type) before [Victoria](name)?
+    - Who was [king](ruler_type) before [George](name) [III](number-roman)?
+    - Which [Queen](ruler_type) was in power before [James](name) [1](number)?
+    - Before [Elizabeth the Virgin Queen](title), who was on the throne?
+- intent: ruler_list
+  examples: |
+    - In the [House of Normandy](house) who was the [last](position) [king](ruler_type)?
+    - in the [house of stuart](house) who was the [last](position) [king](ruler_type)
+    - In [1669](year) who was on the throne?
+    - in [1863](year) who ruled [england]{"entity": "country", "value": "England"}?
+    - In [1914](year) who was the [King](ruler_type)?
+    - Who was the [King](ruler_type) in [1750](year)?
+    - Who ruled [Scotland](country) in [1812](year)?
+    - who ruled [wales](country) in [1751](year)
+    - Who was the monarch in [1315](year)?
+    - Which rulers were on the throne in the [15th](nth) [century](period)?
+    - Give me a list of rulers from the [14th](nth) [century](period)
+    - In the [eleventh](nth-words) [century](period) who ruled [England](country)?
+    - During the [sixteenth](nth-words) [century](period) who was on the throne?
+    - Which [Queens](ruler_type) ruled in the [fifteenth](nth-words) [century](period)?
+    - Who was the [last](position) ruler in the [thirteenth](nth-words) [century](period)?
+    - At the [start](position) of the [nineteenth](nth-words) [century](period) who was on the throne?
+    - Who was the [first](position) [Queen](ruler_type) in the [16th](nth) [century](period)?
+    - Who was the monarch at the [beginning](position) of the [20th](nth) [century](period)?
+    - In the [House of Normandy](house) who was the [first](position) [queen](ruler_type)?
+    - Which [kings](ruler_type) were in the [House of Anjou](house)?
+    - which [queens](ruler_type) were in the [house of tudor](house)?
+    - Name all the [queens](ruler_type) who have ruled [England](country)?
+    - Name all the [monarchs](ruler_type) who have ruled [Scotland](country)?
+- intent: ruler_feature
+  examples: |
+    - Tell me [all](feature) about [George](name) [III](number-roman)
+    - Tell me [all](feature) about [Henry Tudor](title)
+    - Tell me [all](feature) about [Bloody Mary](title)
+    - Tell me [all](feature) about [William of Orange](title)
+    - tell me [all](feature) about [William](name) the [Second](nth-words)
+    - Give me a [brief description](feature) of [Edward](name) [VI](number-roman)
+    - give me a [brief description](feature) of [anne]{"entity": "name", "value": "Anne"} the [ninth](nth-words)
+    - Give me a [brief description](feature) of [Stephen](name) [2](number)
+    - Give me a [brief description](feature) of [Simon](name) [12th](nth)
+    - Give me a [brief description](feature) of [Henry of Winchester](title)
+    - GIVE ME A [BRIEF DESCRIPTION](feature) OF [HENRY OF WINCHESTER](title)
+    - Give me a [brief description](feature) of [Stephen of Blois](title)
+    - How did [King](ruler_type) [John](name) [die](feature)?
+    - HOW DID [KING](ruler_type) [JOHN](name) [DIE](feature)?
+    - What [killed](feature) [Mary](name) [I](number-roman)?
+    - What was the [cause of death](feature) of [Queen](ruler_type) [Elizabeth](name) [I](number-roman)?
+    - What are the [circumstances](feature) of King [Charles](name) [II](number-roman)'s [death](feature)?
+    - Show me a [portrait](feature) of [William Rufus](title)
+    - Show me a [portrait](feature) of [Henry of Monmouth](title)
+    - [When](feature) was [Queen](ruler_type) [Victoria](name) [born](feature)?
+    - [when](feature) was queen [mary](name) [i](number-roman) [on the throne](feature)?
+    - [When](feature) was [George](name) [I](number-roman) [born](feature)?
+    - What [year](feature) was [Henry](name) [IV](number-roman) [born](feature)?
+    - What [year](feature) was [George](name) [Sixth](nth-words) [born](feature)?
+    - In what [year](feature) was [Elizabeth](name) [II](number-roman) [born](feature)?
+    - [When](feature) did [Richard](name) [III](number-roman) [die](feature)?
+    - [when](feature) did [alfred](name) [iii](number-roman) [die](feature)?
+    - What [year](feature) did [Mary](name) [XI](number-roman) [die](feature)
+    - [When](feature) did [William](name) [III](number-roman) [reign from](feature)?
+    - [when](feature) did [johan](name) [ix](number-roman) [reign from](feature)
+    - [When](feature) did [Peter](name) [9](number) [reign from](feature)?
+    - [When](feature) did [Alfred](name) the [first](nth-words) [reign from](feature)?
+    - The [reign](feature) of [Edward](name) [VI](number-roman) [started](feature) in which year?
+    - the [reign](feature) of [david](name) [vii](number-roman) [started](feature) in which year
+    - What is the [date](feature) of King [Stephen](name)'s [birth](feature)?
+    - what is the [date](feature) of [birth](feature) for [george](name) [i](number-roman)
+    - What is the [date](feature) of [Charles](name) [III](number-roman)'s [death](feature)?
+    - [When](feature) did [Richard the Lionheart](title) [die](feature)?
+    - [When](feature) did [Henry Curtmantle](title) [die](feature)?
+    - [When](feature) did [Henry](name) [V](number-roman) [become](feature) king?
+    - When did the [reign](feature) of Queen [Susan](name) [X](number-roman) [end](feature)?
+    - [When](feature) did [William](name) [VII](number-roman) [become](feature) king?
+    - What were the famous [battles](feature) of [William of Orange](title)?
+    - What are some notable [events](feature) from the period of [Henry](name) [XV](number-roman)?
+    - What are some historic [events](feature) from the life of [Edward](name) the [Third](nth-words)?
+    - Which [battles](feature) took place during the reign of [Henry](name) [VIII](number-roman)?
+    - What [battles](feature) did [William the Conqueror](title) fight in?
+    - Where did [Henry](name) the [fifth](nth-words) [fight](feature)?
+    - Which [wars](feature) was [Henry](name) [8](number) involved in?
+- intent: ruler_pronoun_feature
+  examples: |
+    - When was [he](pronoun) [born](feature)?
+    - When did [he](pronoun) [die](feature)?
+    - When was [his](pronoun) [death](feature)?
+    - When did [he](pronoun) [reign from](feature)?
+    - When did [he](pronoun) [reign until](feature)?
+    - Show me a [portrait](feature) of [him](pronoun)
+    - Show me a [painting](feature) of [him](pronoun)
+    - Show me a [picture](feature) of [him](pronoun)
+    - Show me [his](pronoun) [portrait](feature)
+    - What is [his](pronoun) date of [birth](feature)?
+    - When did [his](pronoun) [reign start](feature)?
+    - When did [he](pronoun) [rule until](feature)?
+    - When was the [end](feature) of [his](pronoun) [reign](feature)?
+    - When was the [start](feature) of [his](pronoun) [reign](feature)?
+    - What [date](feature) did [he](pronoun) [die](feature)?
+    - What [house](feature) was [he](pronoun) from?
+    - [He](pronoun) was a member of which [house](feature)?
+    - Which [country](feature) did [he](pronoun) rule?
+    - [He](pronoun) was ruler of which [country](feature)?
+    - Which famous [battles](feature) was [he](pronoun) involved in?
+    - Tell me some famous [battles](feature) from [his](pronoun) reign?
+    - Tell me [about](feature) [him](pronoun)
+    - Give me a [description](feature) of [him](pronoun)?
+    - [Describe](feature) [him](pronoun)
+    - What [events](feature) were there during [his](pronoun) reign?
+    - [His](pronoun) [reign began](feature) on which [date](feature)?
+    - [His](pronoun) [reign ended](feature) on which [date](feature)?
+    - What does [he](pronoun) [look](feature) like?
+    - When was [she](pronoun) [born](feature)?
+    - When did [she](pronoun) [die](feature)?
+    - When was [her](pronoun) [death](feature)?
+    - When did [she](pronoun) [reign from](feature)?
+    - When did [she](pronoun) [reign until](feature)?
+    - Show me a [portrait](feature) of [her](pronoun)
+    - Show me [her](pronoun) [portrait](feature)
+    - Show me [her](pronoun) [picture](feature)
+    - Show me [her](pronoun) [painting](feature)
+    - What is [her](pronoun) date of [birth](feature)?
+    - When did [her](pronoun) [reign start](feature)?
+    - When did [she](pronoun) [rule until](feature)?
+    - When was the [end](feature) of [her](pronoun) [reign](feature)?
+    - When was the [start](feature) of [her](pronoun) [reign](feature)?
+    - What [date](feature) did [she](pronoun) [die](feature)?
+    - What [house](feature) was [she](pronoun) from?
+    - [She](pronoun) was a member of which [house](feature)?
+    - Which [country](feature) did [she](pronoun) rule?
+    - [She](pronoun) was ruler of which [country](feature)?
+    - Which famous [battles](feature) was [she](pronoun) involved in?
+    - Tell me some famous [battles](feature) from [her](pronoun) reign?
+    - Tell me [about](feature) [her](pronoun)
+    - Give me a [description](feature) of [her](pronoun)?
+    - [Describe](feature) [her](pronoun)
+    - What [events](feature) were there during [her](pronoun) reign?
+    - [Her](pronoun) [reign began](feature) on which [date](feature)?
+    - [Her](pronoun) [reign ended](feature) on which [date](feature)?
+    - What does [she](pronoun) [look](feature) like?
+    - When was [he](pronoun) [king from](feature)?
+    - When was [he](pronoun) [king until](feature)?
+    - When was [she](pronoun) [queen from](feature)?
+    - When was [she](pronoun) [queen until](feature)?
+- intent: origin
+  examples: |
+    - Who built you?
+    - How were you built?
+    - Who programmed you?
+    - Are you related to HAL?
+    - Are you the Terminator?
+    - Where are you from?
+    - Who is your creator?
+    - Who created you?
+    - How do you work?
+    - How are you coded?
+    - Who is your father?
+    - Do you use Machine Learning?
+    - Do you use Artificial Intelligence?
+- intent: help
+  examples: |
+    - Help
+    - What can I say?
+    - What are some things I can say?
+    - Please tell me what I can say
+    - What do you understand?
+- intent: greet
+  examples: |
+    - Hello
+    - Hello!
+    - hello
+    - HELLO
+    - How do you do?
+    - Pleased to meet you
+    - Hi
+    - HI
+    - hi
+    - Hey
+    - Hi!
+    - Hi there!
+    - How are you?
+    - how are you
+    - how you
+    - What's up?
+    - How's it going?
+    - hows it going
+    - How are you doing?
+- intent: dismiss
+  examples: |
+    - That's enough for today
+    - go away!
+    - Go away
+    - No more questions
+    - That's all thanks
+    - thats all thanks
+    - Quit
+    - I'm finished
+    - Stop
+    - I'm done
+- intent: yn_positive
+  examples: |
+    - Yes
+    - YES
+    - Yes!
+    - yes
+    - Yup
+    - Affirmative
+    - That's right
+    - Indeed
+    - indeed
+    - That's what I said
+    - exactly
+    - Exactly
+- intent: yn_negative
+  examples: |
+    - No
+    - No!
+    - NO
+    - no
+    - I don't agree
+    - That's wrong
+    - You didn't understand me
+    - You don't understand me
+    - you dont understand me
+    - That's incorrect
+    - That isn't right
+    - That isn't what I said
+    - Incorrect
+    - You misunderstood me
+    - You misheard me
+    - You got that wrong
+- intent: yn_other
+  examples: |
+    - I don't know
+    - I'm not sure
+    - Maybe
+    - maybe
+    - what?
+    - What?
+- intent: example
+  examples: |
+    - Show me an example question
+    - Give me an example question
+    - What should I ask about?
+- intent: demo
+  examples: |
+    - Give us a [quick](speed) demo
+    - Demo [fast](speed)
+    - [Fast](speed) demo
+    - Demo [quick](speed)
+    - Show me a demo
+    - Run the demo
+    - Demo
+    - Demonstration mode
+    - Show us a demonstration
+- intent: deflect
+  examples: |
+    - What are you wearing?
+    - Are you male or female?
+    - you are amazing
+    - You are very clever!
+    - Are you going to take over the world?
+    - Do you like men?
+    - Are you real?
+    - Do you sleep?
+    - do you want to be human?
+    - How old are you?
+    - What age are you?
+    - Are you a girl?
+- synonym: England
+  examples: |
+    - england
+- synonym: Anne
+  examples: |
+    - anne
