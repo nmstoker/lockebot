@@ -1,0 +1,297 @@
+version: "2.0"
+stories:
+- story: Greetings
+  steps:
+  - intent: greet
+  - action: utter_greet
+- story: Deflect
+  steps:
+  - intent: deflect
+  - action: utter_deflect
+- story: Demo
+  steps:
+  - intent: demo
+  - action: utter_demo
+- story: Dismiss
+  steps:
+  - intent: dismiss
+  - action: utter_dismiss
+- story: Example
+  steps:
+  - intent: example
+  - action: action_example
+- story: Help
+  steps:
+  - intent: help
+  - action: utter_help
+- story: Origin
+  steps:
+  - intent: origin
+  - action: utter_origin
+- story: Rude
+  steps:
+  - intent: rude
+  - action: utter_rude
+- story: Ruler After
+  steps:
+  - intent: ruler_after
+  - action: action_ruler_after
+- story: Ruler Before
+  steps:
+  - intent: ruler_before
+  - action: action_ruler_before
+- story: Ruler Feature
+  steps:
+  - intent: ruler_feature
+  - action: action_ruler_feature
+- story: Ruler List
+  steps:
+  - intent: ruler_list
+  - action: action_ruler_list
+- story: Ruler Pronoun Feature
+  steps:
+  - intent: ruler_pronoun_feature
+  - action: action_ruler_pronoun_feature
+- story: Yes No Response Negative
+  steps:
+  - intent: yn_negative
+  - action: utter_yn_negative
+- story: Yes No Response Other
+  steps:
+  - intent: yn_other
+  - action: utter_yn_other
+- story: Yes No Response Positive
+  steps:
+  - intent: yn_positive
+  - action: utter_yn_positive
+- story: Story from Conversation ID 6344fe3dfac24a04ba7e6257b6fd9a71
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: ruler_before
+    entities:
+    - ruler_type: Queen
+    - name: Victoria
+  - action: action_ruler_before
+- story: Story from Conversation ID ce6b84059898433eb4f235ad2814fb7a
+  steps:
+  - intent: ruler_list
+    entities:
+    - ruler_type: kings
+    - house: House of Tudor
+  - action: action_ruler_list
+- story: Story from Conversation ID 76eb711a4d364862b4f2b81b0944d8ac
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: When
+    - ruler_type: Queen
+    - name: Anne
+    - feature: on the throne
+  - action: action_ruler_feature
+- story: Story from Conversation ID b27e91e05e8e408196c6a0379a7124e7
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: picture
+    - title: William Rufus
+  - action: action_ruler_feature
+  - intent: ruler_pronoun_feature
+    entities:
+    - pronoun: he
+    - feature: born
+  - action: action_ruler_pronoun_feature
+- story: Story from Conversation ID cf311c3c21e74b7994432e651efe3bd4
+  steps:
+  - intent: ruler_list
+    entities:
+    - year: '1564'
+  - action: action_ruler_list
+  - intent: ruler_after
+  - action: action_ruler_after
+- story: Story from Conversation ID 88408f20b1224a42beaddd3d06c8e414
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: all
+    - name: John of Gaunt
+  - action: action_ruler_feature
+- story: Story from Conversation ID 8089d0ee818b4eb09ddb67a7d845bb19
+  steps:
+  - intent: ruler_feature
+    entities:
+    - name: edward
+    - nth-words: third
+  - action: action_ruler_feature
+- story: Story from Conversation ID 35f90b6b594645f4b344670680f49c25
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: when
+    - name: elizabeth the
+    - nth-words: first
+    - feature: on throne
+  - action: action_ruler_feature
+  - intent: ruler_feature
+    entities:
+    - feature: when
+    - name: richard
+    - nth-words: third
+    - feature: reign until
+  - action: action_ruler_feature
+  - intent: ruler_pronoun_feature
+    entities:
+    - feature: battles
+    - pronoun: he
+  - action: action_ruler_pronoun_feature
+  - intent: ruler_pronoun_feature
+    entities:
+    - feature: picture
+    - pronoun: him
+  - action: action_ruler_pronoun_feature
+  - intent: ruler_pronoun_feature
+    entities:
+    - pronoun: he
+    - feature: born
+  - action: action_ruler_pronoun_feature
+  - intent: ruler_pronoun_feature
+    entities:
+    - pronoun: he
+    - feature: die
+  - action: action_ruler_pronoun_feature
+- story: Story from Conversation ID 8a92551448414b3bb93996093e369ff9
+  steps:
+  - intent: help
+  - action: utter_help
+- story: Story from Conversation ID 922a0616e6fb4aae95984222e8956d41
+  steps:
+  - intent: deflect
+    entities:
+    - feature: number
+  - action: utter_deflect
+  - intent: deflect
+    entities:
+    - feature: date
+  - action: utter_deflect
+- story: Story from Conversation ID edfc816e6a7548bca0afbe64136eef03
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: killed
+    - name: george
+    - nth-words: third
+  - action: action_ruler_feature
+  - intent: ruler_feature
+    entities:
+    - name: henry
+    - nth-words: eighth
+    - feature: die
+  - action: action_ruler_feature
+- story: Story from Conversation ID 009e92530cbe4a2e9fce3f7cdb9d4c2d
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: picture
+    - name: Elizabeth
+    - nth-words: first
+  - action: action_ruler_feature
+- story: Story from Conversation ID b57b85910d3746f4b00de5a6484c8d14
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: picture
+    - name: Elizabeth
+  - action: action_ruler_feature
+- story: Story from Conversation ID cd337ed1153a4ae889245f003d5e278d
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: When
+    - name: John of Gaunt
+    - feature: born
+  - action: action_ruler_feature
+- story: Story from Conversation ID 4a5aaeb459a2464999646cd6adb30bcc
+  steps:
+  - intent: ruler_before
+    entities:
+    - name: Henry
+    - nth-words: fifth
+  - action: action_ruler_before
+- story: Story from Conversation ID 16d73f8f44f9433c8e0732c719e3c693
+  steps:
+  - intent: ruler_list
+    entities:
+    - ruler_type: kings
+    - house: house of stuart
+  - action: action_ruler_list
+  - intent: ruler_list
+    entities:
+    - ruler_type: queens
+    - house: house of stuart
+  - action: action_ruler_list
+- story: Story from Conversation ID e764f3b7a17b4afdb3eb59998a417cf2
+  steps:
+  - intent: ruler_after
+    entities:
+    - ruler_type: queen
+    - name: victoria
+  - action: action_ruler_after
+- story: Story from Conversation ID 0e7bab07c7674dd8af3f5a7835528f22
+  steps:
+  - intent: ruler_after
+    entities:
+    - ruler_type: king
+    - name: William
+    - nth-words: first
+  - action: action_ruler_after
+- story: Story from Conversation ID f1ee6cac429e4f639617785d3d88a4b3
+  steps:
+  - intent: ruler_after
+    entities:
+    - ruler_type: queen
+    - title: henry curtmantle
+  - action: action_ruler_after
+  - intent: ruler_after
+    entities:
+    - title: henry curtmantle
+  - action: action_ruler_after
+- story: Story from Conversation ID 05cdef5b9fb54adaa77f1c60138d8417
+  steps:
+  - intent: ruler_after
+    entities:
+    - title: william rufus
+  - action: action_ruler_after
+- story: Story from Conversation ID 533ed7615c864ddc818072203ceddc38
+  steps:
+  - intent: ruler_before
+    entities:
+    - title: stephen of blois
+  - action: action_ruler_before
+- story: Story from Conversation ID 0873bebe6fc04407933c1742c43e2579
+  steps:
+  - intent: ruler_before
+    entities:
+    - title: Elizabeth the Virgin Queen
+  - action: action_ruler_before
+- story: Story from Conversation ID 2ef40def7095420dbeed33eba621e0b8
+  steps:
+  - intent: ruler_after
+    entities:
+    - title: Elizabeth the Virgin Queen
+  - action: action_ruler_after
+- story: Story from Conversation ID ecf3ab7b7dad44ffa349aa457177966d
+  steps:
+  - intent: ruler_after
+    entities:
+    - title: bloody mary
+  - action: action_ruler_after
+- story: Story from Conversation ID 4917797f4a524faeaca44a5170059d49
+  steps:
+  - intent: ruler_feature
+    entities:
+    - feature: events
+    - name: william
+    - nth-words: first
+  - action: action_ruler_feature
+  - slot_was_set:
+    - last_ruler_id: '1'

@@ -1,10 +1,13 @@
 # Project specific items
-MITIE/MITIE-models/
+events.db*
+rasa.db
 models/
+results/
 data/base.hist
 data/roybot.hist
 data/tagged.txt
 data/roybot_tagged.txt
+data/roybot_db.sqlite.bak
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

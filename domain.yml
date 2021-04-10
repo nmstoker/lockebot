@@ -1,0 +1,154 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- deflect:
+    use_entities: []
+- demo:
+    use_entities: []
+- dismiss:
+    use_entities: []
+- example:
+    use_entities: true
+- greet:
+    use_entities: true
+- help:
+    use_entities: true
+- origin:
+    use_entities: true
+- rude:
+    use_entities: true
+- ruler_after:
+    use_entities: true
+- ruler_before:
+    use_entities: true
+- ruler_feature:
+    use_entities: true
+- ruler_list:
+    use_entities: true
+- yn_negative:
+    use_entities: true
+- yn_other:
+    use_entities: true
+- yn_positive:
+    use_entities: true
+- detail_example:
+    use_entities: true
+- feature_example:
+    use_entities: true
+- ruler_pronoun_feature:
+    use_entities: true
+entities:
+- name
+- nth
+- title
+- feature
+- position
+- ruler_type
+- speed
+- nth-words
+- house
+- rude
+- number
+- year
+- pronoun
+- number-roman
+- number-words
+- country
+- location
+- period
+- year-words
+slots:
+  last_ruler_id:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+responses:
+  utter_greet:
+  - text: Hey there!
+  - text: Hello!
+  - text: Hello to you too!
+  utter_deflect:
+  - text: I can't really respond to that sort of thing.
+  - text: That isn't something I'm programmed to handle.
+  - text: Sorry, I cannot help you on that line of discussion.
+  - text: No comment.
+  - text: Sorry, I don't know about that.
+  - text: Let's talk about something else.
+  utter_demo:
+  - text: The demo is pending.
+  utter_dismiss:
+  - text: Okay, bye!
+  utter_help:
+  - text: |
+      I understand a handful of simple concepts related to the monarchy in the UK.
+      There are various ways to select a particular ruler, such as
+      the number (eg VI, 6 or sixth) or by a value (eg "William Rufus").
+      Then you can pick out specific information such as:
+      - Date of birth
+      - End of reign
+      - Famous battles
+      - House (eg of Tudor)
+      Then the ML magic happens, I try to understand what you've said and then look up details
+      based on entities recognised in a database.
+      Have a go!
+      (or try "Give me an example" if you're really not sure :D)
+  utter_origin:
+  - text: |
+      I am RoyBotic, a simple chatbot focused on basic questions regarding the monarchy in the UK.
+      I have been programmed in Python, using a machine learning backend that recognises user
+      input and passes details to a script which in turn translates them so that relevant details
+      can be accessed in a database, following which answers are constructed and given back to the user.
+  utter_rude:
+  - text: That isn't something I can really comment on.
+  - text: Perhaps I've misunderstood what you meant to say?
+  - text: Is there anything useful I can help you with?
+  - text: I'm not sure I understood what you just said.
+  - text: Ah the rich expressive nature of the English language.
+  - text: Sadly I'm just a simple bot so it means very little to me!
+  utter_ruler_feature_ReignStartDt:
+  - text: '{HeShe} reigned from {ReignStartDt}.'
+  utter_ruler_feature_ReignEndDt:
+  - text: '{HeShe} reigned until {ReignEndDt}.'
+  utter_ruler_feature_House:
+  - text: '{HeShe} was a member of the {House}.'
+  utter_ruler_feature_NotableEventsDuringLife:
+  - text: '{NotableEventsDuringLife}'
+  utter_ruler_feature_DtBirth:
+  - text: '{HeShe} was born on {DtBirth}.'
+  utter_ruler_feature_DtDeath:
+  - text: '{HeShe} died on {DtDeath}.'
+  utter_ruler_feature_Portrait:
+  - image: '{Portrait}'
+    text: A picture of {Name} {Number}.
+  utter_ruler_feature_DeathCircumstances:
+  - text: '{DeathCircumstances}.'
+  utter_ruler_feature_FamousBattles:
+  - text: '{FamousBattles}.'
+  utter_ruler_feature_FamousBattles_singular:
+  - text: An important battle was the {FamousBattles}.
+  utter_ruler_feature_FamousBattles_plural:
+  - text: Some important battles were {FamousBattles}.
+  utter_ruler_feature_Description:
+  - text: '{Description}.'
+  utter_ruler_feature_all:
+  - text: '{Name} {Number} was born on {DtBirth} and died on {DtDeath}. With a reign starting on {ReignStartDt} and lasting until {ReignEndDt}. {HeShe} was involved in {FamousBattles}. {Description}'
+  utter_yn_negative:
+  - text: I understood a negative response.
+  utter_yn_other:
+  - text: I understood an ambiguous response.
+  utter_yn_positive:
+  - text: I understood a positive response.
+actions:
+- action_ruler_feature
+- action_ruler_list
+- action_ruler_before
+- action_ruler_after
+- action_example
+- action_ruler_pronoun_feature
+forms: {}
+e2e_actions: []
