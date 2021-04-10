@@ -9,6 +9,20 @@ nlu:
     - Don't be an [idiot](rude)
     - You don't [understand](rude) anything!
     - I will [turn](rude) you off
+    - you're [stupid](rude)
+    - Why are you so [stupid](rude)
+    - such a dumb bot
+    - stupid bot
+    - shit for brains
+    - you know nothing
+    - pathetic bot
+    - half brained moron
+    - are you completely thick
+    - imbecile
+    - utter fuckwit
+    - you complete idiot
+    - You are useless
+    - Take a hike bozo
 - intent: ruler_after
   examples: |
     - Who reigned after [King](ruler_type) [John](name)?
@@ -24,6 +38,14 @@ nlu:
     - AFTER [WILLIAM THE CONQUEROR](title) WHO WAS NEXT ON THE THRONE
     - After [James the Vain](title), who was next on the throne?
     - After [Charles the Martyr](title), who was next on the throne?
+    - Who succeeded them?
+    - Who ruled after [Victoria](name)
+    - Who was on the throne after [George](name) [III](number-roman)
+    - who was [king](ruler_type) after [richard the lionheart](title)
+    - who ruled after [john lackland](title)
+    - who ruled after [mary](name) the [first](nth-words)
+    - who was the [queen](ruler_type) after [victoria](name)
+    - who ruled after [george](name) the [fifth](nth-words)
 - intent: ruler_before
   examples: |
     - Who was [Queen](ruler_type) before [George](name) [6th](nth)?
@@ -31,15 +53,37 @@ nlu:
     - Who was [king](ruler_type) before [George](name) [III](number-roman)?
     - Which [Queen](ruler_type) was in power before [James](name) [1](number)?
     - Before [Elizabeth the Virgin Queen](title), who was on the throne?
+    - Who was on the throne before [Queen](ruler_type) [Victoria](name)?
+    - Who was on the throne before [queen](ruler_type) [Victoria](name)
+    - who ruled before [king](ruler_type) [george](name)
+    - who was on the throne right before [queen](ruler_type) [anne](name)
+    - who ruled previous to [john of gaunt](title)
+    - name the preceding monarch to [william](name)
+    - tell me who came before [arthur](name)
+    - who was on the throne before [harry](name)
+    - Who [rules](feature) before [Charles](name) [II](number-roman)?
+    - who ruled before [charles](name) the [second](nth-words)
+    - who was on the throne before [victoria](name)
+    - Who was on the throne before [Henry](name) the [fifth](nth-words)
+    - leader before [Henry Bolingbroke](title)
+    - who ruled before [george](name) the [sixth](nth-words)
+    - who ruled before [richard](name) the [third](nth-words)
+    - who was the [queen](ruler_type) before [victoria](name)
+    - who ruled before [edward](name) the [eighth](nth-words)
 - intent: ruler_list
   examples: |
     - In the [House of Normandy](house) who was the [last](position) [king](ruler_type)?
     - in the [house of stuart](house) who was the [last](position) [king](ruler_type)
     - In [1669](year) who was on the throne?
-    - in [1863](year) who ruled [england]{"entity": "country", "value": "England"}?
+    - in [sixteen eighty three](year-words) who was on the throne
+    - tell me who was on the throne in [1502](year)?
+    - tell me who ruled in [twelve thirty](year-words)?
+    - in [1863](year) who ruled [england](country)?
     - In [1914](year) who was the [King](ruler_type)?
     - Who was the [King](ruler_type) in [1750](year)?
     - Who ruled [Scotland](country) in [1812](year)?
+    - who ruled [Scotland](country) in [fourteen hundred](year-words)?
+    - Name the ruler of [Scotland](country) in [1903](year)?
     - who ruled [wales](country) in [1751](year)
     - Who was the monarch in [1315](year)?
     - Which rulers were on the throne in the [15th](nth) [century](period)?
@@ -56,6 +100,60 @@ nlu:
     - which [queens](ruler_type) were in the [house of tudor](house)?
     - Name all the [queens](ruler_type) who have ruled [England](country)?
     - Name all the [monarchs](ruler_type) who have ruled [Scotland](country)?
+    - in the house of plantagenet who was the first king
+    - who was [monarch](ruler_type) in [thirteen seventy two](year-words)
+    - name the [monarch](ruler_type) on the throne in [sixteen fifty three](year-words)
+    - who was [king](ruler_type) in [eleven oh six](year-words)
+    - whois in the [house of tuda](house)
+    - which [kings](ruler_type) were in the [house of enjou](house)
+    - hiqueened her in the [house of anjou](house)
+    - Who was in the [House of Tudor](house)
+    - Who was the [last](position) [king](ruler_type) in the [House of Plantagenet](house)
+    - Who was the [last](position) [king](ruler_type) in the [House of Tudor](house)
+    - Who was the [first](position) [king](ruler_type) in the [House of Tudor](house)
+    - Which [kings](ruler_type) were in the [House of Tudor](house)
+    - during the [seventeenth](nth-words) [century](period) which [queens](ruler_type) were on the throne
+    - during the [17](number) [century](period) which [queens](ruler_type) were on the throne
+    - who was on the throne in [seventeen ninety two](year-words)
+    - who was [king](ruler_type) in [seventeen ninety two](year-words)
+    - Which [kings](ruler_type) were in the [House of Tudoe](house)
+    - who was in the [house of hanover](house)
+    - Name the rulers in the [House of Blois](house)
+    - Who was the [last](position) [king](ruler_type) in the [House of Normandy](house)
+    - Who was the [first](position) [king](ruler_type) in the [House of Normandy](house)
+    - Who was the [last](position) [king](ruler_type) in the [House of York](house)
+    - Who was the [last](position) [king](ruler_type) in the [House of Windsor](house)
+    - during the [fourteenth](nth-words) [century](period) who was on the throne
+    - who was the [monarch](ruler_type) at the [beginning](position) of the [seventeenth](nth-words) [century](period)
+    - who was on the throne in the [seventh](nth-words) [century](period)
+    - who was the [first](position) [queen](ruler_type) of [england](country)
+    - in the [house of normandy](house) who was the [last](position) [king](ruler_type)
+    - Who was on the throne in [1564](year)?
+    - Who was on the throne in [1474](year)?
+    - Who was on the throne in [1472](year)?
+    - Which [kings](ruler_type) were in the [House of Tudor](house)?
+    - Which [kings](ruler_type) were from the [House of Tudor](house)?
+    - which [rulers](ruler_type) were from the [house of saxe-coburg and gotha](house)
+    - [rulers](ruler_type) from [house of lancaster](house)
+    - who was on the throne in [fourteen eighty five](year-words)
+    - who was on the throne in [fourteen thirty three](year-words)
+    - who was on the throne in [fourteen fourty four](year-words)
+    - who was on the throne in [eleven thirty four](year-words)
+    - who was on the throne in [twelve ninety two](year-words)
+    - who was on the throne in [twelve seventy nine](year-words)
+    - who was on the throne in [fifteen twelve](year-words)
+    - who was on the throne in [twelve seventy two](year-words)
+    - throne in [fifteen o five](year-words)
+    - who was on the throne in [nineteen eighty five](year-words)
+    - who was on the throne in [eighteen sixty one](year-words)
+    - who was on the throne in the [sixteenth](nth-words) [century](period)
+    - who were the rulers of the [house of york](house)
+    - who were all the [monarchs](ruler_type) of [england](country)
+    - who were all the [queens](ruler_type) of [england](country)
+    - who was on the throne in [thirteen twenty two](year-words)
+    - who was on the throne in [seventeen fifty nine](year-words)
+    - which [kings](ruler_type) were in a [house of york](house)
+    - who was on the throne in [nineteen seventy](year-words)
 - intent: ruler_feature
   examples: |
     - Tell me [all](feature) about [George](name) [III](number-roman)
@@ -64,7 +162,7 @@ nlu:
     - Tell me [all](feature) about [William of Orange](title)
     - tell me [all](feature) about [William](name) the [Second](nth-words)
     - Give me a [brief description](feature) of [Edward](name) [VI](number-roman)
-    - give me a [brief description](feature) of [anne]{"entity": "name", "value": "Anne"} the [ninth](nth-words)
+    - give me a [brief description](feature) of [anne](name) the [ninth](nth-words)
     - Give me a [brief description](feature) of [Stephen](name) [2](number)
     - Give me a [brief description](feature) of [Simon](name) [12th](nth)
     - Give me a [brief description](feature) of [Henry of Winchester](title)
@@ -107,6 +205,42 @@ nlu:
     - What [battles](feature) did [William the Conqueror](title) fight in?
     - Where did [Henry](name) the [fifth](nth-words) [fight](feature)?
     - Which [wars](feature) was [Henry](name) [8](number) involved in?
+    - [when](feature) did queen [elizabeth](name) the [second](nth-words) [reign from](feature)
+    - [when](feature) was [queen](ruler_type) [elizabeth](name) the [second](nth-words) [born](feature)
+    - ome a [picture](feature) of [henry](name) the [fourth](nth-words)
+    - show me a [portrait](feature) of [george](name) the [fourth](nth-words)
+    - show me a [portrait](feature) of [queen](ruler_type) [anne](name) the [first](nth-words)
+    - show me a [picture](feature) of [queen](ruler_type) [anne](name) the [first](nth-words)
+    - tell me about [elizabeth](name) the [first](nth-words)
+    - ell me [all](feature) about [henry](name) the [fifth](nth-words)
+    - show me a [photo](feature) of [george](name) the [fourth](nth-words)
+    - [when](feature) was [richard](name) the [third](nth-words) [born](feature)
+    - [when](feature) did [elizabeth](name) the [second](nth-words) [reign from](feature)
+    - [when](feature) did [george](name) the [sixth](nth-words) [die](feature)
+    - [when](feature) was [george](name) the [sixth](nth-words) [born](feature)
+    - show me a [picture](feature) of [george](name) the [sixth](nth-words)
+    - show me a [picture](feature) of [edward](name) the [seventh](nth-words)
+    - show me a [picture](feature) of [edward](name) the [sixth](nth-words)
+    - shitha of [edward](name) the [sixth](nth-words)
+    - show me a [picture](feature) of [edward](name) the [fifth](nth-words)
+    - show me a [picture](feature) of [james](name) the [third](nth-words)
+    - show me a [picture](feature) of [elizabeth](name) the [second](nth-words)
+    - tell me [all](feature) about [elizabeth](name) the [second](nth-words)
+    - tell me [about](feature) [elizabeth](name) the [second](nth-words)
+    - show me a [picture](feature) of [james](name) the [second](nth-words)
+    - ma [picture](feature) of [james](name) the [second](nth-words)
+    - show me a [picture](feature) of [elizabeth](name) the [first](nth-words)
+    - show me a [picture](feature) of [harry](name) ta [third](nth-words)
+    - Who was [John](name) the [first](nth-words)
+    - Tell me [all](feature) about [Henry](name) the [fifth](nth-words)
+    - tell me [all](feature) about [william](name) the [third](nth-words)
+    - suming a [picture](feature) of [henry](name) the [fifth](nth-words)
+    - showing me a [portrait](feature) of [queen](ruler_type) [anne](name)
+    - [when](feature) did [queen](ruler_type) [elizabeth](name) the [second](nth-words) [die](feature)
+    - [when](feature) did [elizabeth](name) the [first](nth-words) to [die](feature)
+    - [when](feature) did [elizabeth](name) the [first](nth-words) [reign from](feature)
+    - show me a [picture](feature) of [John Lackland](title)
+    - which [battles](feature) did [william rufus](title) fight in
 - intent: ruler_pronoun_feature
   examples: |
     - When was [he](pronoun) [born](feature)?
@@ -169,61 +303,164 @@ nlu:
     - When was [he](pronoun) [king until](feature)?
     - When was [she](pronoun) [queen from](feature)?
     - When was [she](pronoun) [queen until](feature)?
+    - when did [she](pronoun) [die](feature)
 - intent: origin
   examples: |
-    - Who built you?
-    - How were you built?
-    - Who programmed you?
     - Are you related to HAL?
     - Are you the Terminator?
-    - Where are you from?
-    - Who is your creator?
-    - Who created you?
-    - How do you work?
-    - How are you coded?
-    - Who is your father?
-    - Do you use Machine Learning?
+    - Do you use AI?
     - Do you use Artificial Intelligence?
+    - Do you use Machine Learning?
+    - Do you use ML?
+    - How are you coded?
+    - How do you work?
+    - how builded
+    - How were you built?
+    - Tell me your name
+    - What are you called?
+    - What do they call you?
+    - What is your name?
+    - Where are you from?
+    - who build
+    - Who built you
+    - Who built you?
+    - Who created you
+    - Who created you?
+    - Who is your creator?
+    - Who is your father?
+    - Who programmed you
+    - Who programmed you?
+    - name
+    - who wrote the sorce code
+    - are you intelligent
+    - what's your name
+    - What's your name
+    - who belt you
+    - Who made you?
+    - your name
+    - who programmed you
 - intent: help
   examples: |
+    - assistance
+    - assistance please
+    - explain
     - Help
-    - What can I say?
-    - What are some things I can say?
+    - help
+    - Help me
+    - help me
+    - I need help
+    - I want help
+    - I'm stuck
+    - not working
     - Please tell me what I can say
+    - this is broken
+    - What are some things I can say?
+    - what can I say
+    - What can I say?
     - What do you understand?
+    - Why you no understand me
+    - what can you do
+    - tell me what sorta things i can say
+    - hows this work
+    - teach me bout yourself
+    - read me the instructions
+    - show me the manual
+    - is there a manual
+    - guide me
+    - is there a guide to what i can say
+    - i'm not sure what to say
+    - how do i use this bot
+    - explain this bot
+    - teach me about yourself
+    - is are a guide to what i can say
+    - show me the guide
+    - read me the manuel
+    - te guide
+    - i don't know what to say
+    - can you assist me
+    - i'm stuck
+    - i need help
 - intent: greet
   examples: |
+    - Greetings
+    - HELLO
+    - HI
     - Hello
     - Hello!
-    - hello
-    - HELLO
-    - How do you do?
-    - Pleased to meet you
-    - Hi
-    - HI
-    - hi
     - Hey
-    - Hi!
+    - Hi
     - Hi there!
-    - How are you?
-    - how are you
-    - how you
-    - What's up?
-    - How's it going?
-    - hows it going
+    - Hi!
     - How are you doing?
+    - How are you?
+    - How do you do?
+    - How you doin
+    - How's it going?
+    - Howdie
+    - I'm very pleased to meet you
+    - Pleased to meet you
+    - Wassup!!!
+    - Wassup?
+    - What's up?
+    - bonjour
+    - did we meet before
+    - great to meet you
+    - greetings
+    - guten tag
+    - hello
+    - hello my friend
+    - hi
+    - hi my friend
+    - how are you
+    - how are you doing?
+    - how u doing
+    - how you
+    - how you doin?
+    - howdie
+    - hows it going
+    - it's a pleasure to meet you
+    - wassup
+    - wassup dude?
+    - what happening
+    - what's up
+    - hallo
+    - can ye hear me
+    - canyo earmy
+    - houdy
+    - how's it going
+    - How are you today
+    - can you hear me
 - intent: dismiss
   examples: |
-    - That's enough for today
-    - go away!
+    - bye
+    - Bye now!
+    - Bye!
+    - Ciao!
+    - dismiss
+    - Enough
     - Go away
-    - No more questions
-    - That's all thanks
-    - thats all thanks
-    - Quit
-    - I'm finished
-    - Stop
+    - go away!
+    - Goodbye
+    - gotta go
     - I'm done
+    - I'm finished
+    - Later
+    - Laters
+    - No more questions
+    - Quit
+    - Stop
+    - That's all thanks
+    - That's enough for today
+    - thats all thanks
+    - Outta here
+    - no more questions
+    - i've got no more questions
+    - dismissed
+    - i've got to go
+    - Gotta go
+    - go away
+    - that's enough for to day
+    - stop
 - intent: yn_positive
   examples: |
     - Yes
@@ -238,6 +475,7 @@ nlu:
     - That's what I said
     - exactly
     - Exactly
+    - correct
 - intent: yn_negative
   examples: |
     - No
@@ -256,6 +494,12 @@ nlu:
     - You misunderstood me
     - You misheard me
     - You got that wrong
+    - no that's wrong
+    - you messed that one up
+    - that's not right
+    - you've got that wrong
+    - he misunderstood
+    - incorrect
 - intent: yn_other
   examples: |
     - I don't know
@@ -264,11 +508,33 @@ nlu:
     - maybe
     - what?
     - What?
+    - not really sure
+    - can't tell really
+    - dunno
+    - no idea
+    - can't make up my mind
+    - how should i know
+    - can't decide
+    - i haven't a clue
+    - damned if i know
+    - aint no idea
+    - you tell me
 - intent: example
   examples: |
-    - Show me an example question
+    - Example
+    - Example please
+    - Give an example
+    - Give examples
+    - Give me an example
     - Give me an example question
+    - Give me example
+    - Show examples
+    - Show me an example question
+    - What are examples of things I can say?
     - What should I ask about?
+    - so an example
+    - give us an example
+    - what are some examples
 - intent: demo
   examples: |
     - Give us a [quick](speed) demo
@@ -280,23 +546,51 @@ nlu:
     - Demo
     - Demonstration mode
     - Show us a demonstration
+    - can you give some sort of run through
+    - switch to demo mode
+    - you got a demo video
+    - can i see a demonstration
+    - can you give us a demonstration
+    - show us your demo skills
 - intent: deflect
   examples: |
-    - What are you wearing?
-    - Are you male or female?
-    - you are amazing
-    - You are very clever!
+    - Are you a boy?
+    - Are you a child
+    - Are you a girl?
+    - Are you a grown up?
+    - Are you a teenager?
+    - Are you alive?
+    - Are you an adult
     - Are you going to take over the world?
-    - Do you like men?
+    - Are you male or female?
     - Are you real?
+    - Do you like men?
     - Do you sleep?
-    - do you want to be human?
     - How old are you?
     - What age are you?
-    - Are you a girl?
-- synonym: England
-  examples: |
-    - england
-- synonym: Anne
-  examples: |
-    - anne
+    - What are you wearing?
+    - You are very clever!
+    - do you want to be human?
+    - do you watch television
+    - favourite TV show?
+    - films
+    - like footie?
+    - political
+    - vote
+    - want to watch TV
+    - what about basketball
+    - what's the weather
+    - you a sports fan?
+    - you are amazing
+    - you like politics?
+    - occasion
+    - or publication
+    - Why do good people suffer
+    - are you happy
+    - are you sad
+    - dyou have emotions
+    - o you have emotions
+    - what type of t v d'e watch
+    - will you go on a date with me
+    - can I have your phone number
+    - are you a boy
