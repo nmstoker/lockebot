@@ -1,5 +1,5 @@
 arrow==1.0.3
-requests==2.25
+requests==2.31.0
 roman==3.3
 text2digits==0.1.0
 num2words==0.5
